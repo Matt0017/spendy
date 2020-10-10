@@ -15,12 +15,11 @@
 	min-height: 100px;
 	min-width: 100px;
 	border-radius: 20px;
+	overflow: hidden;
 	background-color: white;
 }
 
 .trans-card {
-	background-color: red;
-
 	grid-column-start: 1;
 	grid-column-end: 3;
 	grid-row-start: 1;
@@ -42,8 +41,6 @@
 	}
 
 	.trans-card {
-		background-color: red;
-	
 		grid-column-start: 1;
 		grid-column-end: 1;
 		grid-row-start: 1;
@@ -51,8 +48,6 @@
 	}
 	
 	.estadistica-card {
-		background-color: blue;
-	
 		grid-column-start: 1;
 		grid-column-end: 1;
 		grid-row-start: 3;

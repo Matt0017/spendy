@@ -1,4 +1,5 @@
-.navbar {
+.navbar, .navbar.close {
+	left: -60px;
 	padding: 10px 5px;
 	height: 100%;
 
@@ -8,6 +9,7 @@
 	
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 
 	animation-name: shrink;
 	animation-duration: .3s;
@@ -17,55 +19,40 @@
 	--text-left: 50px;
 }
 
-.navbar:hover {
-	animation-name: expand;
-	animation-duration: .3s;
-	animation-timing-function: ease-out;
-	animation-fill-mode: forwards;
-
-	--text-left: 45px;
-}
-
-.moving-button {
-	height: 50px;
-	flex: 0 0 50px;
-	width: auto;
+@media (min-width: 768px) {
+	.navbar:hover {
+		left: 0px;
 	
-	position: relative;
-	display: flex;
-
-	border-radius: 25px;
-	overflow: hidden;
-}
-
-.moving-button .image {
-	max-height: 35px;
-	max-width: 35px;
+		animation-name: expand;
+		animation-duration: .3s;
+		animation-timing-function: ease-out;
+		animation-fill-mode: forwards;
 	
-	margin: auto 7.5px;
-	flex: 0 0 35px;
+		--text-left: 45px;
+	}
 }
-
-.moving-button .text-container {
-	width: 100%;
-	overflow: hidden;
-}
-
-.moving-button .text-container .text {
-    margin: auto;
-	width: fit-content;
-	min-width: 150px;
-    padding-top: 12.5px;
-    padding-right: 10px;
-}
-
-.moving-button.cerrar-sesion .text-container .text {
-	min-width: 120px;
-    padding-right: 20px;
-}
-
-.fondos-list {
-	height: 100%;
+@media (max-width: 768px) {
+	.navbar {
+		position: absolute;
+		top: 0;
+		left: -60px;
+	}
+	.navbar.open {
+		left: 0px;
+	
+		animation-name: expand;
+		animation-duration: .3s;
+		animation-timing-function: ease-out;
+		animation-fill-mode: forwards;
+	
+		--text-left: 45px;
+	}
+	.navbar.close {
+		animation-name: shrink !important;
+		animation-duration: .3s !important;
+		animation-timing-function: ease-out !important;
+		animation-fill-mode: forwards !important;	
+	}
 }
 
 /* TODO hacer que quede re lindo obvio */
@@ -78,6 +65,7 @@
 	to {
 		width: 210px;
 		--text-left: 45px;
+		left: 0px;
 	}
 }
 
@@ -85,10 +73,94 @@
 	from {
 		width: 210px;
 		--text-left: 45px;
+		left: 0px;
 	}
-	80% { --text-left: 45px; }
+	80% {
+		--text-left: 45px;
+		left: -40px;
+	}
 	to {
 		width: 60px;
 		--text-left: 50px;
+		left: -60px;
 	}
+}
+
+.navbar .cerrar {
+	display: none;
+}
+@media(max-width: 768px) {
+	.navbar .cerrar {
+		display: block;
+	}
+}
+
+.navbar .moving-button {
+	height: 50px;
+	flex: 0 0 50px;
+	width: auto;
+	
+	position: relative;
+	display: flex;
+
+	border-radius: 25px;
+	overflow: hidden;
+}
+
+.navbar .moving-button .image {
+	max-height: 35px;
+	max-width: 35px;
+	
+	margin: auto 7.5px;
+	flex: 0 0 35px;
+}
+
+.navbar .moving-button .text-container {
+	width: 100%;
+	overflow: hidden;
+}
+
+.navbar .moving-button .text-container .text {
+    margin: auto;
+	width: fit-content;
+	min-width: 150px;
+    padding-top: 12.5px;
+    padding-right: 10px;
+}
+
+.navbar .moving-button.cerrar-sesion .text-container .text {
+	min-width: 120px;
+    padding-right: 20px;
+}
+
+.navbar .fondos-list {
+	height: 100%;
+}
+
+/* Cosas mobile */
+
+.header {
+	display: none;
+	height: 50px;
+
+	background-color: white;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+	z-index: 1;
+}
+
+@media(max-width: 768px) {
+	.header {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+.header .open-icon {
+	padding-left: 10px;
+	margin: auto;
+	color: lightslategray;
+}
+
+.header .spendy-icon {
+	flex-grow: 1;
 }
