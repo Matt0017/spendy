@@ -1,0 +1,32 @@
+.inicio {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+}
+
+.grid{
+	background: #ffffff;
+	display: grid;
+}
+
+.image{
+	padding-left: 61px;
+	padding-top: 117px;
+	max-width:60%;
+}
+
+.logo{
+	width: 124px;
+	position: absolute;
+	left: 36px;
+	top: 3px;
+}
+
+.titulo{
+font-family: "Arial";
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+color: #F99746;
+}

@@ -4,10 +4,11 @@ import logo from './logo.svg';
 import './styles/App.css';
 
 import Principal from './pages/Principal'
+import InicioSesion from './pages/InicioSesion';
 
 function App() {
 	return (
-		<Principal></Principal>
+		<InicioSesion></InicioSesion>
 	);
 }
 
