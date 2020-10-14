@@ -3,10 +3,7 @@ import React from 'react';
 import '../styles/NavBar.css'
 import white_plus from '../images/white_plus.png'
 
-import FontAwesome from 'react-fontawesome'
-
-import '../styles/Transacciones.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class NavBar extends React.Component {
 
@@ -25,10 +22,10 @@ class NavBar extends React.Component {
 	render() {
 
 		return (
-			<div>
+			<div style={{ zIndex: 1 }}>
 				<div className='header'>
 					<div className='open-icon' onClick={this.openNavBar}>
-						<FontAwesome size='2x' name='bars'/>
+						<FontAwesomeIcon size='2x' icon='bars'/>
 					</div>
 					<div className='spendy-icon'>
 
@@ -46,7 +43,11 @@ class NavBar extends React.Component {
 						<div className='text-container'><div className='text'>Crear Nuevo Fondo</div></div>
 					</div>
 					<div className='fondos-list'>
-
+						<div className='titulo'>
+							{/* TODO este es una imagen en realidad */}
+							<FontAwesomeIcon className='icono' icon='wallet' size='2x'/>
+							<div className='texto'>Fondos</div>
+						</div>
 					</div>
 					<div className='button-alt moving-button cerrar-sesion'>
 						<img src={white_plus} className='image'></img>

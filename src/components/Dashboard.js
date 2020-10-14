@@ -1,7 +1,7 @@
 import React from 'react';
 
 import '../styles/Dashboard.css'
-import Transacciones from './Transacciones';
+import TransaccionesCard from './TransaccionesCard';
 
 class Dashboard extends React.Component {
 
@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
 		return (
 			<div style={{overflowY: 'auto'}} className='fill'>
 				<div className='dashboard'>
-					<Transacciones className='card trans-card'></Transacciones>
+					<TransaccionesCard className='card trans-card'></TransaccionesCard>
 					<div className='card estadistica-card'>
 						estadistica
 					</div>
