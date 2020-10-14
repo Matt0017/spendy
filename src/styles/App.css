@@ -9,15 +9,37 @@
 	width: 100%;
 }
 
+button:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
 .button-p {
 	background: linear-gradient(90deg, #ff9d00 0%, #ffc559 100%);
 	border-radius: 25px;
+	border: none;
 
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 18px;
 	color: white;
 	text-align: center;
 
 	border: none;
 	outline: none;
+	
+	cursor: pointer;
+}
+
+.button-p:hover{
+	color: #FFA513;
+	border: 1px solid #FFA513;
+	background: white;
 }
 
 .button-s {
@@ -36,14 +58,19 @@
 .button-alt {
 	background: linear-gradient(90deg, #2C4E98 0%, #95A5D9 100%);
 	border-radius: 25px;
-
-	color: white;
-	text-align: center;
-
 	border: none;
-	outline: none;
+
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 18px;
+	color: white;
+
+	cursor: pointer;
 }
 
-.floating-container {
-	background-color: #FFFFFF50;
+.button-alt:hover{
+	color: #2C4E98;
+	border: 1px solid #2C4E98;
+	background: white;
 }
