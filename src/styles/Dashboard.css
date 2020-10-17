@@ -11,7 +11,7 @@
 	height: 100vh;
 }
 
-.card {
+.dashboard .spendy-card {
 	min-height: 100px;
 	min-width: 100px;
 	border-radius: 20px;
@@ -19,14 +19,14 @@
 	background-color: white;
 }
 
-.trans-card {
+.dashboard .spendy-card.trans-card {
 	grid-column-start: 1;
 	grid-column-end: 3;
 	grid-row-start: 1;
 	grid-row-end: 3;
 }
 
-.estadistica-card {
+.dashboard .spendy-card.estadistica-card {
 	background-color: blue;
 
 	grid-column-start: 4;
@@ -40,14 +40,14 @@
 		height: 1300px;
 	}
 
-	.trans-card {
+	.dashboard .spendy-card.trans-card {
 		grid-column-start: 1;
 		grid-column-end: 1;
 		grid-row-start: 1;
 		grid-row-end: 3;
 	}
 	
-	.estadistica-card {
+	.dashboard .spendy-card.estadistica-card {
 		grid-column-start: 1;
 		grid-column-end: 1;
 		grid-row-start: 3;

@@ -7,7 +7,6 @@ import "../styles/Principal.css"
 
 class Principal extends React.Component {
 
-
 	render() {
 		return (
 			<div className='fill principal'>

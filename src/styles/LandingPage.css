@@ -55,9 +55,7 @@ body{
 
 }
 
-
-
-h2{
+.landing h2{
     font-style: normal;
     font-weight: 500;
     font-size: 50px;
@@ -65,7 +63,7 @@ h2{
     color: #000000;
 }
 
-span{
+.landing span{
     font-style: normal;
     font-weight: 300;
     font-size: 30px;
@@ -74,49 +72,49 @@ span{
     width: 460px; 
 }
 
-.slide1 h2{
+.landing .slide1 h2{
     position: absolute;
     top: 40%;
     left: 5%;
 }
 
-.slide1 span{
+.landing .slide1 span{
     position: absolute;
     top: 46%;
     left: 5%;
 }
 
-.slide2 h2{
+.landing .slide2 h2{
     position: absolute;
     top: 40%;
     left: 5%;
 }
 
-.slide2 span{
+.landing .slide2 span{
     position: absolute;
     top: 46%;
     left: 5%;
 }
 
-.slide3 h2{
+.landing .slide3 h2{
     position: absolute;
     top: 20%;
     left: 5%;
 }
 
-.slide3 span{
+.landing .slide3 span{
     position: absolute;
     top: 26%;
     left: 5%;
 }
 
-.slide4 h2{
+.landing .slide4 h2{
     position: absolute;
     top: 20%;
     left: 10%;
 }
 
-.slide4 span{
+.landing .slide4 span{
     position: absolute;
     top: 26%;
     left: 10%;
@@ -124,12 +122,12 @@ span{
 
 
 @media(max-width: 991px){
-    h2{
+    .landing h2{
         font-size: 30px;
         line-height: 35px;
     }
 
-    span{
+    .landing  span{
         font-size: 20px;
         line-height: 23px;
         width: 257px;
@@ -137,68 +135,68 @@ span{
 
 
 
-    .slide1{
+    .landing .slide1{
         background-image: url(./../images/slide1Celular.jpg);
     }
 
     
-    .slide1 h2{
+    .landing .slide1 h2{
         position: absolute;
         top: 20%;
         left: 10%;
         
     }
     
-    .slide1 span{
+    .landing .slide1 span{
         position: absolute;
         top: 25%;
         left: 10%;
     }
 
-    .slide2{
+    .landing .slide2{
         background-image: url(./../images/slide2Celular.jpg);
     }
 
-    .slide2 h2{
+    .landing .slide2 h2{
         position: absolute;
         top: 20%;
         left: 10%;
     }
     
-    .slide2 span{
+    .landing .slide2 span{
         position: absolute;
         top: 25%;
         left: 10%;
     }
 
 
-    .slide3{
+    .landing .slide3{
         background-image: url(./../images/slide3Celular.jpg);
     }
 
-    .slide3 h2{
+    .landing .slide3 h2{
         position: absolute;
         top: 20%;
         left: 10%;
     }
     
-    .slide3 span{
+    .landing .slide3 span{
         position: absolute;
         top: 25%;
         left: 10%;
     }
 
-    .slide4{
+    .landing .slide4{
         background-image: url(./../images/slide4Celular.jpg);
     }
 
-    .slide4 h2{
+    .landing .slide4 h2{
         position: absolute;
         top: 20%;
         left: 20%;
     }
     
-    .slide4 span{
+    .landing .slide4 span{
         position: absolute;
         top: 25%;
         left: 20%;
@@ -218,12 +216,12 @@ span{
     height: auto;
 }
 
-*:focus {
+.toolbar *:focus {
     outline: 0;
-    outline: none;
-  }
+	outline: none;
+}
 
-.botones-login{
+.toolbar .botones-login {
     position: absolute;
     left: 0;
     bottom: 10px;
@@ -231,10 +229,14 @@ span{
     z-index: 999;
 }
 
-.button-p{
-    float: right;
+.toolbar .botones-login .button-p {
+	float: right;
+	width: 123px;
+	height: 27px;
 }
 
-.button-alt{
-    float: left;
+.toolbar .botones-login .button-alt {
+	float: left;
+	width: 123px;
+	height: 27px;
 }
