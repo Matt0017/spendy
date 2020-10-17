@@ -8,16 +8,17 @@ class InicioSesion extends React.Component {
     render() {
         return (
         <div className="container">
+            <div className="inicio">
             <img src={logo} className='logo'></img>
             <div className="row">
             <div className="col-6">
-                <img src={imagen} className='image' style={{width:"50%"}}></img>
+                <img src={imagen} className='image'></img>
                 
             </div>
             <div className="col-6">
-                <Form/>
+                <Form justify="center"/>
             </div>
-
+            </div>
             </div>
         </div>);
     }
