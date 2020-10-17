@@ -1,15 +1,16 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Popup from 'reactjs-popup';
 
 import TransaccionItem from './TransaccionItem.js';
+import TransaccionDetalle from './TransaccionDetalle.js';
 
 // TODO volaria de aca
 import Transaccion from '../classes/Transaccion.js';
 import Categoria from '../classes/Categoria.js';
 
 import '../styles/TransaccionesCard.css'
-import TransaccionDetalle from './TransaccionDetalle.js';
-import Popup from 'reactjs-popup';
+import CargaGastos from './CargaGastos.js';
 
 class TransaccionesCard extends React.Component {
 
@@ -18,7 +19,8 @@ class TransaccionesCard extends React.Component {
 
 		this.state = {
 			detailOpen: false,
-			transaccionSeleccionada: null
+			transaccionSeleccionada: null,
+			gastosOpen: false
 		}
 	}
 
@@ -28,10 +30,20 @@ class TransaccionesCard extends React.Component {
 			transaccionSeleccionada: transaccion
 		})
 	}
-
 	closeDetalleTransaccion() {
 		this.setState({
 			detailOpen: false
+		});
+	}
+
+	openAgregarGasto() {
+		this.setState({
+			gastosOpen: true
+		});
+	}
+	closeAgregarGasto() {
+		this.setState({
+			gastosOpen: false
 		});
 	}
 
@@ -53,7 +65,8 @@ class TransaccionesCard extends React.Component {
 			new Transaccion(7, new Date(2020, 8, 5), mascotas, -450, "AR$"),
 			new Transaccion(8, new Date(2020, 8, 6), otros, -500, "AR$"),
 			new Transaccion(9, new Date(2020, 8, 8), otros, -1300, "AR$"),
-			new Transaccion(10, new Date(2020, 8, 12), supermercado, -750, "AR$")
+			new Transaccion(10, new Date(2020, 8, 12), supermercado, -750, "AR$"),
+			new Transaccion(5, new Date(2020, 8, 2), sueldo, 55000, "AR$"),
 		]
 
 		return (
@@ -63,7 +76,7 @@ class TransaccionesCard extends React.Component {
 						<span>Viaje a Mar del Plata</span>
 					</div>
 					<div className='codigo'>
-						<span>Codigo: </span>
+						<span>Código: </span>
 						<span>s92n392sje</span>
 					</div>
 				</div>
@@ -85,7 +98,7 @@ class TransaccionesCard extends React.Component {
 							</div>
 						</div>
 					</div>
-					<div className='gastos'>
+					<div className='gastos' onClick={() => {this.openAgregarGasto();}}>
 						<div className='organizador'>
 							<FontAwesomeIcon className='icon' size='2x' icon='minus-circle'/>
 							<div className='text'>Agregar gasto</div>
@@ -114,6 +127,11 @@ class TransaccionesCard extends React.Component {
 						<TransaccionDetalle
 							transaccion={this.state.transaccionSeleccionada}
 							closeFunc={() => {this.closeDetalleTransaccion()}}/>
+					</Popup>
+					<Popup open={this.state.gastosOpen} className='cargar-gastos-popup' onClose={() => {this.setState({ gastosOpen: false })}}>
+						<CargaGastos
+							moneda='AR$'
+							closeFunc={() => {this.closeAgregarGasto()}}/>
 					</Popup>
 				</div>
 			</div>

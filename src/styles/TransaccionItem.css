@@ -1,8 +1,8 @@
 li:nth-child(odd) .transaccion {
-	background-color: #F4FAFF;
+	background-color: #EAF3FA;
 }
 li:nth-child(even) .transaccion {
-	background-color: #EAF3FA;
+	background-color: #F4FAFF;
 }
 .transaccion {
 	display: flex;

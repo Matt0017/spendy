@@ -10,8 +10,8 @@ class Dashboard extends React.Component {
 		return (
 			<div style={{overflowY: 'auto'}} className='fill'>
 				<div className='dashboard'>
-					<TransaccionesCard className='card trans-card'></TransaccionesCard>
-					<div className='card estadistica-card'>
+					<TransaccionesCard className='spendy-card trans-card'></TransaccionesCard>
+					<div className='spendy-card estadistica-card'>
 						estadistica
 					</div>
 				</div>

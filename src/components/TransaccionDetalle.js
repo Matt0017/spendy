@@ -17,7 +17,7 @@ class TransaccionDetalle extends React.Component {
 		}
 
 		return (
-			<div className='transaccion-detalle'>
+			<div className='floating-container transaccion-detalle'>
 				<div className='titulo' style={{color: trans.categoria.color}}>
 					<div className='organizador'>
 						<FontAwesomeIcon icon={trans.categoria.iconName} size='2x'/>
@@ -37,8 +37,8 @@ class TransaccionDetalle extends React.Component {
 					</div>
 				</div>
 				<div className='buttons'>
-					<button className='atras button-p' onClick={() => {closeFunc();}}>Atrás</button>
-					<button className='eliminar button-alt'>Eliminar</button>
+					<button className='atras button-p' onClick={() => {closeFunc();}}>Volver</button>
+					<button className='eliminar button-s'>Eliminar</button>
 				</div>
 			</div>
 		);

@@ -38,6 +38,15 @@
 .transacciones-container .barra-principal .ingresos,
 .transacciones-container .barra-principal .gastos {
 	flex-grow: 5;
+	cursor: pointer;
+}
+.transacciones-container .barra-principal .ingresos:hover,
+.transacciones-container .barra-principal .gastos:hover {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+.transacciones-container .barra-principal .ingresos:active,
+.transacciones-container .barra-principal .gastos:active {
+	box-shadow: inset 0px 0px 20px -10px rgba(0, 0, 0, 0.4);
 }
 
 .transacciones-container .barra-principal .organizador {
@@ -58,9 +67,13 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+.transacciones-container .barra-principal div:hover .organizador .text {
+	text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.2);
+}
 
 .transacciones-container .barra-principal .selector-moneda {
 	flex-grow: 0;
+	padding: 0px 10px;
 }
 
 .transacciones-container .barra-principal .selector-moneda .moneda {
@@ -124,11 +137,12 @@
 }
 
 .transacciones-container .lista-container {
-
+	overflow-y: auto;
 }
 
 .transacciones-container .lista-container .lista {
 	width: 90%;
+	height: auto;
 	margin: auto;
 }
 @media(max-width: 992px) {
