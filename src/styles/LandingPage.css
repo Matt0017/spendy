@@ -8,7 +8,7 @@ body{
     background-image: url(./../images/slide1.jpg);
     /* Full height */
     min-height: 100vh;
-  
+    
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -127,7 +127,7 @@ body{
         line-height: 35px;
     }
 
-    .landing  span{
+    .landing span{
         font-size: 20px;
         line-height: 23px;
         width: 257px;
@@ -216,12 +216,12 @@ body{
     height: auto;
 }
 
-.toolbar *:focus {
+*:focus {
     outline: 0;
-	outline: none;
-}
+    outline: none;
+  }
 
-.toolbar .botones-login {
+.botones-login{
     position: absolute;
     left: 0;
     bottom: 10px;
@@ -229,14 +229,14 @@ body{
     z-index: 999;
 }
 
-.toolbar .botones-login .button-p {
-	float: right;
-	width: 123px;
-	height: 27px;
+.button-p{
+    float: right;
+    width: 123px;
+    height: 27px;
 }
 
-.toolbar .botones-login .button-alt {
-	float: left;
-	width: 123px;
-	height: 27px;
+.button-alt{
+    float: left;
+    width: 123px;
+    height: 27px;
 }
