@@ -1,4 +1,4 @@
-.campos {
+.inicio .campos {
 	border-radius: 25px;
 	background: #EFEFEF;
 	border: none; 
@@ -7,19 +7,20 @@
 	margin-top: 25px;
 }
 
-.image{
+.inicio .image{
 	width:100%;
 	height: auto;
 	margin-top: 5%;
 }
 
-.logo{
+.inicio .logo{
 	width: 124px;
+	height: 50px;
 	margin-top: 10px;
 	margin-left: 36px;
 }
 
-.titulo{
+.inicio .titulo{
 font-family: "Arial";
 font-style: normal;
 font-weight: bold;
@@ -28,19 +29,19 @@ line-height: 35px;
 color: #F99746;
 }
 
-.botones{
+.inicio .botones{
 	margin-top: 20px;
 	float: right;
 }
 
-.botones .button-p{
+.inicio .botones .button-p{
     width: 123px;
 	height: 27px;
 	margin: 15px;
 }
 
 @media(max-width: 991px){
-	.titulo{
+	.inicio .titulo{
 		margin-top: 25px;
 	}
 }

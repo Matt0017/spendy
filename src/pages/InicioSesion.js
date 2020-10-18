@@ -6,8 +6,8 @@ import {Link} from 'react-router-dom'
 
 export default function Prueba(){
     return (
-        <div className="container-fluid">
-            <div className="row row-logo">
+        <div className="container-fluid inicio">
+            <div className="row">
                 <img src={logo} className="logo" alt='logo'/>
             </div>
             <div className="row align-items-center inicio">

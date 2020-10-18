@@ -1,10 +1,7 @@
-body{
-    overflow:hidden;
-    
-}
 
 
-.slide1{
+
+.landing .slide1{
     background-image: url(./../images/slide1.jpg);
     /* Full height */
     min-height: 100vh;
@@ -16,7 +13,7 @@ body{
     position: relative;
 }
 
-.slide2{
+.landing .slide2{
     background-image: url(./../images/slide2.jpg);
     /* Full height */
     min-height: 100vh;
@@ -29,7 +26,7 @@ body{
 
 }
 
-.slide3{
+.landing .slide3{
     background-image: url(./../images/slide3.jpg);
     /* Full height */
     min-height: 100vh;
@@ -42,7 +39,7 @@ body{
 
 }
 
-.slide4{
+.landing .slide4{
     background-image: url(./../images/slide4.jpg);
     /* Full height */
     min-height: 100vh; 
