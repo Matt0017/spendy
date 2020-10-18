@@ -77,7 +77,7 @@ class NavBar extends React.Component {
 							{fondos.map(
 								(fondo) => {
 									return (
-										<li className={fondo == this.state.fondoActual ? 'current' : ''} onClick={() => { this.openFondo(fondo); }}>
+										<li key={fondo} className={fondo == this.state.fondoActual ? 'current' : ''} onClick={() => { this.openFondo(fondo); }}>
 											{(fondo == this.state.fondoActual ? '> ' : '' ) + fondo}
 										</li>
 									);

@@ -45,8 +45,8 @@ export default class Categorias extends React.Component {
 		const otros = new Categoria("Otros", "question", "#B4BCC2");
 		const sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
 
-		const categoriasGastos = [supermercado, mascotas, otros, sueldo, supermercado, mascotas, otros, sueldo, supermercado ]
-		const categoriasIngresos = [supermercado, mascotas, otros, sueldo]
+		const categoriasGastos = [supermercado, mascotas, otros, sueldo, supermercado, mascotas, otros, sueldo, supermercado, otros, sueldo, supermercado, otros, sueldo, supermercado ];
+		const categoriasIngresos = [supermercado, mascotas, otros, sueldo];
 
 		const valuePortion = 
 			this.state.selectedCat == null ?
@@ -82,7 +82,7 @@ export default class Categorias extends React.Component {
 					</div>
 					<div>Ingresos</div>
 					<div className='ingresos-list'>
-						{this.createCategoriaList(categoriasGastos)}
+						{this.createCategoriaList(categoriasIngresos)}
 					</div>
 				</div>
 				<div className='separator'></div>

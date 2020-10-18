@@ -1,6 +1,6 @@
 .carga-gastos {
-	width: 600px;
-	height: 600px;
+	width: 627px;
+	height: 650px;
 
 	display: flex;
 	flex-direction: column;
@@ -44,4 +44,15 @@
 .carga-gastos .amount .delete-button {
 	align-self: center;
 	margin: 0 10px;
+}
+.carga-gastos .category-selection {
+	margin: 0 16px;
+}
+.carga-gastos .description-title {
+	margin-top: 30px;
+	margin-left: 20px;
+}
+.carga-gastos .description {
+	height: 100px;
+	margin: 0 20px;
 }
