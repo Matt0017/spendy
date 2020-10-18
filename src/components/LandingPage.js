@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import logo from './../images/logo.png'
 import './../styles/LandingPage.css'
+import {Link} from 'react-router-dom'
 
 export default class SimpleSlider extends Component {
   render() {
@@ -20,15 +21,19 @@ export default class SimpleSlider extends Component {
                 <div className='col-6 col-md-5'></div>
                 <div className='col-3 col-md-4 d-none d-lg-block'>
                     <div className='row'>
-                        <div className='col'><button className='button-p'>Iniciar Sesion</button></div>
+                        <div className='col'>
+                            <Link to='/InicioSesion'><button className='button-p'>Iniciar Sesion</button></Link>
+                        </div>
                         <div className='col'><button className='button-alt'>Registrar</button></div>
                     </div>
                 </div>
                 
             </div>
             <div className='row botones-login d-lg-none'>
-                <div className='col text-center'><button className='button-p login'>Iniciar Sesion</button></div>
-                <div className='col text-center'><button className='button-alt login'>Registrar</button></div>
+                <div className='col text-center'>
+                    <Link to='/InicioSesion'><button className='button-p'>Iniciar Sesion</button></Link>
+                </div>
+                <div className='col text-center'><button className='button-alt '>Registrar</button></div>
             </div>
             <div className='landing'>
                 <Slider {...settings}>

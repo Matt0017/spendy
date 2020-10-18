@@ -1,0 +1,46 @@
+.campos {
+	border-radius: 25px;
+	background: #EFEFEF;
+	border: none; 
+	padding: 14px;
+	width: 100%;
+	margin-top: 25px;
+}
+
+.image{
+	width:100%;
+	height: auto;
+	margin-top: 5%;
+}
+
+.logo{
+	width: 124px;
+	margin-top: 10px;
+	margin-left: 36px;
+}
+
+.titulo{
+font-family: "Arial";
+font-style: normal;
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+color: #F99746;
+}
+
+.botones{
+	margin-top: 20px;
+	float: right;
+}
+
+.botones .button-p{
+    width: 123px;
+	height: 27px;
+	margin: 15px;
+}
+
+@media(max-width: 991px){
+	.titulo{
+		margin-top: 25px;
+	}
+}

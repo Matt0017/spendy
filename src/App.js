@@ -1,13 +1,26 @@
 import React from 'react';
+import	{BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './styles/App.css';
 
-import Principal from './pages/Principal'
+import Dashboard from './pages/Principal'
+import InicioSesion from './pages/InicioSesion';
 import Landing from './components/LandingPage'
 
 function App() {
 	return (
-		<Principal></Principal>
+		
+		<Router>
+			<div className="App">
+				
+				<Switch>
+					<Route path='/' exact component={Landing} />
+					<Route path='/InicioSesion' component={InicioSesion} />
+					<Route path='/Dashboard' component={Dashboard} />
+					
+				</Switch>
+			</div>
+		</Router>
 	);
 }
 

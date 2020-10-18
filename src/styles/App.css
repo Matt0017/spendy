@@ -50,7 +50,7 @@ button:focus, input:focus {
 	background: white;
 	border-radius: 25px;
 	border: none;
-
+	cursor: pointer;
 	color: #ffbb00;
 	text-decoration: underline;
 	font-style: normal;
@@ -58,6 +58,10 @@ button:focus, input:focus {
 	text-align: center;
 	font-size: 15px;
 	line-height: 18px;
+}
+
+.button-s:hover{
+	color: black;
 }
 
 .button-alt {

@@ -229,13 +229,13 @@ body{
     z-index: 999;
 }
 
-.button-p{
+.toolbar .button-p, .botones-login .button-p{
     float: right;
     width: 123px;
     height: 27px;
 }
 
-.button-alt{
+.toolbar .button-alt, .botones-login .button-alt{
     float: left;
     width: 123px;
     height: 27px;
