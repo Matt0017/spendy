@@ -11,6 +11,7 @@ import Categoria from '../classes/Categoria.js';
 
 import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
+import CargaIngresos from './CargaIngresos.js';
 
 class TransaccionesCard extends React.Component {
 
@@ -20,7 +21,8 @@ class TransaccionesCard extends React.Component {
 		this.state = {
 			detailOpen: false,
 			transaccionSeleccionada: null,
-			gastosOpen: false
+			gastosOpen: false,
+			ingresosOpen: false
 		}
 	}
 
@@ -44,6 +46,17 @@ class TransaccionesCard extends React.Component {
 	closeAgregarGasto() {
 		this.setState({
 			gastosOpen: false
+		});
+	}
+
+	openAgregarIngreso() {
+		this.setState({
+			ingresosOpen: true
+		});
+	}
+	closeAgregarIngreso() {
+		this.setState({
+			ingresosOpen: false
 		});
 	}
 
@@ -81,7 +94,7 @@ class TransaccionesCard extends React.Component {
 					</div>
 				</div>
 				<div className='barra-principal'>
-					<div className='ingresos'>
+					<div className='ingresos' onClick={() => {this.openAgregarIngreso();}}>
 						<div className='organizador'>
 							<FontAwesomeIcon icon='plus-circle' size='2x' className='icon'/>
 							<div className='text'>Agregar ingreso</div>
@@ -132,6 +145,11 @@ class TransaccionesCard extends React.Component {
 						<CargaGastos
 							moneda='AR$'
 							closeFunc={() => {this.closeAgregarGasto()}}/>
+					</Popup>
+					<Popup open={this.state.ingresosOpen} className='cargar-ingresos-popup' onClose={() => {this.setState({ ingresosOpen: false })}}>
+						<CargaGastos
+							moneda='AR$'
+							closeFunc={() => {this.closeAgregarIngreso()}}/>
 					</Popup>
 				</div>
 			</div>
