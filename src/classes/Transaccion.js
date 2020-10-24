@@ -13,7 +13,6 @@ export default class Transaccion {
 		this.categoria = categoria;
 		
 		this.monto = monto;
-		this.moneda = moneda;
 	}
 
 	get fechaString() { 

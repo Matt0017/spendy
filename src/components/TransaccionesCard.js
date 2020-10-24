@@ -11,16 +11,17 @@ import Categoria from '../classes/Categoria.js';
 
 import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
+import { getTransacciones } from '../services/apiRoutes.js';
 
 class TransaccionesCard extends React.Component {
-
 	constructor() {
 		super();
 
 		this.state = {
 			detailOpen: false,
 			transaccionSeleccionada: null,
-			gastosOpen: false
+			gastosOpen: false,
+			transacciones: []
 		}
 	}
 
@@ -47,6 +48,22 @@ class TransaccionesCard extends React.Component {
 		});
 	}
 
+
+	async componentDidMount(){
+		const trans = await getTransacciones(25,'pesos');
+		var transObjetos = trans[0].map(
+			(index) => {
+				return (
+					new Transaccion(index.idTransaccion, index.fecha, index.nombre_categoria, index.dinero)
+					
+				);
+			}
+		);
+		this.setState({
+			transacciones: [transObjetos]
+		});
+	}
+
 	render() {
 
 		let supermercado = new Categoria("Supermercado", "shopping-cart", "#F8C29E");
@@ -54,20 +71,20 @@ class TransaccionesCard extends React.Component {
 		let otros = new Categoria("Otros", "question", "#B4BCC2");
 		let sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
 
-		let transaccionesList = [
-			new Transaccion(0, new Date(2020, 7, 21), supermercado, -550, "AR$"),
-			new Transaccion(1, new Date(2020, 7, 22), supermercado, -150, "AR$"),
-			new Transaccion(2, new Date(2020, 7, 23), mascotas, -1200, "AR$"),
-			new Transaccion(3, new Date(2020, 7, 25), otros, -300, "AR$"),
-			new Transaccion(4, new Date(2020, 7, 27), supermercado, -200, "AR$"),
-			new Transaccion(5, new Date(2020, 8, 2), sueldo, 55000, "AR$"),
-			new Transaccion(6, new Date(2020, 8, 4), mascotas, -2500, "AR$"),
-			new Transaccion(7, new Date(2020, 8, 5), mascotas, -450, "AR$"),
-			new Transaccion(8, new Date(2020, 8, 6), otros, -500, "AR$"),
-			new Transaccion(9, new Date(2020, 8, 8), otros, -1300, "AR$"),
-			new Transaccion(10, new Date(2020, 8, 12), supermercado, -750, "AR$"),
-			new Transaccion(5, new Date(2020, 8, 2), sueldo, 55000, "AR$"),
-		]
+		// let transaccionesList = [
+		// 	new Transaccion(0, new Date(2020, 7, 21), supermercado, -550, "AR$"),
+		// 	new Transaccion(1, new Date(2020, 7, 22), supermercado, -150, "AR$"),
+		// 	new Transaccion(2, new Date(2020, 7, 23), mascotas, -1200, "AR$"),
+		// 	new Transaccion(3, new Date(2020, 7, 25), otros, -300, "AR$"),
+		// 	new Transaccion(4, new Date(2020, 7, 27), supermercado, -200, "AR$"),
+		// 	new Transaccion(5, new Date(2020, 8, 2), sueldo, 55000, "AR$"),
+		// 	new Transaccion(6, new Date(2020, 8, 4), mascotas, -2500, "AR$"),
+		// 	new Transaccion(7, new Date(2020, 8, 5), mascotas, -450, "AR$"),
+		// 	new Transaccion(8, new Date(2020, 8, 6), otros, -500, "AR$"),
+		// 	new Transaccion(9, new Date(2020, 8, 8), otros, -1300, "AR$"),
+		// 	new Transaccion(10, new Date(2020, 8, 12), supermercado, -750, "AR$"),
+		// 	new Transaccion(5, new Date(2020, 8, 2), sueldo, 55000, "AR$"),
+		// ]
 
 		return (
 			<div className={this.props.className + ' transacciones-container'}>
@@ -113,11 +130,11 @@ class TransaccionesCard extends React.Component {
 				</div>
 				<div className='lista-container'>
 					<ul className='lista'>
-						{transaccionesList.map(
-							(transaccion, index) => {
+						{this.state.transacciones.map(
+							(index) => {
 								return (
-									<li className='transaccion-li' onClick={() => { this.openDetalleTransaccion(transaccion); }}>
-										<TransaccionItem transaccion={transaccion}/>
+									<li className='transaccion-li' onClick={() => { this.openDetalleTransaccion(index); }}>
+										<TransaccionItem transaccion={index}/>
 									</li>
 								);
 							}

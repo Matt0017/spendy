@@ -9,7 +9,8 @@ import Landing from './components/LandingPage'
 
 function App() {
 	return (
-		
+		//fondo
+		//categorias
 		<Router>
 			<div className="fill App">
 				

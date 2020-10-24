@@ -4,7 +4,7 @@ import '../styles/Dashboard.css'
 import TransaccionesCard from './TransaccionesCard';
 
 class Dashboard extends React.Component {
-
+	//FONDO
 	render() {
 
 		return (
