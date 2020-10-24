@@ -21,36 +21,7 @@
 
 .dashboard .spendy-card.trans-card {
 	grid-column-start: 1;
-	grid-column-end: 3;
-	grid-row-start: 1;
-	grid-row-end: 3;
-}
-
-.dashboard .spendy-card.estadistica-card {
-	background-color: blue;
-
-	grid-column-start: 4;
-	grid-column-end: 4;
+	grid-column-end: 1;
 	grid-row-start: 1;
 	grid-row-end: 1;
-}
-
-@media(max-width: 768px) {
-	.dashboard {
-		height: 1300px;
-	}
-
-	.dashboard .spendy-card.trans-card {
-		grid-column-start: 1;
-		grid-column-end: 1;
-		grid-row-start: 1;
-		grid-row-end: 3;
-	}
-	
-	.dashboard .spendy-card.estadistica-card {
-		grid-column-start: 1;
-		grid-column-end: 1;
-		grid-row-start: 3;
-		grid-row-end: 3;
-	}
 }
