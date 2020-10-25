@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
 				<div className='dashboard'>
 					<TransaccionesCard className='spendy-card trans-card'></TransaccionesCard>
 					<div className='spendy-card estadistica-card'>
-						estadistica
+						
 					</div>
 				</div>
 			</div>
