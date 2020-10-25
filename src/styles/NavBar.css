@@ -1,6 +1,9 @@
 .navbar-container {
 	z-index: 1;
 }
+.navbar-container a:hover {
+	text-decoration: none;
+}
 .navbar-container .spendy-navbar {
 	height: 100%;
 	width: 210px;

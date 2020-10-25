@@ -1,10 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom'
 
 import '../styles/NavBar.css';
 import Logo from '../images/logo.png';
 
-class NavBar extends React.Component {
+export default class NavBar extends React.Component {
 
 	constructor() {
 		super();
@@ -62,24 +63,28 @@ class NavBar extends React.Component {
 						<span>Fondo Actual</span>
 					</div>
 					<div className='links-list noselect'>
-						<div className='organizer'>
-							<FontAwesomeIcon className='icon' size='2x' icon='wallet'/>
-							<div className='text'>movimientos</div>
-						</div>
-						<div className='organizer'>
-							<FontAwesomeIcon className='icon' size='2x' icon={['far','chart-bar']}/>
-							<div className='text'>Estadísticas</div>
-						</div>
-						<div className='organizer'>
-							<FontAwesomeIcon className='icon' size='2x' icon='money-bill-wave'/>
-							<div className='text'>limites y objetivos</div>
-						</div>
+						<Link to='/Movimientos'>
+							<div className='organizer'>
+								<FontAwesomeIcon className='icon' size='2x' icon='wallet'/>
+								<div className='text'>movimientos</div>
+							</div>
+						</Link>
+						<Link to='/Estadisticas'>
+							<div className='organizer'>
+								<FontAwesomeIcon className='icon' size='2x' icon={['far','chart-bar']}/>
+								<div className='text'>Estadísticas</div>
+							</div>
+						</Link>
+						<Link to='/Limites'>
+							<div className='organizer'>
+								<FontAwesomeIcon className='icon' size='2x' icon='money-bill-wave'/>
+								<div className='text'>limites y objetivos</div>
+							</div>
+						</Link>
 					</div>
-					<button className='button-alt cerrar-sesion'>Cerrar Sesión</button>
+					<Link to='/' className='cerrar-sesion'><button className='button-alt fill'>Cerrar Sesión</button></Link>
 				</div>
 			</div>
 		);
 	}
 }
-
-export default NavBar;

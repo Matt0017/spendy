@@ -2,15 +2,14 @@ import React from 'react';
 import TransaccionesCard from '../components/TransaccionesCard';
 import NavBar from '../components/NavBar';
 
-import "../styles/App.css"
-import "../styles/TransaccionesPage.css"
+import "../styles/Movimientos.css"
 import "../styles/Dashboard.css"
 
-class TransaccionesPage extends React.Component {
+class Movimientos extends React.Component {
 
 	render() {
 		return (
-			<div className='fill transacciones-page'>
+			<div className='fill movimientos'>
 				<NavBar></NavBar>
 				<div className='dashboard fill'>
 					<TransaccionesCard className='spendy-card trans-card'></TransaccionesCard>
@@ -20,4 +19,4 @@ class TransaccionesPage extends React.Component {
 	}
 }
 
-export default TransaccionesPage;
+export default Movimientos;
