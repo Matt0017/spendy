@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Categoria from '../classes/Categoria';
 
-import '../styles/Categorias.css'
-
 export default class Categorias extends React.Component {
 
 	constructor() {

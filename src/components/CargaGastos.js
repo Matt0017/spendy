@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 import Categoria from '../classes/Categoria';
 
 import '../styles/CargaGastos.css'
@@ -48,7 +47,7 @@ export default class CargaGastos extends React.Component {
 					{
 						categorias.map(
 							(categoria) => {
-								const selected = this.state.cat != null && this.state.cat.name == categoria.name;
+								const selected = this.state.cat != null && this.state.cat.name === categoria.name;
 								return (
 									<div 
 									style={{backgroundColor: selected? categoria.color : 'white'}}

@@ -2,7 +2,6 @@
 	z-index: 1;
 }
 .navbar-container .spendy-navbar {
-	padding: 10px 5px;
 	height: 100%;
 	width: 210px;
 
@@ -13,8 +12,6 @@
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-
-	--text-left: 50px;
 }
 
 @media (max-width: 768px) {
@@ -36,8 +33,6 @@
 		animation-duration: .3s;
 		animation-timing-function: ease-out;
 		animation-fill-mode: forwards;
-	
-		--text-left: 45px;
 	}
 	.navbar-container .spendy-navbar.closed {
 		animation-name: shrink !important;
@@ -49,36 +44,24 @@
 
 @keyframes expand {
 	from {
-		width: 60px;
-		--text-left: 45px;
-		left: -60px;
+		left: -210px;
 	}
 	to {
-		width: 210px;
-		--text-left: 45px;
 		left: 0px;
 	}
 }
 
 @keyframes shrink {
 	from {
-		width: 210px;
-		--text-left: 45px;
 		left: 0px;
 	}
-	80% {
-		--text-left: 45px;
-		left: -40px;
-	}
 	to {
-		width: 60px;
-		--text-left: 50px;
-		left: -60px;
+		left: -210px;
 	}
 }
 
 .navbar-container .spendy-navbar .logo-container {
-	padding: 0 5px 10px 0;
+	padding: 10px 20px;
 }
 @media(max-width: 768px) {
 	.navbar-container .spendy-navbar .logo-container {
@@ -98,87 +81,58 @@
 	}
 }
 
-.navbar-container .spendy-navbar .moving-button {
-	height: 50px;
-	flex: 0 0 50px;
-	width: auto;
-	
-	position: relative;
-	display: flex;
-
-	border-radius: 25px;
-	overflow: hidden;
+.navbar-container .spendy-navbar .fondo-actual {
+	margin: 5px 0;
+	background: linear-gradient(90deg, #ff9d00 0%, #ffc559 100%);
+	color: white;
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: 300;
+	font-size: 1em;
+	padding-right: 25px;
 }
-
-.navbar-container .spendy-navbar .moving-button .image {
-	max-height: 35px;
-	max-width: 35px;
-	
-	margin: auto 10px;
-	flex: 0 0 35px;
+.navbar-container .spendy-navbar .fondo-actual .back {
+	cursor: pointer;
+	font-size: 1.2em;
+	margin-right: 25px;
+	vertical-align: -.2em;
 }
-
-.navbar-container .spendy-navbar .moving-button .text-container {
-	width: 100%;
-	overflow: hidden;
-}
-
-.navbar-container .spendy-navbar .moving-button .text-container .text {
-    margin: auto;
-	width: fit-content;
-	min-width: 140px;
-	padding-right: 10px;
-	padding-top: 16px;
-}
-
-.navbar-container .spendy-navbar .moving-button.categorias {
-	background: linear-gradient(90deg, #51648f 0%, #969fbe 100%);
-	margin: 5px 0 10px 0;
-}
-.navbar-container .spendy-navbar .moving-button.categorias:active {
-	background: linear-gradient(90deg, #4e5c7c 0%, #7f87a1 100%);
-}
-.navbar-container .spendy-navbar .fondos-list-container {
+.navbar-container .spendy-navbar .links-list {
 	height: 100%;
-	margin-top: 10px;
-	overflow-y: hidden;
 }
-.navbar-container .spendy-navbar .fondos-list-container .titulo {
-	color: #6E80B0;
-	display: flex;
-}
-.navbar-container .spendy-navbar .fondos-list-container .titulo .icono {
-	font-size: 45px;
-	margin-right: 30px;
-}
-.navbar-container .spendy-navbar .fondos-list-container .titulo .texto {
-	font-weight: 300;
-	font-size: 24px;
-	line-height: 45px;
-	text-transform: uppercase;
-}
-.navbar-container .spendy-navbar .fondos-list-container .fondos-list {
-	color: #6E80B0;
-	text-transform: uppercase;
-	font-size: 18px;
-	font-weight: 300;
-	height: calc(100% - 45px); /* total - titulo */
 
-	padding-left: 10px;
-	list-style-type: none;
-	overflow-y: auto;
-}
-.navbar-container .spendy-navbar .fondos-list-container .fondos-list li {
-	margin-top: 10px;
-	line-height: 24px;
+.navbar-container .spendy-navbar .links-list .organizer {
+	min-height: 40px;
+	padding: 4px 10px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 1.25em;
+	line-height: 23px;
+	font-weight: 300;
+	
+	color: #6E80B0;
 	cursor: pointer;
 }
-.navbar-container .spendy-navbar .fondos-list-container .fondos-list li:hover {
+.navbar-container .spendy-navbar .links-list .organizer:hover {
 	font-weight: 400;
 }
-.navbar-container .spendy-navbar .fondos-list-container .fondos-list li.current {
-	font-weight: 400;
+.navbar-container .spendy-navbar .links-list .organizer:active {
+	box-shadow: inset 0px 0px 8px 0px #6E80B0A0;
 }
+.navbar-container .spendy-navbar .links-list .icon {
+	width: 25px;
+	margin-right: 22px;
+}
+.navbar-container .spendy-navbar .links-list .text {
+	text-transform: uppercase;
+}
+
+.navbar-container .spendy-navbar .cerrar-sesion {
+	margin: 20px 15px;
+}
+
 /* Cosas mobile */
 
 .navbar-container .header {

@@ -1,8 +1,5 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Popup from 'reactjs-popup';
-
-import Categorias from './Categorias.js';
 
 import '../styles/NavBar.css';
 import Logo from '../images/logo.png';
@@ -43,9 +40,6 @@ class NavBar extends React.Component {
 
 	render() {
 
-		let fondos = ['Personal', 'Viajardo a Nombre Larguisimo', 'Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura',
-						'Test de Altura','Test de Altura','Test de Altura','Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura Final'];
-
 		return (
 			<div className='navbar-container'>
 				<div className='header'>
@@ -53,50 +47,35 @@ class NavBar extends React.Component {
 						<FontAwesomeIcon size='2x' icon='bars'/>
 					</div>
 					<div className='spendy-icon'>
-						<img src={Logo} className='logo'></img>
+						<img src={Logo} alt='logo-spendy' className='logo'></img>
 					</div>
 				</div>
 				<div id='navbar' className='spendy-navbar closed'>
 					<div className='logo-container'>
-						<img src={Logo} className='logo'></img>
+						<img src={Logo} alt='logo-spendy' className='logo'></img>
 					</div>
 					<div className='cerrar' onClick={this.closeNavBar}>
 						Cerrar
 					</div>
-					<div className='button-p moving-button nuevo-fondo'>
-						<FontAwesomeIcon size='2x' icon='plus' className='image'/>
-						<div className='text-container'><div className='text'>Crear Nuevo Fondo</div></div>
+					<div className='fondo-actual'>
+						<FontAwesomeIcon className='back' size='1x' icon='arrow-left'/>
+						<span>Fondo Actual</span>
 					</div>
-					<div className='fondos-list-container'>
-						<div className='titulo'>
-							{/* TODO este es una imagen en realidad */}
-							<FontAwesomeIcon className='icono' icon='wallet' size='2x'/>
-							<div className='texto'>Fondos</div>
+					<div className='links-list noselect'>
+						<div className='organizer'>
+							<FontAwesomeIcon className='icon' size='2x' icon='wallet'/>
+							<div className='text'>movimientos</div>
 						</div>
-						<ul className='fondos-list'>
-							{fondos.map(
-								(fondo) => {
-									return (
-										<li key={fondo} className={fondo == this.state.fondoActual ? 'current' : ''} onClick={() => { this.openFondo(fondo); }}>
-											{(fondo == this.state.fondoActual ? '> ' : '' ) + fondo}
-										</li>
-									);
-								}
-							)}
-						</ul>
+						<div className='organizer'>
+							<FontAwesomeIcon className='icon' size='2x' icon={['far','chart-bar']}/>
+							<div className='text'>Estadísticas</div>
+						</div>
+						<div className='organizer'>
+							<FontAwesomeIcon className='icon' size='2x' icon='money-bill-wave'/>
+							<div className='text'>limites y objetivos</div>
+						</div>
 					</div>
-					<div className='button-alt moving-button categorias' onClick={() => {this.openCategorias()}}>
-						<FontAwesomeIcon size='2x' icon='list-ul' className='image'/>
-						<div className='text-container'><div className='text'>Categorías</div></div>
-					</div>
-					<Popup open={this.state.categoriaOpen} closeOnDocumentClick onClose={() => {this.closeCategorias()}}>
-						<Categorias
-							closeFunc={() => {this.closeCategorias()}}/>
-					</Popup>
-					<div className='button-alt moving-button cerrar-sesion'>
-						<FontAwesomeIcon size='2x' icon='sign-out-alt' className='image'/>
-						<div className='text-container'><div className='text'>Cerrar Sesión</div></div>
-					</div>
+					<button className='button-alt cerrar-sesion'>Cerrar Sesión</button>
 				</div>
 			</div>
 		);

@@ -1,8 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Transaccion from '../classes/Transaccion';
-
 import '../styles/TransaccionItem.css'
 
 class TransaccionItem extends React.Component {

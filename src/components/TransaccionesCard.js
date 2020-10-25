@@ -147,7 +147,7 @@ class TransaccionesCard extends React.Component {
 							closeFunc={() => {this.closeAgregarGasto()}}/>
 					</Popup>
 					<Popup open={this.state.ingresosOpen} className='cargar-ingresos-popup' onClose={() => {this.setState({ ingresosOpen: false })}}>
-						<CargaGastos
+						<CargaIngresos
 							moneda='AR$'
 							closeFunc={() => {this.closeAgregarIngreso()}}/>
 					</Popup>
