@@ -13,16 +13,16 @@ class Estadisticas extends React.Component {
 	render() {
 		console.log(echarts.helpers);
 
-		let base = +new Date(1968, 9, 3);
+		let base = +new Date(2014, 9, 3);
 		const oneDay = 24 * 3600 * 1000;
 		let date = [];
 
-		let data = [Math.random() * 300];
+		let data = [Math.random() * 50000];
 
-		for (let i = 1; i < 20000; i++) {
+		for (let i = 1; i < 2000; i++) {
 			const now = new Date(base += oneDay);
 			date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
-			data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+			data.push(Math.round((Math.random() - 0.5) * 10000 + data[i - 1]));
 		}
 
 		return (
@@ -52,7 +52,7 @@ class Estadisticas extends React.Component {
 								},
 								yAxis: {
 									type: 'value',
-									boundaryGap: [0, '100%']
+									boundaryGap: [0, '20%']
 								},
 								dataZoom: [
 									{
@@ -71,13 +71,13 @@ class Estadisticas extends React.Component {
 									}],
 									series: [
 										{
-											name: 'Total',
+											name: 'Total Pos',
 											type: 'line',
 											smooth: true,
 											symbol: 'none',
 											sampling: 'average',
 											itemStyle: {
-												color: 'rgb(50,205,120)'
+												color: 'rgba(0,0,0,0)'
 											},
 											areaStyle: {
 												color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -88,7 +88,27 @@ class Estadisticas extends React.Component {
 													color: 'rgb(50,205,120)'
 												}])
 											},
-											data: data
+											data: data.map((v) => { return (v > 0 ? v : 0) })
+										},
+										{
+											name: 'Total Neg',
+											type: 'line',
+											smooth: true,
+											symbol: 'none',
+											sampling: 'average',
+											itemStyle: {
+												color: 'rgba(0,0,0,0)'
+											},
+											areaStyle: {
+												color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+													offset: 0,
+													color: 'rgb(255,99,71)'
+												}, {
+													offset: 1,
+													color: 'rgb(220,20,60)'
+												}])
+											},
+											data: data.map((v) => { return (v < 0 ? v : 0) })
 										}
 									]
 							}}/>
