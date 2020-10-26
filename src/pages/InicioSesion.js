@@ -32,7 +32,7 @@ export default function Prueba(){
                     </div>
                     <div className='row botones'>
                         <div className='col'>
-                            <button className='button-s'>Registrar</button><Link to='/Dashboard'><button className='button-p'>Iniciar Sesion</button></Link>
+                            <button className='button-s'>Registrar</button><Link to='/Transacciones'><button className='button-p'>Iniciar Sesion</button></Link>
                         </div>
                     </div>
                 </div>

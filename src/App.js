@@ -3,21 +3,21 @@ import	{BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './styles/App.css';
 
-import Dashboard from './pages/Principal'
+import TransaccionesPage from './pages/TransaccionesPage'
 import InicioSesion from './pages/InicioSesion';
 import Landing from './components/LandingPage'
+import { Controller } from './services/Controller';
 
 function App() {
+	var controler = new Controller;
 	return (
-		//fondo
-		//categorias
 		<Router>
 			<div className="fill App">
 				
 				<Switch>
 					<Route path='/' exact component={Landing} />
 					<Route path='/InicioSesion' component={InicioSesion} />
-					<Route path='/Dashboard' component={Dashboard} />
+					<Route path='/Transacciones' component={TransaccionesPage} />
 					
 				</Switch>
 			</div>

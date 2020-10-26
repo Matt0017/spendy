@@ -12,6 +12,7 @@ import Categoria from '../classes/Categoria.js';
 import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
 import { getTransacciones } from '../services/apiRoutes.js';
+import CargaIngresos from './CargaIngresos.js';
 
 class TransaccionesCard extends React.Component {
 	constructor() {
@@ -21,7 +22,8 @@ class TransaccionesCard extends React.Component {
 			detailOpen: false,
 			transaccionSeleccionada: null,
 			gastosOpen: false,
-			transacciones: []
+			transacciones: [],
+			ingresosOpen: false
 		}
 	}
 
@@ -50,7 +52,7 @@ class TransaccionesCard extends React.Component {
 
 
 	async componentDidMount(){
-		const trans = await getTransacciones(25,'pesos');
+		const trans = await getTransacciones(22,'pesos');
 		var transObjetos = trans[0].map(
 			(index) => {
 				return (
@@ -60,7 +62,18 @@ class TransaccionesCard extends React.Component {
 			}
 		);
 		this.setState({
-			transacciones: [transObjetos]
+			transacciones: transObjetos
+		})
+	}
+	
+	openAgregarIngreso() {
+		this.setState({
+			ingresosOpen: true
+		});
+	}
+	closeAgregarIngreso() {
+		this.setState({
+			ingresosOpen: false
 		});
 	}
 
@@ -98,7 +111,7 @@ class TransaccionesCard extends React.Component {
 					</div>
 				</div>
 				<div className='barra-principal'>
-					<div className='ingresos'>
+					<div className='ingresos' onClick={() => {this.openAgregarIngreso();}}>
 						<div className='organizador'>
 							<FontAwesomeIcon icon='plus-circle' size='2x' className='icon'/>
 							<div className='text'>Agregar ingreso</div>
@@ -131,10 +144,10 @@ class TransaccionesCard extends React.Component {
 				<div className='lista-container'>
 					<ul className='lista'>
 						{this.state.transacciones.map(
-							(index) => {
+							(value, index) => {
 								return (
-									<li className='transaccion-li' onClick={() => { this.openDetalleTransaccion(index); }}>
-										<TransaccionItem transaccion={index}/>
+									<li key={index} className='transaccion-li' onClick={() => { this.openDetalleTransaccion(value); }}>
+										<TransaccionItem transaccion={value}/>
 									</li>
 								);
 							}
@@ -149,6 +162,11 @@ class TransaccionesCard extends React.Component {
 						<CargaGastos
 							moneda='AR$'
 							closeFunc={() => {this.closeAgregarGasto()}}/>
+					</Popup>
+					<Popup open={this.state.ingresosOpen} className='cargar-ingresos-popup' onClose={() => {this.setState({ ingresosOpen: false })}}>
+						<CargaGastos
+							moneda='AR$'
+							closeFunc={() => {this.closeAgregarIngreso()}}/>
 					</Popup>
 				</div>
 			</div>

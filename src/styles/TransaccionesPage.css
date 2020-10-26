@@ -1,10 +1,10 @@
-.principal {
+.transacciones-page {
 	display: flex;
 	flex-direction: row;
 }
 
 @media(max-width: 768px) {
-	.principal {
+	.transacciones-page {
 		display: flex;
 		flex-direction: column;
 	}

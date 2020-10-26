@@ -132,10 +132,12 @@
 }
 
 .navbar-container .spendy-navbar .moving-button.categorias {
-	
+	background: linear-gradient(90deg, #51648f 0%, #969fbe 100%);
 	margin: 5px 0 10px 0;
 }
-
+.navbar-container .spendy-navbar .moving-button.categorias:active {
+	background: linear-gradient(90deg, #4e5c7c 0%, #7f87a1 100%);
+}
 .navbar-container .spendy-navbar .fondos-list-container {
 	height: 100%;
 	margin-top: 10px;

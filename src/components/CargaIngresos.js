@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Categoria from '../classes/Categoria';
 
-import '../styles/CargaGastos.css'
+import '../styles/CargaIngresos.css'
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class CargaGastos extends React.Component {
+export default class CargaIngresos extends React.Component {
 
 	constructor() {
 		super();
@@ -34,7 +34,7 @@ export default class CargaGastos extends React.Component {
 		const categorias = [supermercado, mascotas, otros, sueldo, supermercado, mascotas, otros, sueldo, supermercado ]
 
 		return (
-			<div className='floating-container carga-gastos'>
+			<div className='floating-container carga-ingresos'>
 				<div className='titulo'>
 					<h3>Cargar Transaccion</h3>
 					<span>Ingresa el monto y la categoria de tu transacción</span>
@@ -65,19 +65,6 @@ export default class CargaGastos extends React.Component {
 							}
 						)
 					}
-				</div>
-				<div className='gastos-type'>
-					<RadioGroup value='efectivo' horizontal>
-						<RadioButton iconSize={20} value='efectivo'>
-							Efectivo
-						</RadioButton>
-						<RadioButton iconSize={20} value='debito'>
-							Débito
-						</RadioButton>
-						<RadioButton iconSize={20} value='credito'>
-							Crédito
-						</RadioButton>
-					</RadioGroup>
 				</div>
 				<div className='description-title'>Fecha</div>
 				<div className='fecha'>

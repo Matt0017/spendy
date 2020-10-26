@@ -1,0 +1,84 @@
+.carga-ingresos {
+	width: 627px;
+	height: 650px;
+
+	display: flex;
+	flex-direction: column;
+}
+.carga-ingresos .titulo {
+	text-align: center;
+}
+.carga-ingresos .amount {
+	height: 40px;
+	margin: 10px 20px;
+	display: flex;
+	flex-direction: row;
+	color: white;
+	background-color: #FFA514;
+	box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25) inset;
+}
+.carga-ingresos .amount .moneda {
+	padding: 0 10px;
+	font-size: 22px;
+	align-self: center;
+	border-right: white 1px solid;
+}
+.carga-ingresos .amount .cantidad-input {
+	width: 100%;
+	color: white;
+	font-size: 32px;
+	text-align: right;
+	border: none;
+	background: transparent;
+}
+.carga-ingresos .amount .cantidad-input::placeholder {
+	color: white;
+	opacity: 1;
+}
+.carga-ingresos .amount .cantidad-input::-ms-input-placeholder {
+	color: white;
+}
+.carga-ingresos .amount .cantidad-input:-ms-input-placeholder {
+	color: white;
+}
+.carga-ingresos .amount .delete-button {
+	align-self: center;
+	margin: 0 10px;
+}
+.carga-ingresos .category-selection {
+	margin: 0 16px;
+}
+.carga-ingresos .description-title {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.carga-ingresos .description {
+	height: 100px;
+	margin: 0 20px;
+}
+.carga-ingresos .fecha {
+	margin-left: 20px;
+}
+.carga-ingresos .react-datepicker__day--keyboard-selected,
+.carga-ingresos .react-datepicker__month-text--keyboard-selected,
+.carga-ingresos .react-datepicker__quarter-text--keyboard-selected,
+.carga-ingresos .react-datepicker__year-text--keyboard-selected {
+	color: black !important;
+	background-color: transparent !important;
+}
+.carga-ingresos .react-datepicker__day.react-datepicker__day--outside-month {
+	color: #cccccc;
+}
+.carga-ingresos .buttons {
+	margin: 15px 20px;
+	display: flex;
+	flex-direction: row-reverse;
+	flex-grow: 1;
+}
+.carga-ingresos .buttons .confirmar { 
+	width: 130px;
+}
+.carga-ingresos .buttons .cancelar {
+	width: 130px;
+	margin-right: 20px;
+}
