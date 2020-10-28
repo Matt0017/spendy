@@ -20,14 +20,14 @@ export default class Categorias extends React.Component {
 				const selName = this.state.selectedCat ? this.state.selectedCat.name : '####';
 				return (
 					<div 
-					style={{backgroundColor: categoria.name == selName? categoria.color : 'white'}}
-					className={'categoria-item ' + (categoria.name == selName? 'selected' : '')}
+					style={{backgroundColor: categoria.name === selName? categoria.color : 'white'}}
+					className={'categoria-item ' + (categoria.name === selName? 'selected' : '')}
 					onClick={() => {this.selectCategory(categoria)}}>
 						<div className='organizer'>
 							<div className='icon-container'>
-								<FontAwesomeIcon color={categoria.name == selName? 'white' : categoria.color} className='icon' icon={categoria.iconName} size='2x'/>
+								<FontAwesomeIcon color={categoria.name === selName? 'white' : categoria.color} className='icon' icon={categoria.iconName} size='2x'/>
 							</div>
-							<div style={{color: categoria.name == selName? 'white' : categoria.color}} className='texto'><span>{categoria.name}</span></div>
+							<div style={{color: categoria.name === selName? 'white' : categoria.color}} className='texto'><span>{categoria.name}</span></div>
 						</div>
 					</div>
 				);

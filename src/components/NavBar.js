@@ -53,12 +53,12 @@ class NavBar extends React.Component {
 						<FontAwesomeIcon size='2x' icon='bars'/>
 					</div>
 					<div className='spendy-icon'>
-						<img src={Logo} className='logo'></img>
+						<img src={Logo} className='logo' alt='logo'></img>
 					</div>
 				</div>
 				<div id='navbar' className='spendy-navbar closed'>
 					<div className='logo-container'>
-						<img src={Logo} className='logo'></img>
+						<img src={Logo} className='logo' alt='logo'></img>
 					</div>
 					<div className='cerrar' onClick={this.closeNavBar}>
 						Cerrar
@@ -77,8 +77,8 @@ class NavBar extends React.Component {
 							{fondos.map(
 								(fondo) => {
 									return (
-										<li key={fondo} className={fondo == this.state.fondoActual ? 'current' : ''} onClick={() => { this.openFondo(fondo); }}>
-											{(fondo == this.state.fondoActual ? '> ' : '' ) + fondo}
+										<li key={fondo} className={fondo === this.state.fondoActual ? 'current' : ''} onClick={() => { this.openFondo(fondo); }}>
+											{(fondo === this.state.fondoActual ? '> ' : '' ) + fondo}
 										</li>
 									);
 								}

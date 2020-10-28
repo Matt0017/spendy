@@ -1,6 +1,6 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-import { RadioGroup, RadioButton } from 'react-radio-buttons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -48,7 +48,7 @@ export default class CargaIngresos extends React.Component {
 					{
 						categorias.map(
 							(categoria) => {
-								const selected = this.state.cat != null && this.state.cat.name == categoria.name;
+								const selected = this.state.cat != null && this.state.cat.name === categoria.name;
 								return (
 									<div 
 									style={{backgroundColor: selected? categoria.color : 'white'}}

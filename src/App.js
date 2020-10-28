@@ -3,26 +3,27 @@ import	{BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './styles/App.css';
 
-import TransaccionesPage from './pages/TransaccionesPage'
+import TransaccionesPage from './pages/TransaccionesPage';
 import InicioSesion from './pages/InicioSesion';
-import Landing from './components/LandingPage'
-import { Controller } from './services/Controller';
+import Landing from './components/LandingPage';
+import SeleccionarFondo from './pages/SeleccionarFondo';
 
-function App() {
-	var controler = new Controller;
-	return (
-		<Router>
-			<div className="fill App">
-				
-				<Switch>
-					<Route path='/' exact component={Landing} />
-					<Route path='/InicioSesion' component={InicioSesion} />
-					<Route path='/Transacciones' component={TransaccionesPage} />
+export default class App extends React.Component {
+	render(){
+		return (
+			<Router>
+				<div className="fill App">
 					
-				</Switch>
-			</div>
-		</Router>
-	);
+					<Switch>
+						<Route path='/' exact component={Landing} />
+						<Route path='/InicioSesion' component={InicioSesion} />
+						<Route path='/Transacciones' component={TransaccionesPage} />
+						<Route path='/SeleccionarFondo' component={SeleccionarFondo} />
+					</Switch>
+				</div>
+			</Router>
+		);
+	}
 }
 
-export default App;
+

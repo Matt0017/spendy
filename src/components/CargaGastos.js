@@ -48,7 +48,7 @@ export default class CargaGastos extends React.Component {
 					{
 						categorias.map(
 							(categoria) => {
-								const selected = this.state.cat != null && this.state.cat.name == categoria.name;
+								const selected = this.state.cat != null && this.state.cat.name === categoria.name;
 								return (
 									<div 
 									style={{backgroundColor: selected? categoria.color : 'white'}}

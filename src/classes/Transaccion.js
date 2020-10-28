@@ -1,4 +1,4 @@
-import Categoria from "./Categoria";
+
 
 export default class Transaccion {
 

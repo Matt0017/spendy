@@ -7,12 +7,12 @@ import TransaccionDetalle from './TransaccionDetalle.js';
 
 // TODO volaria de aca
 import Transaccion from '../classes/Transaccion.js';
-import Categoria from '../classes/Categoria.js';
+
 
 import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
 import { getTransacciones } from '../services/apiRoutes.js';
-import CargaIngresos from './CargaIngresos.js';
+
 
 class TransaccionesCard extends React.Component {
 	constructor() {
@@ -53,7 +53,7 @@ class TransaccionesCard extends React.Component {
 
 	async componentDidMount(){
 		const trans = await getTransacciones(22,'pesos');
-		var transObjetos = trans[0].map(
+		var transObjetos = trans.map(
 			(index) => {
 				return (
 					new Transaccion(index.idTransaccion, index.fecha, index.nombre_categoria, index.dinero)
@@ -79,10 +79,10 @@ class TransaccionesCard extends React.Component {
 
 	render() {
 
-		let supermercado = new Categoria("Supermercado", "shopping-cart", "#F8C29E");
-		let mascotas = new Categoria("Mascotas", "paw", "#D6976D");
-		let otros = new Categoria("Otros", "question", "#B4BCC2");
-		let sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
+		// let supermercado = new Categoria("Supermercado", "shopping-cart", "#F8C29E");
+		// let mascotas = new Categoria("Mascotas", "paw", "#D6976D");
+		// let otros = new Categoria("Otros", "question", "#B4BCC2");
+		// let sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
 
 		// let transaccionesList = [
 		// 	new Transaccion(0, new Date(2020, 7, 21), supermercado, -550, "AR$"),
