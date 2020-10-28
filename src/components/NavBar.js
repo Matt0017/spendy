@@ -1,18 +1,17 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Popup from 'reactjs-popup';
-
-import Categorias from './Categorias.js';
+import { Link } from 'react-router-dom'
 
 import '../styles/NavBar.css';
 import Logo from '../images/logo.png';
+import { copyToClipboard } from '../App';
 
-class NavBar extends React.Component {
+export default class NavBar extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-			fondoActual: 'Personal',
+			fondoActual: { name: 'Personal', codigo: "28d94j24b"},
 			categoriaOpen: false
 		}
 	}
@@ -29,11 +28,6 @@ class NavBar extends React.Component {
 		navbar.classList.remove('open');
 	}
 
-	openFondo(fondo) {
-		this.setState({fondoActual: fondo});
-		alert('Cargar las cosas para el fondo: ' + fondo);
-	}
-
 	openCategorias() {
 		this.setState({categoriaOpen: true});
 	}
@@ -43,9 +37,6 @@ class NavBar extends React.Component {
 
 	render() {
 
-		let fondos = ['Personal', 'Viajardo a Nombre Larguisimo', 'Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura',
-						'Test de Altura','Test de Altura','Test de Altura','Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura', 'Test de Altura Final'];
-
 		return (
 			<div className='navbar-container'>
 				<div className='header'>
@@ -53,54 +44,60 @@ class NavBar extends React.Component {
 						<FontAwesomeIcon size='2x' icon='bars'/>
 					</div>
 					<div className='spendy-icon'>
-						<img src={Logo} className='logo' alt='logo'></img>
+						<img src={Logo} alt='logo-spendy' className='logo'></img>
 					</div>
 				</div>
 				<div id='navbar' className='spendy-navbar closed'>
 					<div className='logo-container'>
-						<img src={Logo} className='logo' alt='logo'></img>
+						<img src={Logo} alt='logo-spendy' className='logo'></img>
 					</div>
 					<div className='cerrar' onClick={this.closeNavBar}>
 						Cerrar
 					</div>
-					<div className='button-p moving-button nuevo-fondo'>
-						<FontAwesomeIcon size='2x' icon='plus' className='image'/>
-						<div className='text-container'><div className='text'>Crear Nuevo Fondo</div></div>
-					</div>
-					<div className='fondos-list-container'>
-						<div className='titulo'>
-							{/* TODO este es una imagen en realidad */}
-							<FontAwesomeIcon className='icono' icon='wallet' size='2x'/>
-							<div className='texto'>Fondos</div>
+					<div className='fondo-actual'>
+						<div className='back'>
+							<FontAwesomeIcon style={{margin: 'auto'}} size='1x' icon='arrow-left'/>
 						</div>
-						<ul className='fondos-list'>
-							{fondos.map(
-								(fondo) => {
-									return (
-										<li key={fondo} className={fondo === this.state.fondoActual ? 'current' : ''} onClick={() => { this.openFondo(fondo); }}>
-											{(fondo === this.state.fondoActual ? '> ' : '' ) + fondo}
-										</li>
-									);
-								}
-							)}
-						</ul>
+						<div className='text'>{this.state.fondoActual.name}</div>
 					</div>
-					<div className='button-alt moving-button categorias' onClick={() => {this.openCategorias()}}>
-						<FontAwesomeIcon size='2x' icon='list-ul' className='image'/>
-						<div className='text-container'><div className='text'>Categorías</div></div>
+					<div className='fondo-options'>
+						<div className='fondo-codigo'>
+							<span>codigo: </span><span>{this.state.fondoActual.codigo}</span>
+							<FontAwesomeIcon className='icon' size='1x' icon={['far','copy']}
+								onClick={
+									() => {
+										copyToClipboard(this.state.fondoActual.codigo);
+										alert("Se copió el código del fondo con exito.");
+									}
+								}/>
+						</div>
+						<div className='moneda-selection'>
+
+						</div>
 					</div>
-					<Popup open={this.state.categoriaOpen} closeOnDocumentClick onClose={() => {this.closeCategorias()}}>
-						<Categorias
-							closeFunc={() => {this.closeCategorias()}}/>
-					</Popup>
-					<div className='button-alt moving-button cerrar-sesion'>
-						<FontAwesomeIcon size='2x' icon='sign-out-alt' className='image'/>
-						<div className='text-container'><div className='text'>Cerrar Sesión</div></div>
+					<div className='links-list noselect'>
+						<Link to='/Movimientos'>
+							<div className='organizer'>
+								<FontAwesomeIcon className='icon' size='2x' icon='wallet'/>
+								<div className='text'>movimientos</div>
+							</div>
+						</Link>
+						<Link to='/Estadisticas'>
+							<div className='organizer'>
+								<FontAwesomeIcon className='icon' size='2x' icon={['far','chart-bar']}/>
+								<div className='text'>Estadísticas</div>
+							</div>
+						</Link>
+						<Link to='/Limites'>
+							<div className='organizer'>
+								<FontAwesomeIcon className='icon' size='2x' icon='money-bill-wave'/>
+								<div className='text'>limites y objetivos</div>
+							</div>
+						</Link>
 					</div>
+					<Link to='/' className='cerrar-sesion'><button className='button-alt fill'>Cerrar Sesión</button></Link>
 				</div>
 			</div>
 		);
 	}
 }
-
-export default NavBar;

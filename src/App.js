@@ -1,24 +1,28 @@
 import React from 'react';
 import	{BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import './styles/App.css';
-
-import TransaccionesPage from './pages/TransaccionesPage';
-import InicioSesion from './pages/InicioSesion';
 import Landing from './components/LandingPage';
+import InicioSesion from './pages/InicioSesion';
+import Movimientos from './pages/Movimientos';
+import Estadisticas from './pages/Estadisticas';
 import SeleccionarFondo from './pages/SeleccionarFondo';
 
+import './styles/App.css';
+import './styles/Categorias.css';
+// import { render } from '@testing-library/react';
+
 export default class App extends React.Component {
-	render(){
+
+	render() {
 		return (
 			<Router>
 				<div className="fill App">
-					
 					<Switch>
 						<Route path='/' exact component={Landing} />
 						<Route path='/InicioSesion' component={InicioSesion} />
-						<Route path='/Transacciones' component={TransaccionesPage} />
-						<Route path='/SeleccionarFondo' component={SeleccionarFondo} />
+						<Route path='/Movimientos' component={Movimientos} />
+						<Route path='/Estadisticas' component={Estadisticas} />
+						<Route path='/Fondos' component={SeleccionarFondo} />
 					</Switch>
 				</div>
 			</Router>
@@ -26,4 +30,12 @@ export default class App extends React.Component {
 	}
 }
 
-
+export function copyToClipboard(str) { 
+	const el = document.createElement('textarea');
+	el.value = str; el.setAttribute('readonly', '');
+	el.style.position = 'absolute'; el.style.left = '-9999px';
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
+}

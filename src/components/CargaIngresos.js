@@ -1,8 +1,6 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 import Categoria from '../classes/Categoria';
 

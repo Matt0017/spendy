@@ -11,6 +11,7 @@ import Transaccion from '../classes/Transaccion.js';
 
 import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
+import CargaIngresos from './CargaIngresos.js';
 import { getTransacciones } from '../services/apiRoutes.js';
 
 
@@ -164,7 +165,7 @@ class TransaccionesCard extends React.Component {
 							closeFunc={() => {this.closeAgregarGasto()}}/>
 					</Popup>
 					<Popup open={this.state.ingresosOpen} className='cargar-ingresos-popup' onClose={() => {this.setState({ ingresosOpen: false })}}>
-						<CargaGastos
+						<CargaIngresos
 							moneda='AR$'
 							closeFunc={() => {this.closeAgregarIngreso()}}/>
 					</Popup>

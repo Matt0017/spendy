@@ -1,6 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-import { faPaw, faShoppingCart, faHandHoldingUsd, faSearch, faPlusCircle, faMinusCircle, faQuestion, faBars, faWallet, faSignOutAlt, faPlus, faListUl, faBackspace } from '@fortawesome/free-solid-svg-icons';
+import { faPaw, faShoppingCart, faHandHoldingUsd, faSearch, faPlusCircle, faMinusCircle, faQuestion, faWallet, faSignOutAlt, faPlus, faListUl, faBackspace, faMoneyBillWave, faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faChartBar, faCopy } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
 // Categorias
@@ -10,8 +11,12 @@ library.add(
 	faHandHoldingUsd,
 // UI
 	faBars,
+	faCopy,
 	faPlus,
 	faWallet,
+	faArrowLeft,
+	faChartBar,
+	faMoneyBillWave,
 	faListUl,
 	faSignOutAlt,
 	faPlusCircle,

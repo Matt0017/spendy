@@ -1,5 +1,3 @@
-
-
 export default class Transaccion {
 
 	// TODO definir, moneda (?)

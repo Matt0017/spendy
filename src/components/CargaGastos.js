@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 import Categoria from '../classes/Categoria';
 
 import '../styles/CargaGastos.css'
