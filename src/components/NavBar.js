@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 
 import '../styles/NavBar.css';
 import Logo from '../images/logo.png';
+import { copyToClipboard } from '../App';
 
 export default class NavBar extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-			fondoActual: 'Personal',
+			fondoActual: { name: 'Personal', codigo: "28d94j24b"},
 			categoriaOpen: false
 		}
 	}
@@ -25,11 +26,6 @@ export default class NavBar extends React.Component {
 		const navbar = document.getElementById('navbar');
 		navbar.classList.add('closed');
 		navbar.classList.remove('open');
-	}
-
-	openFondo(fondo) {
-		this.setState({fondoActual: fondo});
-		alert('Cargar las cosas para el fondo: ' + fondo);
 	}
 
 	openCategorias() {
@@ -59,8 +55,25 @@ export default class NavBar extends React.Component {
 						Cerrar
 					</div>
 					<div className='fondo-actual'>
-						<FontAwesomeIcon className='back' size='1x' icon='arrow-left'/>
-						<span>Fondo Actual</span>
+						<div className='back'>
+							<FontAwesomeIcon style={{margin: 'auto'}} size='1x' icon='arrow-left'/>
+						</div>
+						<div className='text'>{this.state.fondoActual.name}</div>
+					</div>
+					<div className='fondo-options'>
+						<div className='fondo-codigo'>
+							<span>codigo: </span><span>{this.state.fondoActual.codigo}</span>
+							<FontAwesomeIcon className='icon' size='1x' icon={['far','copy']}
+								onClick={
+									() => {
+										copyToClipboard(this.state.fondoActual.codigo);
+										alert("Se copió el código del fondo con exito.");
+									}
+								}/>
+						</div>
+						<div className='moneda-selection'>
+
+						</div>
 					</div>
 					<div className='links-list noselect'>
 						<Link to='/Movimientos'>

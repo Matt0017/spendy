@@ -86,19 +86,44 @@
 
 .navbar-container .spendy-navbar .fondo-actual {
 	margin: 5px 0;
+	display: flex;
+	flex-direction: row;
 	background: linear-gradient(90deg, #ff9d00 0%, #ffc559 100%);
 	color: white;
-	text-transform: uppercase;
-	text-align: center;
 	font-weight: 300;
 	font-size: 1em;
-	padding-right: 25px;
 }
 .navbar-container .spendy-navbar .fondo-actual .back {
+	display: flex;
 	cursor: pointer;
 	font-size: 1.2em;
-	margin-right: 25px;
-	vertical-align: -.2em;
+	flex: 0 0 30px;
+	margin-left: 10px;
+}
+.navbar-container .spendy-navbar .fondo-actual .text {
+	flex-grow: 1;
+	margin-right: 10px;
+	text-transform: uppercase;
+	text-align: center;
+}
+.navbar-container .spendy-navbar .fondo-options {
+	padding: 4px 0;
+	padding-left: 10px;
+
+	color: #FFA81B;
+	text-transform: uppercase;
+	font-size: 0.9em;
+
+	border-bottom: 1px solid #dddddd;
+}
+.navbar-container .spendy-navbar .fondo-options {
+	position: relative;
+}
+.navbar-container .spendy-navbar .fondo-options .icon {
+	position: absolute;
+    right: 30px;
+	font-size: 1.2em;
+	cursor: pointer;
 }
 .navbar-container .spendy-navbar .links-list {
 	height: 100%;

@@ -37,8 +37,18 @@ class Estadisticas extends React.Component {
 							option={{
 								tooltip: {
 									trigger: 'axis',
-									position: function (pt) {
+									position: (pt) => {
 										return [pt[0], '10%'];
+									},
+									formatter: (params) => {
+										const pv = params[0].value;
+										const nv = params[1].value;
+										return (
+											`
+											<div style="width: 100px;">${params[0].name}</div>
+											<div style="color: ${pv > 0 ? 'rgb(50,205,120)' : nv < 0 ? 'rgb(255,150,130)' : 'white'}">${pv > 0 ? pv : nv < 0 ? nv : 0}</div>
+											`
+										);
 									}
 								},
 								title: {
@@ -52,7 +62,7 @@ class Estadisticas extends React.Component {
 								},
 								yAxis: {
 									type: 'value',
-									boundaryGap: [0, '20%']
+									boundaryGap: [0, 0]
 								},
 								dataZoom: [
 									{
