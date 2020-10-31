@@ -1,4 +1,4 @@
-export default class FondoClase {
+export default class Fondo {
 
 	constructor(idFondo, nombre, codigo) {
         this.idFondo = idFondo;
