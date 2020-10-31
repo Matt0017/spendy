@@ -4,7 +4,7 @@ export const getTransacciones = async (fondo,moneda) =>{
         const json = await response.json()
 
         
-        return json.result[0]
+        return json[0]
 
         
     } 
