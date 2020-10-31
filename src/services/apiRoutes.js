@@ -25,13 +25,11 @@ export const getFondos = async (idUsuario) =>{
     }
 }
 
-export const getFondo = async (fondo,moneda) =>{
+export const getCategorias = async (fondo) =>{
     try {
-        const response = await fetch('http://localhost:3500/fondos/'+fondo+'/'+moneda);
+        const response = await fetch('http://localhost:3500/categorias/'+fondo);
         const json = await response.json();
-
-        console.log(json.data[0])
-
+        return json
         
     } 
     catch (error) {

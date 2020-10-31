@@ -1,28 +1,45 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
-export default class Fondo extends React.Component {
-    constructor(props){
-        super();
-        this.state = {
-            id: props.fondo.idFondo,
-            nombre: props.fondo.nombre
+import {getCategorias} from '../services/apiRoutes'
+import '../styles/Fondo.css'
+
+export default function Fondo(props){
+
+    async function handleClick(){
+        const json = {
+            idFondo: props.fondo.idFondo,
+            nombre_fondo: props.fondo.nombre_fondo,
+            codigo_fondo: props.fondo.codigo_fondo
         }
+        var string = JSON.stringify(json)
+        sessionStorage.setItem('fondo',string)
+
+        const fondo = JSON.parse(sessionStorage.getItem('fondo'));
+        const categorias =  await getCategorias(fondo.idFondo);
+        console.log(categorias[0]);
+        categorias[0].map(
+            (index)=>{
+                var string = JSON.stringify(index)
+                return sessionStorage.setItem(index.nombre,string)
+            }
+        )
     }
 
-
-    render(){
-        return(
-            <div className='item'>
-                <div className="post-slide">
-                    <div className="post-content">
-                        <h3 className="post-title">{this.state.nombre}</h3>
-                    </div>
+    
+    return(
+        <Link to='/Movimientos'>
+            <div class="post-slide" onClick={handleClick}>
+                <div class="post-content">
+                    <h3 class="post-title">{props.fondo.nombre_fondo}</h3>
                 </div>
             </div>
-            
-        )   
-    }
+        </Link>
+        
+        
+    )   
+    
 }    
             
             
