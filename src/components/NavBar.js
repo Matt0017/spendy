@@ -11,7 +11,7 @@ export default class NavBar extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			fondoActual: { name: 'Personal', codigo: "28d94j24b"},
+			fondoActual: JSON.parse(sessionStorage.getItem('fondo')),
 			categoriaOpen: false
 		}
 	}
@@ -35,6 +35,14 @@ export default class NavBar extends React.Component {
 		this.setState({categoriaOpen: false});
 	}
 
+	sacarSessionFondo(){
+		sessionStorage.setItem('fondo','')
+	}
+
+	cerrarSesion(){
+		sessionStorage.setItem('usuario','')
+	}
+
 	render() {
 
 		return (
@@ -56,9 +64,9 @@ export default class NavBar extends React.Component {
 					</div>
 					<div className='fondo-actual'>
 						<div className='back'>
-							<FontAwesomeIcon style={{margin: 'auto'}} size='1x' icon='arrow-left'/>
+							<Link to='/Fondos'><FontAwesomeIcon onClick={this.sacarSessionFondo} style={{margin: 'auto'}} size='1x' icon='arrow-left'/></Link>
 						</div>
-						<div className='text'>{this.state.fondoActual.name}</div>
+						<div className='text'>{this.state.fondoActual.nombre_fondo}</div>
 					</div>
 					<div className='fondo-options'>
 						<div className='fondo-codigo'>
@@ -95,7 +103,7 @@ export default class NavBar extends React.Component {
 							</div>
 						</Link>
 					</div>
-					<Link to='/' className='cerrar-sesion'><button className='button-alt fill'>Cerrar Sesión</button></Link>
+					<Link to='/' className='cerrar-sesion'><button onClick={this.cerrarSesion} className='button-alt fill'>Cerrar Sesión</button></Link>
 				</div>
 			</div>
 		);

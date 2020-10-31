@@ -1,0 +1,136 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.owl-item{
+    width: 100%;
+    height: 100%;
+}
+
+.owl-theme .owl-nav.disabled + .owl-dots{
+    margin: 0;
+}
+
+.post-slide{
+    align-items: center;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #FFA514;
+    border: 5px solid #6E80B0;
+    border-radius: 25px;
+    margin-bottom:2em;
+    height: 200px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+.post-slide:hover{
+    background-color: #ffb235;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
+
+}
+
+.post-slide .post-title{
+    font-size:14px;
+    font-weight:700;
+    color: white;
+    margin:0 0 10px 0;
+    text-transform:uppercase;
+    transition:all .3s linear 0s;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 35px;
+}
+
+
+@media(min-width:769px){
+    .post-slide .post-content{
+        padding:20% 15px;
+    }
+}
+
+@media(max-width:768px){
+    .post-slide .post-content{
+        padding:25% 15px;
+    }
+}
+
+@media(max-width:575px){
+    .post-slide .post-content{
+        padding:20% 15px;
+    }
+}
+.post-slide .post-content{
+    position:relative
+}
+
+.fondos .titulo{
+    margin-top: 50px;
+}
+
+.fondos .titulo h1{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 59px;
+    color: #6E80B0;
+}
+
+.owl-carousel .nav-btn{
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 100px !important;
+  }
+
+.fondos .button-p{
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+
+.fondos .logo{
+    margin: 10px;
+    height: 50px;
+}
+
+.agregarFondo{
+    background: white;
+    border-radius: 25px;
+    width: 500px;
+    padding: 20px;
+}
+
+.agregarFondo .inputVioleta{
+    background: #6E80B0;
+    width: 100%;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.agregarFondo .inputVioleta::placeholder{
+    color: white;
+}
+
+.agregarFondo .inputGris{
+    background: #E0E0E0;
+    width: 100%;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.fondos a:hover{
+    text-decoration: none;
+}

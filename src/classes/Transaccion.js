@@ -4,17 +4,15 @@ export default class Transaccion {
 	constructor(id, fecha, categoria, monto, moneda) {
 		this.id = id;
 		
-		/** @type {Date} */
-		this.fecha = fecha;
+		this.fecha = new Date(fecha);
 		
 		/** @type {Categoria} */
 		this.categoria = categoria;
 		
 		this.monto = monto;
-		this.moneda = moneda;
 	}
 
-	get fechaString() { 
+	get_fechaString() { 
 		return this.fecha.getDate() + "/" + this.fecha.getMonth() + "/" + this.fecha.getFullYear();
 	}
 
