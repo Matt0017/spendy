@@ -34,15 +34,75 @@ export default class CargaIngresos extends React.Component {
 		return (
 			<div className='floating-container carga-ingresos'>
 				<div className='titulo'>
-					<h3>Cargar Transaccion</h3>
-					<span>Ingresa el monto y la categoria de tu transacción</span>
+					<h3>Cargar Ingreso</h3>
+					<span>Ingresa el monto y la categoria de tu ingreso</span>
 				</div>
 				<div className='amount'>
 					<div className='moneda'>{this.props.moneda}</div>
 					<input className='cantidad-input' placeholder='0' type='number' min={0}/>
 					<FontAwesomeIcon className='delete-button' size='2x' icon='backspace'/>
 				</div>
-				<div className='category-selection'>
+				{
+					(this.state.showNewCategory) ? 
+					<div className='new-category'>
+						<div><input placeholder='Nombre'></input></div>
+						<div>Seleccione un icono</div>
+						<div className='icons-list'>
+							<div style={{width: 'max-content'}}>
+								{
+									["plus", "paw"].map(
+										(icon) => {
+											const sel = this.state.new_icon === icon;
+											return (
+												<div 
+												onClick={
+													() => {
+														this.selectIcon(icon);
+													}
+												}
+												style={{backgroundColor: sel ? 'black' : 'transparent'}}
+												className='icon'>
+													<div style={{ width: '100%', height: '100%', display: 'flex'}}>
+														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={icon}/>
+													</div>
+												</div>
+											)
+										}
+									)
+								}
+							</div>
+						</div>
+						<div>Seleccione un color</div>
+						<div className='colors-list'>
+							<div style={{width: 'max-content'}}>
+								{
+									["#e1d390", "#39afb1"].map(
+										(color) => {
+											const sel = this.state.new_color === color;
+											return (
+												<div 
+												onClick={
+													() => {
+														this.selectColor(color);
+													}
+												}
+												style={{backgroundColor: sel ? color : 'transparent'}}
+												className='color'>
+													<div style={{ width: '100%', height: '100%', backgroundColor: color}}></div>
+												</div>
+											)
+										}
+									)
+								}
+							</div>
+						</div>
+						<div className='button-container'>
+							<button className='button-s atras'>Atras</button>
+							<button className='button-p crear'>Crear</button>
+						</div>
+					</div>
+					:
+					<div className='category-selection'>
 					{
 						categorias.map(
 							(categoria) => {
@@ -63,7 +123,15 @@ export default class CargaIngresos extends React.Component {
 							}
 						)
 					}
+					<div 
+					className='categoria-add'
+					onClick={() => {this.newCategory()}}>
+						<FontAwesomeIcon className='plus' icon='plus'/>
+						<FontAwesomeIcon className='circle' icon={['far','circle']}/>
+					</div>
 				</div>
+				
+				}
 				<div className='description-title'>Fecha</div>
 				<div className='fecha'>
 					<DatePicker
