@@ -53,7 +53,8 @@ class TransaccionesCard extends React.Component {
 
 
 	async componentDidMount(){
-		const trans = await getTransacciones(22,'pesos');
+		const fondo = JSON.parse(sessionStorage.getItem('fondo'));
+		const trans = await getTransacciones(fondo.idFondo,'pesos');
 		var transObjetos = trans.map(
 			(index) => {
 				return (

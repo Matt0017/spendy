@@ -100,6 +100,9 @@
 	flex: 0 0 30px;
 	margin-left: 10px;
 }
+.navbar-container .spendy-navbar .fondo-actual .back a {
+	color: white;
+}
 .navbar-container .spendy-navbar .fondo-actual .text {
 	flex-grow: 1;
 	margin-right: 10px;

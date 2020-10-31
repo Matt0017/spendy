@@ -17,7 +17,7 @@ import categoriasController from './controllers/categoriasController'
 export default class App extends React.Component {
 	
 	render() {
-		categoriasController.getCategorias()
+		// categoriasController.getCategorias()
 		return (
 			<Router>
 				<div className="fill App">

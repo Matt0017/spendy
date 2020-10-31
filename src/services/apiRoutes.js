@@ -3,10 +3,7 @@ export const getTransacciones = async (fondo,moneda) =>{
         const response = await fetch('http://localhost:3500/getTransaccionesFondo/'+fondo+'/'+moneda);
         const json = await response.json()
 
-        
-        return json.result[0]
-
-        
+        return json[0]
     } 
     catch (error) {
         console.log(error)

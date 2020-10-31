@@ -45,7 +45,7 @@ export default class SeleccionarFondo extends React.Component {
       }
 
     async componentDidMount(){
-		const fondos = await getFondos(15);
+		const fondos = await getFondos(2);
 		var fondosClase = fondos.map(
 			(index) => {
 				return (

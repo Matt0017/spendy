@@ -70,11 +70,11 @@ export default class NavBar extends React.Component {
 					</div>
 					<div className='fondo-options'>
 						<div className='fondo-codigo'>
-							<span>codigo: </span><span>{this.state.fondoActual.codigo}</span>
+							<span>codigo: </span><span>{this.state.fondoActual.codigo_fondo}</span>
 							<FontAwesomeIcon className='icon' size='1x' icon={['far','copy']}
 								onClick={
 									() => {
-										copyToClipboard(this.state.fondoActual.codigo);
+										copyToClipboard(this.state.fondoActual.codigo_fondo);
 										alert("Se copió el código del fondo con exito.");
 									}
 								}/>
