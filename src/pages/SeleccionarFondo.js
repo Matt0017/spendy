@@ -7,8 +7,8 @@ import Popup from 'reactjs-popup';
 
 import logo from '../images/logo.png'
 import {getFondos} from '../services/apiRoutes'
-import FondoClase from '../classes/FondoClase';
-import Fondo from '../components/Fondo';
+import FondoClase from '../classes/Fondo';
+import FondoItem from '../components/FondoItem';
 
 import '../styles/Fondo.css'
 
@@ -98,7 +98,7 @@ export default class SeleccionarFondo extends React.Component {
                             {this.state.fondos.map(
                                 (index) => {
                                     return (
-                                        <Fondo fondo={index}></Fondo>
+                                        <FondoItem fondo={index}></FondoItem>
                                     );
                                 }
                             )}

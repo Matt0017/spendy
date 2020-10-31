@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import {getCategorias} from '../services/apiRoutes'
 import '../styles/Fondo.css'
 
-export default function Fondo(props){
+export default function FondoItem(props){
 
     async function handleClick(){
         const json = {
