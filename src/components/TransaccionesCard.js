@@ -6,14 +6,9 @@ import Popup from 'reactjs-popup';
 import TransaccionItem from './TransaccionItem.js';
 import TransaccionDetalle from './TransaccionDetalle.js';
 
-// TODO volaria de aca
-import Transaccion from '../classes/Transaccion.js';
-
-
 import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
 import CargaIngresos from './CargaIngresos.js';
-import { getTransacciones } from '../services/apiRoutes.js';
 
 
 class TransaccionesCard extends React.Component {
