@@ -1,10 +1,12 @@
 import React from 'react';
+import { GlobalContext } from '../controllers/Context';
 import ReactEcharts from 'echarts-for-react';
 
 import '../styles/GastosPorCategoria.css';
 import Categoria from '../classes/Categoria';
 
 export default class GastosPorCategoria extends React.Component {
+	static contextType = GlobalContext;
 
 	constructor() {
 		super();
@@ -12,10 +14,15 @@ export default class GastosPorCategoria extends React.Component {
 			option: 'day',
 			catInicio: null,
 			catFin: null,
-			data: this.createData()
+			data: [] //this.createData()
 		}
 	}
 	
+	async componentDidMount() {
+		const fondo = this.context.FondosController.getSelected();
+		const gastos = await this.context.EstadisticasController.getGastosPorCategoria(fondo.id, new Date(0), new Date(), 'pesos');
+	}
+
 	getDay() {
 		this.setState({
 			option: 'day'

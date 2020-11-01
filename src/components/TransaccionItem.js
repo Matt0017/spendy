@@ -1,9 +1,9 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import '../styles/TransaccionItem.css'
 
-class TransaccionItem extends React.Component {
+export default class TransaccionItem extends React.Component {
 
 	render() {
 
@@ -18,10 +18,10 @@ class TransaccionItem extends React.Component {
 					{trans.get_fechaString()}
 				</div>
 				<div className='categoria'>
-					{/* <div className='organizador' style={{color: trans.color}}>
-						<FontAwesomeIcon icon={trans.categoria.iconName} size='2x' fixedWidth/>
-						<span className='categoria-nombre'>{trans.categoria}</span>
-					</div> */}
+					<div className='organizador' style={{color: trans.categoria.color}}>
+						<FontAwesomeIcon icon={trans.categoria.icono} size='2x' fixedWidth/>
+						<span className='categoria-nombre'>{trans.categoria.nombre}</span>
+					</div>
 				</div>
 				<div className={'monto ' + (trans.isGasto() ? "gasto" : "ingreso")}>
 					{monto}
@@ -30,5 +30,3 @@ class TransaccionItem extends React.Component {
 		);
 	}
 }
-
-export default TransaccionItem;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { GlobalContext } from '../controllers/Context';
 import ReactEcharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 

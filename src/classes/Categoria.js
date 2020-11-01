@@ -1,8 +1,12 @@
 export default class Categoria {
 
-	constructor(name, iconName, color) {
-		this.name = name;
-		this.iconName = iconName;
-		this.color = color;
+	constructor(parameters) {
+		this.id = parameters.id;
+		this.nombre = parameters.nombre;
+
+		this.icono = parameters.icono.replace('fa-','');
+
+		this.color = parameters.color;
+		this.isActive = parameters.isActive;
 	}
 }

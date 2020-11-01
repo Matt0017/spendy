@@ -1,19 +1,39 @@
-import {getCategorias} from '../services/apiRoutes'
+import Categoria from "../classes/Categoria";
+import { getCategorias } from "../services/apiRoutes";
 
-export default class CategoriasController{
-    contructor(){
-        this.categorias = [];
-    }
+export default class CategoriasController {
+	
+	contructor(){
+		this._categorias = null;
+	}
 
-    async getCategorias(){
-        const fondo = JSON.parse(sessionStorage.getItem('fondo'));
-        const categorias =  await getCategorias(fondo.idFondo);
-        console.log(categorias);
-        this.categorias = categorias;
-    }
-    
+	async findCategoria(nombre, idFondo) {
+		const C = await this.getCategorias(idFondo);
+		return (C.find(
+			(c) => {
+				return c.nombre === nombre;
+			}
+		) || null);
+	}
 
-    
-
-
+	async getCategorias(idFondo)
+	{
+		if (!this._categorias || !this._categorias.length)
+		{
+			const categorias = await getCategorias(idFondo);
+			
+			this._categorias = categorias.map(
+				(c) => {
+					return new Categoria({
+						id: c.idCategoria,
+						nombre: c.nombre,
+						icono: c.icono,
+						color: c.color,
+						isActive: true,
+					});
+				}
+			);
+		}
+		return this._categorias;
+	}
 }

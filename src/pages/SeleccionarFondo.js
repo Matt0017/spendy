@@ -1,4 +1,5 @@
 import React from 'react';
+import { GlobalContext } from '../controllers/Context';
 
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -13,9 +14,9 @@ import FondoItem from '../components/FondoItem';
 import '../styles/Fondo.css'
 import { Alert } from 'react-bootstrap';
 
-
 export default class SeleccionarFondo extends React.Component {
-	
+	static contextType = GlobalContext;
+
 	constructor(props){
 		super();
 		this.state ={
@@ -42,22 +43,14 @@ export default class SeleccionarFondo extends React.Component {
 	handleChange = (event) => {
 		const {name, value} = event.target;
 		this.setState({
-		[name]: value
+			[name]: value
 		})
 	}
 
 	async componentDidMount(){
-		const fondos = await getFondos(2);
-		var fondosClase = fondos.map(
-			(index) => {
-				return (
-					new FondoClase(index.idFondo, index.nombre_fondo, index.codigo_fondo)
-					
-				);
-			}
-		);
+		const fondos = await this.context.FondosController.getFondos(2);
 		this.setState({
-			fondos: fondosClase
+			fondos: fondos
 		})  
 	}
 
@@ -124,7 +117,6 @@ export default class SeleccionarFondo extends React.Component {
 						<OwlCarousel 
 						className="owl-theme"
 						items= '3'
-						autoplay
 						{...options}>
 							{this.state.fondos.map(
 								(index) => {

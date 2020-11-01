@@ -1,21 +1,17 @@
 import React from 'react';
+import { GlobalContext } from '../controllers/Context.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Popup from 'reactjs-popup';
-
 import TransaccionItem from './TransaccionItem.js';
 import TransaccionDetalle from './TransaccionDetalle.js';
-
-// TODO volaria de aca
-import Transaccion from '../classes/Transaccion.js';
-
-import '../styles/TransaccionesCard.css'
 import CargaGastos from './CargaGastos.js';
 import CargaIngresos from './CargaIngresos.js';
-import { getTransacciones } from '../services/apiRoutes.js';
 import BotonFlotante from './BotonFlotante.js';
-
+import '../styles/TransaccionesCard.css'
 
 class TransaccionesCard extends React.Component {
+	static contextType = GlobalContext;
+	
 	constructor() {
 		super();
 
@@ -54,18 +50,10 @@ class TransaccionesCard extends React.Component {
 
 
 	async componentDidMount(){
-		const fondo = JSON.parse(sessionStorage.getItem('fondo'));
-		const trans = await getTransacciones(fondo.idFondo,'pesos');
-		var transObjetos = trans.map(
-			(index) => {
-				return (
-					new Transaccion(index.idTransaccion, index.fecha, index.nombre_categoria, index.dinero)
-					
-				);
-			}
-		);
+		const fondo = this.context.FondosController.getSelected();
+		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, 'pesos', this.context);
 		this.setState({
-			transacciones: transObjetos
+			transacciones: transacciones
 		})
 	}
 	
@@ -81,7 +69,6 @@ class TransaccionesCard extends React.Component {
 	}
 
 	render() {
-		debugger
 		return (
 			<div className={this.props.className + ' transacciones-container'}>
 				<div className='titulo-container'>

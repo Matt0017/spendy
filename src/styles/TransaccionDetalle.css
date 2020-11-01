@@ -1,6 +1,6 @@
 .transaccion-detalle {
 	color: white;
-	background-color: #6E80B0;
+	background-color: #6E80B0 !important;
 	width: 300px;
 
 	display: flex;
