@@ -86,7 +86,7 @@ export default class CargaIngresos extends React.Component {
 												style={{backgroundColor: sel ? 'black' : 'transparent'}}
 												className='icon'>
 													<div style={{ width: '100%', height: '100%', display: 'flex'}}>
-														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={icon}/>
+														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={['fas', icon]}/>
 													</div>
 												</div>
 											)
@@ -138,7 +138,7 @@ export default class CargaIngresos extends React.Component {
 									onClick={() => {this.selectCategory(categoria)}}>
 										<div className='organizer'>
 											<div className='icon-container'>
-												<FontAwesomeIcon color={selected? 'white' : categoria.color} className='icon' icon={categoria.icono} size='2x'/>
+												<FontAwesomeIcon color={selected? 'white' : categoria.color} className='icon' icon={['fas', categoria.icono]} size='2x'/>
 											</div>
 											<div style={{color: selected? 'white' : categoria.color}} className='texto'><span>{categoria.nombre}</span></div>
 										</div>
