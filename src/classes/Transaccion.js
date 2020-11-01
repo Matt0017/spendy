@@ -1,15 +1,10 @@
 export default class Transaccion {
 
-	// TODO definir, moneda (?)
-	constructor(id, fecha, categoria, monto, moneda) {
-		this.id = id;
-		
-		this.fecha = new Date(fecha);
-		
-		/** @type {Categoria} */
-		this.categoria = categoria;
-		
-		this.monto = monto;
+	constructor(parameters) {
+		this.id = parameters.id;
+		this.fecha = new Date(parameters.fecha);
+		this.monto = parameters.monto;
+		this.categoria = parameters.categoria;
 	}
 
 	get_fechaString() { 

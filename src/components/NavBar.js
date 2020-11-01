@@ -1,4 +1,5 @@
 import React from 'react';
+import { GlobalContext } from '../controllers/Context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
 
@@ -7,11 +8,11 @@ import Logo from '../images/logo.png';
 import { copyToClipboard } from '../App';
 
 export default class NavBar extends React.Component {
+	static contextType = GlobalContext;
 
 	constructor() {
 		super();
 		this.state = {
-			fondoActual: JSON.parse(sessionStorage.getItem('fondo')),
 			categoriaOpen: false
 		}
 	}
@@ -44,6 +45,7 @@ export default class NavBar extends React.Component {
 	}
 
 	render() {
+		const fondo = this.context.FondosController.getSelected();
 
 		return (
 			<div className='navbar-container'>
@@ -66,15 +68,15 @@ export default class NavBar extends React.Component {
 						<div className='back'>
 							<Link to='/Fondos'><FontAwesomeIcon onClick={this.sacarSessionFondo} style={{margin: 'auto'}} size='1x' icon='arrow-left'/></Link>
 						</div>
-						<div className='text'>{this.state.fondoActual.nombre_fondo}</div>
+						<div className='text'>{fondo.nombre}</div>
 					</div>
 					<div className='fondo-options'>
 						<div className='fondo-codigo'>
-							<span>codigo: </span><span>{this.state.fondoActual.codigo_fondo}</span>
+							<span>codigo: </span><span>{fondo.codigo}</span>
 							<FontAwesomeIcon className='icon' size='1x' icon={['far','copy']}
 								onClick={
 									() => {
-										copyToClipboard(this.state.fondoActual.codigo_fondo);
+										copyToClipboard(fondo.codigo);
 										alert("Se copió el código del fondo con exito.");
 									}
 								}/>

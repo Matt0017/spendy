@@ -1,4 +1,5 @@
 import React from 'react';
+import { GlobalContext } from '../controllers/Context.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Popup from 'reactjs-popup';
 
@@ -16,6 +17,8 @@ import { getTransacciones } from '../services/apiRoutes.js';
 
 
 class TransaccionesCard extends React.Component {
+	static contextType = GlobalContext;
+	
 	constructor() {
 		super();
 
@@ -53,18 +56,10 @@ class TransaccionesCard extends React.Component {
 
 
 	async componentDidMount(){
-		const fondo = JSON.parse(sessionStorage.getItem('fondo'));
-		const trans = await getTransacciones(fondo.idFondo,'pesos');
-		var transObjetos = trans.map(
-			(index) => {
-				return (
-					new Transaccion(index.idTransaccion, index.fecha, index.nombre_categoria, index.dinero)
-					
-				);
-			}
-		);
+		const fondo = this.context.FondosController.getSelected();
+		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, 'pesos', this.context);
 		this.setState({
-			transacciones: transObjetos
+			transacciones: transacciones
 		})
 	}
 	
