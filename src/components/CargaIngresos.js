@@ -12,9 +12,22 @@ export default class CargaIngresos extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			showNewCategory: false,
 			cat: null,
 			date: new Date()
 		}
+	}
+
+	newCategory() {
+		this.setState({
+			showNewCategory: true
+		});
+	}
+
+	closeNewCategory() {
+		this.setState({
+			showNewCategory: false
+		});
 	}
 
 	selectCategory(categoria) {
@@ -97,7 +110,7 @@ export default class CargaIngresos extends React.Component {
 							</div>
 						</div>
 						<div className='button-container'>
-							<button className='button-s atras'>Atras</button>
+							<button className='button-s atras' onClick={this.closeNewCategory.bind(this)}>Atras</button>
 							<button className='button-p crear'>Crear</button>
 						</div>
 					</div>
@@ -105,10 +118,11 @@ export default class CargaIngresos extends React.Component {
 					<div className='category-selection'>
 					{
 						categorias.map(
-							(categoria) => {
+							(categoria,index) => {
 								const selected = this.state.cat != null && this.state.cat.name === categoria.name;
 								return (
 									<div 
+									key={index}
 									style={{backgroundColor: selected? categoria.color : 'white'}}
 									className={'categoria-item ' + (selected? 'selected' : '')}
 									onClick={() => {this.selectCategory(categoria)}}>
@@ -144,8 +158,8 @@ export default class CargaIngresos extends React.Component {
 				<div className='description-title'>Notas</div>
 				<textarea className='description' maxLength={140}/>
 				<div className='buttons'>
-					<button className='button-p confirmar'>Confirmar</button>
-					<button className='button-s cancelar'>Cancelar</button>
+					<button className='button-p confirmar' >Confirmar</button>
+					<button className='button-s cancelar' onClick={() => { this.props.closeFunc(); }}>Cancelar</button>
 				</div>
 			</div>
 		);

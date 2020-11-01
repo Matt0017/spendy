@@ -62,14 +62,14 @@ export default class SeleccionarFondo extends React.Component {
 	}
 
 	agregarFondo(){
-		const usuario = sessionStorage.getItem('usuario');
-		var json ='';
-		if(usuario){
-			json = JSON.parse(usuario)
-		}
+		// const usuario = sessionStorage.getItem('usuario');
+		var json ='2';
+		// if(usuario){
+		// 	json = JSON.parse(usuario)
+		// }
 		if(this.state.codigo){
 			const data ={
-				idUser: json[0].idUser,
+				idUser: json,
 				codigo_fondo: this.state.codigo
 			}
 			agregarFondoPorCodigo(data)
@@ -77,7 +77,7 @@ export default class SeleccionarFondo extends React.Component {
 		}
 		else if(this.state.fondoNuevo){
 			const data ={
-				idUser: json[0].idUser,
+				idUser: json,
 				nombreFondo: this.state.fondoNuevo
 			}
 			crearFondo(data)
@@ -179,13 +179,22 @@ export default class SeleccionarFondo extends React.Component {
 											placeholder='Ingresa el codigo de un Fondo'></input>
 									</div>
 								</div>
-								<Alert variant='danger'>Los campos estan vacios, ingrese nuevamente</Alert>
+								{(() => {
+                                    if (this.state.alert){
+                                        return (
+                                            <Alert variant='danger'>Los campos estan vacios, ingrese nuevamente</Alert>
+                                        )
+                                    }
+                                    
+                                    return null;
+                                })()}
+								
 								<div className='row m-2'>
 									<div className='col text-center'>
 										<button className='button-s' onClick={this.closeAgregarFondo.bind(this)}>Cancelar</button>
 									</div>
 									<div className='col text-center'>
-										<button className='button-p'>Confirmar</button>
+										<button className='button-p' onClick={this.agregarFondo.bind(this)}>Confirmar</button>
 									</div>
 									
 								</div>

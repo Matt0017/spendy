@@ -10,8 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default class CargaGastos extends React.Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			showNewCategory: false,
 			new_icon: '',
@@ -30,6 +30,12 @@ export default class CargaGastos extends React.Component {
 	newCategory() {
 		this.setState({
 			showNewCategory: true
+		});
+	}
+
+	closeNewCategory() {
+		this.setState({
+			showNewCategory: false
 		});
 	}
 
@@ -118,7 +124,7 @@ export default class CargaGastos extends React.Component {
 							</div>
 						</div>
 						<div className='button-container'>
-							<button className='button-s atras'>Atras</button>
+							<button className='button-s atras' onClick={this.closeNewCategory.bind(this)}>Atras</button>
 							<button className='button-p crear'>Crear</button>
 						</div>
 					</div>
@@ -179,7 +185,7 @@ export default class CargaGastos extends React.Component {
 				<textarea className='description' maxLength={140}/>
 				<div className='buttons'>
 					<button className='button-p confirmar'>Confirmar</button>
-					<button className='button-s cancelar'>Cancelar</button>
+					<button className='button-s cancelar' onClick={() => { this.props.closeFunc(); }}>Cancelar</button>
 				</div>
 			</div>
 		);

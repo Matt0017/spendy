@@ -33,6 +33,7 @@
 
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 }
 
 .transacciones-container .barra-principal .ingresos,
@@ -166,4 +167,11 @@
 }
 .transaccion-popup.open {
 	visibility: visible;
+}
+
+.botonFlotante{
+	color: #FFA513;
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }

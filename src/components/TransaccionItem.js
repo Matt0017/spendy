@@ -9,7 +9,6 @@ class TransaccionItem extends React.Component {
 
 		/** @type {Transaccion} */
 		let trans = this.props.transaccion;
-		console.log(trans)
 
 		let monto = (trans.isGasto() ? "-" : "+") + '$' + Math.abs(trans.monto);
 

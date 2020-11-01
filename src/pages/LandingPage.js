@@ -27,7 +27,9 @@ export default class SimpleSlider extends Component {
 							<div className='col'>
 								<Link to='/InicioSesion'><button className='button-p'>Iniciar Sesion</button></Link>
 							</div>
-							<div className='col'><button className='button-alt'>Registrar</button></div>
+							<div className='col'>
+								<Link to='/Registro'><button className='button-alt'>Registrar</button></Link>
+							</div>
 						</div>
 					</div>
 					
