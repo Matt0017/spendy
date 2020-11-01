@@ -82,7 +82,7 @@ export default class NavBar extends React.Component {
 								}/>
 						</div>
 						<div className='moneda-selection'>
-
+									
 						</div>
 					</div>
 					<div className='links-list noselect'>

@@ -82,7 +82,6 @@ export default class SeleccionarFondo extends React.Component {
 						<OwlCarousel 
 						className="owl-theme"
 						items= '3'
-						autoplay
 						{...options}>
 							{this.state.fondos.map(
 								(index) => {
