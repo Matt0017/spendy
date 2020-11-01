@@ -53,7 +53,7 @@ export default class CargaGastos extends React.Component {
 		const categorias = [supermercado, mascotas, otros, sueldo, supermercado, mascotas, otros, sueldo, supermercado ]
 
 		return (
-			<div className='floating-container carga-gastos'>
+			<div className='carga-gastos floating-container'>
 				<div className='titulo'>
 					<h3>Cargar Gasto</h3>
 					<span>Ingresa el monto y la categoria de tu gasto</span>

@@ -15,7 +15,7 @@ class TransaccionDetalle extends React.Component {
 		}
 
 		return (
-			<div className='floating-container transaccion-detalle'>
+			<div className='transaccion-detalle floating-container'>
 				<div className='titulo' style={{color: trans.categoria.color}}>
 					<div className='organizador'>
 						<FontAwesomeIcon icon={trans.categoria.icono} size='2x'/>
