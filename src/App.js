@@ -8,7 +8,7 @@ import InicioSesion from './pages/InicioSesion';
 import Movimientos from './pages/Movimientos';
 import Estadisticas from './pages/Estadisticas';
 import SeleccionarFondo from './pages/SeleccionarFondo';
-import Prueba from './pages/Prueba';
+
 import Registro from './pages/Registro';
 
 import './styles/App.css';
@@ -28,7 +28,7 @@ export class App extends React.Component {
 							<Route path='/Movimientos' component={Movimientos} />
 							<Route path='/Estadisticas' component={Estadisticas} />
 							<Route path='/Fondos' component={SeleccionarFondo} />
-							<Route path='/Prueba' component={Prueba} />
+
 						</Switch>
 					</div>
 				</Router>

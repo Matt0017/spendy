@@ -7,6 +7,10 @@ export default class CategoriasController {
 		this._categorias = null;
 	}
 
+	async isIngreso(c){
+		return c.transaccion === 'ingreso'
+	}
+
 	async findCategoria(nombre, idFondo) {
 		const C = await this.getCategorias(idFondo);
 		return (C.find(
@@ -36,4 +40,13 @@ export default class CategoriasController {
 		}
 		return this._categorias;
 	}
+
+	async getCategoriasGastos(idFondo){
+		const categorias = await this.getCategorias(idFondo);
+		categorias.filter( (c) => { return c.isIngreso })
+		return categorias
+	}
+	
+	// categorias.filter( (c) => { return c.isIngreso }) para ingresos
+	// categorias.filter( (c) => { return !c.isIngreso }) para gastos
 }
