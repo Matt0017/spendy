@@ -48,10 +48,10 @@ class TransaccionesCard extends React.Component {
 		});
 	}
 
-
 	async componentDidMount(){
 		const fondo = this.context.FondosController.getSelected();
-		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, 'pesos', this.context);
+		const moneda = this.context.FondosController.getMoneda();
+		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, moneda, this.context);
 		this.setState({
 			transacciones: transacciones
 		})

@@ -1,5 +1,5 @@
 import Transaccion from "../classes/Transaccion";
-import { getTransacciones } from "../services/apiRoutes";
+import { getTransacciones, crearTransaccion } from "../services/apiRoutes";
 
 export default class TransaccionesController {
 	
@@ -26,5 +26,12 @@ export default class TransaccionesController {
 			);
 		}
 		return this._transacciones;
+	}
+
+	async agregarTransaccion(idUser, idFondo, idCategoria, dinero, descripcion, moneda){
+		const json = {
+			idUser, idFondo, idCategoria, dinero, descripcion, moneda
+		}
+		crearTransaccion(json);
 	}
 }

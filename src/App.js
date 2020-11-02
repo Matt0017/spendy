@@ -9,7 +9,7 @@ import Movimientos from './pages/Movimientos';
 import Estadisticas from './pages/Estadisticas';
 import SeleccionarFondo from './pages/SeleccionarFondo';
 
-import Registro from './pages/Registro';
+import prueba from './components/Moneda';
 
 import './styles/App.css';
 import './styles/Categorias.css';
@@ -28,7 +28,7 @@ export class App extends React.Component {
 							<Route path='/Movimientos' component={Movimientos} />
 							<Route path='/Estadisticas' component={Estadisticas} />
 							<Route path='/Fondos' component={SeleccionarFondo} />
-
+							<Route path='/Prueba' component={prueba} />
 						</Switch>
 					</div>
 				</Router>

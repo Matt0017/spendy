@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import '../styles/NavBar.css';
 import Logo from '../images/logo.png';
+import Moneda from './Moneda'
 import { copyToClipboard } from '../App';
 
 export default class NavBar extends React.Component {
@@ -82,7 +83,7 @@ export default class NavBar extends React.Component {
 								}/>
 						</div>
 						<div className='moneda-selection'>
-									
+							<Moneda context={this.context}></Moneda>		
 						</div>
 					</div>
 					<div className='links-list noselect'>

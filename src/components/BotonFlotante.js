@@ -56,7 +56,6 @@ export default function SpeedDials(props) {
   const handleClick = (e,event) => {
     e.preventDefault();
     if(event === 'Agregar Ingreso') {
-        console.log('ingreso')
         props.openIngresoFn()
     }
     else if(event === 'Agregar Gasto') {

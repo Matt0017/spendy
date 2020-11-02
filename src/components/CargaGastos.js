@@ -17,15 +17,18 @@ export default class CargaGastos extends React.Component {
 			showNewCategory: false,
 			new_icon: '',
 			new_color: '',
-			cat: null,
-			date: new Date(),
-			categorias: []
+			categorias: [],
+
+			monto: '',
+			categoria: null,
+			fecha: '',
+			notas: ''
 		}
 	}
 
 	selectCategory(categoria) {
 		this.setState({
-			cat: categoria
+			categoria: categoria
 		});
 	}
 
@@ -52,13 +55,33 @@ export default class CargaGastos extends React.Component {
 		});
 	}
 
+	handleChange = (event) => {
+        const {name, value} = event.target;
+        this.setState({
+            [name]: value
+        })
+	}
+	
+	async crearTransaccion(){
+		const json = {
+			monto: -(this.state.monto),
+			categoria: this.state.categoria.id,
+			fecha: this.state.fecha,
+			notas: this.state.notas,
+		}
+		const fondo = this.context.FondosController.getSelected().id;
+		const moneda = this.context.FondosController.getMoneda();
+		
+		//falta agregar el usuario dinamicamente
+		await this.context.TransaccionesController.agregarTransaccion(2,fondo,json.categoria,json.monto,json.notas,moneda)
+	}
+
 	async componentDidMount(){
 		const fondo = this.context.FondosController.getSelected();
 		const categorias = await this.context.CategoriasController.getCategorias(fondo.id)
 		this.setState({
 			categorias: categorias
 		})
-		console.log(this.state.categorias)
 	}
 
 	render() {
@@ -77,8 +100,16 @@ export default class CargaGastos extends React.Component {
 				</div>
 				<div className='amount'>
 					<div className='moneda'>{this.props.moneda}</div>
-					<input className='cantidad-input' placeholder='0' type='number' min={0}/>
-					<FontAwesomeIcon className='delete-button' size='2x' icon='backspace'/>
+					<input 
+					className='cantidad-input' 
+					placeholder='0' 
+					type='number' 
+					min={0} 
+					name='monto'
+					value={this.state.monto}
+					onChange={this.handleChange}
+					/>
+					<FontAwesomeIcon className='delete-button' size='2x' icon='backspace' onClick={()=> {this.setState({cantidad: ''})}}/>
 				</div>
 				{
 					(this.state.showNewCategory) ? 
@@ -143,16 +174,17 @@ export default class CargaGastos extends React.Component {
 					<div className='category-selection'>
 					{
 						this.state.categorias.map(
-							(categoria) => {
-								const selected = this.state.cat != null && this.state.cat.nombre === categoria.nombre;
+							(categoria,index) => {
+								const selected = this.state.categoria != null && this.state.categoria.nombre === categoria.nombre;
 								return (
 									<div 
+									key={index}
 									style={{backgroundColor: selected? categoria.color : 'white'}}
 									className={'categoria-item ' + (selected? 'selected' : '')}
 									onClick={() => {this.selectCategory(categoria)}}>
 										<div className='organizer'>
 											<div className='icon-container'>
-												<FontAwesomeIcon color={selected? 'white' : categoria.color} className='icon' icon={categoria.icono} size='2x'/>
+												<FontAwesomeIcon color={selected? 'white' : categoria.color} className='icon' icon={['fas', categoria.icono]} size='2x'/>
 											</div>
 											<div style={{color: selected? 'white' : categoria.color}} className='texto'><span>{categoria.nombre}</span></div>
 										</div>
@@ -170,32 +202,29 @@ export default class CargaGastos extends React.Component {
 				</div>
 				
 				}
-				<div className='gastos-type'>
-					<RadioGroup value='efectivo' horizontal>
-						<RadioButton iconSize={20} value='efectivo'>
-							Efectivo
-						</RadioButton>
-						<RadioButton iconSize={20} value='debito'>
-							Débito
-						</RadioButton>
-						<RadioButton iconSize={20} value='credito'>
-							Crédito
-						</RadioButton>
-					</RadioGroup>
-				</div>
 				<div className='description-title'>Fecha</div>
 				<div className='fecha'>
 					<DatePicker
 						className='date-picker'
 						selected={this.state.date}
+						name='fecha'
+						value={this.state.fecha}
 						onChange={(date) => {
-							this.setState({ date: date })
+
+							this.setState({ fecha: date.getMonth() + '-' + date.getDate() + '-' + date.getFullYear() })
 						}}/>
 				</div>
 				<div className='description-title'>Notas</div>
-				<textarea className='description' maxLength={140}/>
+				<textarea 
+				className='description' 
+				maxLength={140} 
+				placeholder='Notas...'
+				name='notas'
+				value={this.state.notas}
+				onChange={this.handleChange}
+				/>
 				<div className='buttons'>
-					<button className='button-p confirmar'>Confirmar</button>
+					<button className='button-p confirmar' onClick={() => { this.crearTransaccion(); }}>Confirmar</button>
 					<button className='button-s cancelar' onClick={() => { this.props.closeFunc(); }}>Cancelar</button>
 				</div>
 			</div>

@@ -198,3 +198,11 @@
 	padding-right: 25px;
 	width: 120px;
 }
+
+.MuiSelect-icon  {
+	color: #FFA514 !important;
+}
+
+.MuiInput-underline:after {
+    border-bottom: 2px solid #FFA514 !important;
+}

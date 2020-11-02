@@ -46,6 +46,12 @@ export default class CategoriasController {
 		categorias.filter( (c) => { return c.isIngreso })
 		return categorias
 	}
+
+	async getCategoriasIngreso(idFondo){
+		const categorias = await this.getCategorias(idFondo);
+		categorias.filter( (c) => { return c.isIngreso })
+		return categorias
+	}
 	
 	// categorias.filter( (c) => { return c.isIngreso }) para ingresos
 	// categorias.filter( (c) => { return !c.isIngreso }) para gastos

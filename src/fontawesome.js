@@ -1,14 +1,25 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-import { faPaw, faShoppingCart, faHandHoldingUsd, faSearch, faPlusCircle, faMinusCircle, faQuestion, faWallet, faSignOutAlt, faPlus, faListUl, faBackspace, faMoneyBillWave, faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faPaw, faShoppingCart, faHandHoldingUsd, faSearch, faPlusCircle, faMinusCircle, faWallet, faSignOutAlt, faPlus, faListUl, faBackspace, faMoneyBillWave, faArrowLeft, faBars, faCar, faFaucet, faGlassCheers, faPizzaSlice, faBriefcaseMedical, faGraduationCap, faBus, faPiggyBank, faTshirt, faSyncAlt, faUniversity, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faChartBar, faCircle, faCopy } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
 // Categorias
-	faPaw,
+	faCar,
+	faHome,
 	faShoppingCart,
-	faQuestion,
+	faFaucet,
+	faGlassCheers,
+	faPizzaSlice,
+	faBriefcaseMedical,
+	faGraduationCap,
+	faBus,
+	faPiggyBank,
+	faTshirt,
+	faPaw,
 	faHandHoldingUsd,
+	faSyncAlt,
+	faUniversity,
 // UI
 	faBars,
 	faCopy,

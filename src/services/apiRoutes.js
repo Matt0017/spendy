@@ -20,7 +20,7 @@ export const agregarFondoPorCodigo = async (data) =>{
         body: JSON.stringify(data)
     }
     try {
-        const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/agregarUsuarioAFondo/',options);
+        const response = await fetch('http://localhost:3500/agregarUsuarioAFondo/',options);
         console.log(response)
     } 
     catch (error) {
@@ -37,7 +37,7 @@ export const crearFondo = async (data) =>{
         body: JSON.stringify(data)
     }
     try {
-        const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/crearFondo/',options);
+        const response = await fetch('http://localhost:3500/crearFondo/',options);
         console.log(response)
     } 
     catch (error) {
@@ -64,7 +64,7 @@ export const registrar = async (data) =>{
 
 export const getUsuario = async (usuario) =>{
 	try {
-		const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/usuarios/'+usuario);
+		const response = await fetch('http://localhost:3500/usuarios/'+usuario);
 		const json = await response.json();
 		return json
 		
@@ -78,7 +78,7 @@ export const getUsuario = async (usuario) =>{
 
 export const getFondos = async (idUsuario) =>{
 	try {
-		const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/fondosUsuario/'+idUsuario);
+		const response = await fetch('http://localhost:3500/fondosUsuario/'+idUsuario);
 		const json = await response.json();
 		return json;
 	} 
@@ -89,7 +89,7 @@ export const getFondos = async (idUsuario) =>{
 
 export const getCategorias = async (fondo) =>{
 	try {
-		const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/categorias/'+fondo);
+		const response = await fetch('http://localhost:3500/categorias/'+fondo);
 		const json = await response.json();
 		return json[0];
 		
@@ -101,7 +101,7 @@ export const getCategorias = async (fondo) =>{
 
 export const getTransacciones = async (fondo,moneda) =>{
 	try {
-		const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/getTransaccionesFondo/'+fondo+'/'+moneda);
+		const response = await fetch('http://localhost:3500/getTransaccionesFondo/'+fondo+'/'+moneda);
 		const json = await response.json()
 
 		return json[0];
@@ -120,7 +120,7 @@ export const getTransacciones = async (fondo,moneda) =>{
  */
 export const getGastosPorCategoria = async (idFondo, desde, hasta, moneda) =>{
 	try {
-		const response = await fetch('https://haunted-labyrinth-49727.herokuapp.com/getTransaccionesFondo/'+idFondo+'/'+moneda,
+		const response = await fetch('http://localhost:3500/getTransaccionesFondo/'+idFondo+'/'+moneda,
 		{
 			method: 'GET',
 			headers: {
@@ -139,4 +139,21 @@ export const getGastosPorCategoria = async (idFondo, desde, hasta, moneda) =>{
 	catch (error) {
 		console.error(error)
 	}
+}
+
+export const crearTransaccion = async (data) =>{
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch('http://localhost:3500/crearTransaccion/',options);
+        console.log(response)
+    } 
+    catch (error) {
+        console.log(error)
+    }
 }

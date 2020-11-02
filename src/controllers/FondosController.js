@@ -6,6 +6,14 @@ export default class FondosController{
 	contructor(){
 		this._fondos = [];
 		this._selected = null;
+		let moneda = sessionStorage.getItem('moneda')
+		if (!moneda){
+			this._moneda = 'Pesos'
+		}
+		else{
+			this._moneda = sessionStorage.getItem('moneda')
+		}
+		
 	}
 
 	getSelected() {
@@ -25,6 +33,20 @@ export default class FondosController{
 		}
 		sessionStorage.setItem('fondo', JSON.stringify(json));
 		this._selected = fondo
+	}
+
+	setMoneda(moneda){
+		this._moneda = moneda;
+		sessionStorage.setItem('moneda',moneda)
+	}
+
+	getMoneda(){
+		if (!this._fondos || !this._fondos.length)
+		{
+			let moneda = sessionStorage.getItem('moneda');
+			this._moneda = moneda
+		}
+		return this._moneda;
 	}
 
 	async getFondos(idUsuario)
