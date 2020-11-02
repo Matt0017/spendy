@@ -8,6 +8,7 @@ import CargaGastos from './CargaGastos.js';
 import CargaIngresos from './CargaIngresos.js';
 import BotonFlotante from './BotonFlotante.js';
 import '../styles/TransaccionesCard.css'
+import FilterBar from './FilterBar.js';
 
 class TransaccionesCard extends React.Component {
 	static contextType = GlobalContext;
@@ -92,6 +93,8 @@ class TransaccionesCard extends React.Component {
 						<input placeholder='Buscar' className='buscador'/>
 						<FontAwesomeIcon className='buscador-icon' icon='search'/>
 					</div>
+					<div></div>
+					<FilterBar></FilterBar>
 				</div>
 				<div className='lista-container'>
 					<ul className='lista'>

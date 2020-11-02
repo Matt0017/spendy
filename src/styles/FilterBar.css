@@ -1,0 +1,52 @@
+.filter-bar {
+	padding: 10px 10px 5px 10px;
+	display: flex;
+	color: black;
+}
+.filter-bar .categoria-control, .filter-bar .integrantes-control {
+	min-width: 120px;
+}
+.filter-bar .MuiFilledInput-root {
+	border-radius: 20px;
+}
+.filter-bar .MuiInputLabel-filled.MuiInputLabel-shrink {
+    transform: translate(12px, 3px) scale(0.6);
+}
+.filter-bar .MuiSelect-select.MuiSelect-select {
+	padding-top: 12px;
+	padding-bottom: 5px;
+	background-color: white;
+	border-radius: 20px;
+}
+.filter-bar .MuiInputLabel-filled {
+	transform: translate(14px, 10px) scale(1);
+}
+.filter-bar .MuiFilledInput-underline:before, .filter-bar .MuiFilledInput-underline:hover:before {
+	display: none;
+}
+.filter-bar .MuiFilledInput-underline:after, .filter-bar .MuiFilledInput-underline:hover:after {
+	display: none;
+}
+.filter-bar .fechas {
+	display: flex;
+}
+.filter-bar .fechas .title {
+	margin: auto 0;
+}
+.filter-bar .fechas .date-picker .MuiInputLabel {
+	color: white;
+}
+.filter-bar .MuiFormLabel-root.Mui-focused {
+	color: #ffa726;
+}
+.filter-bar .MuiInput-formControl {
+	padding-top: 2px;
+	padding-bottom: 1px;
+	padding-left: 10px;
+	margin-top: 1px;
+	background-color: white;
+	border-radius: 20px;
+}
+.filter-bar .MuiInput-formControl::before, .filter-bar .MuiInput-formControl::after {
+	display: none;
+}
