@@ -26,17 +26,14 @@ export default class FilterBar extends React.Component {
 	handleChange = async (event) => {
 		const {name, value} = event.target;
 		console.log({[name]: value})
-		//NOSE QUE MIERDA LE PASA QUE NO HACE EL SETSTATE
         await this.setState({
 			
             [name]: value,
 		})
-		
 		await this.filtrar()
 	}
 
 	filtrar = () => {
-		console.log(this.state.categoria)
 		let filtros = {
 			moneda: this.context.FondosController.getMoneda(),
 			idCategoria: this.state.categoria,
@@ -119,9 +116,10 @@ export default class FilterBar extends React.Component {
 					type="date"
 					label='desde'
 					className='date-picker'
+					name="desde"
 					value={this.state.desde}
 					onChange={this.handleChange}
-					defaultValue="2020-11-01"
+					defaultValue={Date.now}
 					InputLabelProps={{
 						shrink: true,
 					}}
@@ -130,10 +128,11 @@ export default class FilterBar extends React.Component {
 					id="date"
 					type="date"
 					label='hasta'
+					name="hasta"
 					className='date-picker'
 					value={this.state.hasta}
 					onChange={this.handleChange}
-					defaultValue="2020-11-01"
+					defaultValue={Date.now}
 					InputLabelProps={{
 						shrink: true,
 					}}

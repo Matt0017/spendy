@@ -48,8 +48,10 @@ export default class SeleccionarFondo extends React.Component {
 	}
 
 	async componentDidMount(){
+
+		sessionStorage.clear();
+		this.context.TransaccionesController.eliminarTransacciones();
 		const fondos = await this.context.FondosController.getFondos(2);
-		console.log(fondos)
 		this.setState({
 			fondos: fondos
 		})  

@@ -37,10 +37,6 @@ export default class NavBar extends React.Component {
 		this.setState({categoriaOpen: false});
 	}
 
-	sacarSessionFondo(){
-		sessionStorage.setItem('fondo','')
-	}
-
 	cerrarSesion(){
 		sessionStorage.setItem('usuario','')
 	}

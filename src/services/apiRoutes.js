@@ -1,4 +1,4 @@
-const url = 'https://semrest.herokuapp.com/'
+const url = 'http://localhost:3500/'
 
 const formatDate = (d) => {
 	let month = '' + (d.getMonth() + 1),
@@ -101,7 +101,7 @@ export const getCategorias = async (fondo) =>{
 	}
 }
 
-export const getTransacciones = async (fondo, moneda) =>{
+export const getTransacciones = async (fondo,moneda) =>{
 	try {
 		const response = await fetch(url+'getTransaccionesFondo/'+fondo+'/'+moneda);
 		const json = await response.json()
@@ -113,7 +113,7 @@ export const getTransacciones = async (fondo, moneda) =>{
 	}
 }
 
-export const getTransaccionesFiltrado = async (fondo, filtros) =>{
+export const getTransaccionesFiltrado = async (fondo,filtros) =>{
 	const options = {
         method: 'POST',
         headers: {

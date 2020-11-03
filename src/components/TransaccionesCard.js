@@ -76,7 +76,7 @@ class TransaccionesCard extends React.Component {
 	async filtrar(filtros) {
 		console.log(filtros)
 		const fondo = this.context.FondosController.getSelected()
-		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, filtros, this.context);
+		const transacciones = await this.context.TransaccionesController.filtrar(fondo.id, filtros, this.context);
 		this.setState({
 			transacciones: transacciones
 		})

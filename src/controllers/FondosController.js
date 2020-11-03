@@ -45,17 +45,10 @@ export default class FondosController{
 
 	async getFondos(idUsuario)
 	{
-		if (!this._fondos || !this._fondos.length)
-		{
-			let fondos = JSON.parse(sessionStorage.getItem('fondos'));
-
-			if (!fondos || !fondos.length)
-			{
-				fondos = await getFondos(idUsuario);
-				sessionStorage.setItem('fondos', JSON.stringify(fondos));
-			}
+		
+		const fondos = await getFondos(idUsuario);
 			
-			this._fondos = fondos.map(
+		this._fondos = fondos.map(
 				(f) => {
 					return new Fondo({
 						id: f.idFondo,
@@ -64,7 +57,7 @@ export default class FondosController{
 					});
 				}
 			);
-		}
+		
 		return this._fondos;
 	}
 }

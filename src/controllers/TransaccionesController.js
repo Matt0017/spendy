@@ -7,13 +7,15 @@ export default class TransaccionesController {
 		this._transacciones = [];
 	}
 
+	eliminarTransacciones(){
+		this._transacciones = [];
+	}
+
 	async getTransacciones(idFondo, filtros, context)
 	{
-		console.log(filtros)
 		if (!this._transacciones || !this._transacciones.length)
 		{
 			const transacciones = await getTransaccionesFiltrado(idFondo, filtros);
-			
 			const categorias = await context.CategoriasController.getCategorias(idFondo);
 			
 			this._transacciones = transacciones.map(
@@ -30,6 +32,13 @@ export default class TransaccionesController {
 		}
 		return this._transacciones;
 	}
+
+	async filtrar(idFondo, filtros, context){
+		this._transacciones = []
+		const transFiltrado = await this.getTransacciones(idFondo, filtros, context);
+		return transFiltrado
+	}
+
 
 	async agregarTransaccion(idUser, idFondo, idCategoria, dinero, descripcion, moneda){
 		const json = {
