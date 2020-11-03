@@ -69,7 +69,7 @@ class TransaccionesCard extends React.Component {
 		});
 	}
 
-	async filtrar(filtros){
+	async filtrar(filtros) {
 		console.log(filtros)
 		const fondo = this.context.FondosController.getSelected()
 		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, filtros, this.context);
@@ -117,9 +117,8 @@ class TransaccionesCard extends React.Component {
 						<FontAwesomeIcon className='filtros-icon' icon='filter'/>
 					</div>
 					<div className={'filter-bar-container ' + (this.state.filtersOpen ? 'open' : 'closed') }>
-						<FilterBar></FilterBar>
+						<FilterBar filtrarFn={this.filtrar.bind(this)}></FilterBar>
 					</div>
-					<FilterBar filtrarFn={this.filtrar.bind(this)}></FilterBar>
 				</div>
 				<div className='lista-container'>
 					<ul className='lista'>

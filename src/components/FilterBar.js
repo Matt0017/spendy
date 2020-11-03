@@ -123,6 +123,8 @@ export default class FilterBar extends React.Component {
 					type="date"
 					label='desde'
 					className='date-picker'
+					value={this.state.desde}
+					onChange={this.handleChange}
 					defaultValue="2020-11-01"
 					InputLabelProps={{
 						shrink: true,
@@ -133,6 +135,8 @@ export default class FilterBar extends React.Component {
 					type="date"
 					label='hasta'
 					className='date-picker'
+					value={this.state.hasta}
+					onChange={this.handleChange}
 					defaultValue="2020-11-01"
 					InputLabelProps={{
 						shrink: true,
