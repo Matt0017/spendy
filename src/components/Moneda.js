@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -29,10 +28,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledOpenSelect(props) {
-  
+  const getMoneda = props.context.FondosController.getMoneda()
+  if (!getMoneda || !getMoneda.length){
+    props.context.FondosController.setMoneda('Pesos');
+  }
   const classes = useStyles();
-  const [moneda, setMoneda] = React.useState(props.context.FondosController.getMoneda());
+  const [moneda, setMoneda] = React.useState(getMoneda);
   const [open, setOpen] = React.useState(false);
+
+  
 
   const handleChange = (event) => {
     props.context.FondosController.setMoneda(event.target.value)

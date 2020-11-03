@@ -1,5 +1,5 @@
 import Transaccion from "../classes/Transaccion";
-import { getTransacciones, crearTransaccion } from "../services/apiRoutes";
+import { getTransaccionesFiltrado, crearTransaccion } from "../services/apiRoutes";
 
 export default class TransaccionesController {
 	
@@ -7,11 +7,12 @@ export default class TransaccionesController {
 		this._transacciones = [];
 	}
 
-	async getTransacciones(idFondo, moneda, context)
+	async getTransacciones(idFondo, filtros, context)
 	{
 		if (!this._transacciones || !this._transacciones.length)
 		{
-			const transacciones = await getTransacciones(idFondo, moneda);
+			const transacciones = await getTransaccionesFiltrado(idFondo, filtros);
+			console.log(transacciones)
 			const categorias = await context.CategoriasController.getCategorias(idFondo);
 			
 			this._transacciones = transacciones.map(

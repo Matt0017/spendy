@@ -75,7 +75,7 @@ export default class CargaIngresos extends React.Component {
 
 	async componentDidMount(){
 		const fondo = this.context.FondosController.getSelected();
-		const categorias = await this.context.CategoriasController.getCategorias(fondo.id)
+		const categorias = await this.context.CategoriasController.getCategoriasIngreso(fondo.id)
 		this.setState({
 			categorias: categorias
 		})

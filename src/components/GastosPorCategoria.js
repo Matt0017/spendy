@@ -10,51 +10,79 @@ export default class GastosPorCategoria extends React.Component {
 
 	constructor() {
 		super();
+
+		this._inicio = new Date();
+		this._fin = new Date();
+
 		this.state = {
 			option: 'day',
-			catInicio: null,
-			catFin: null,
-			data: [] //this.createData()
+			data: []
 		}
 	}
 	
 	async componentDidMount() {
+		this.updateData();
+	}
+
+	async updateData() {
 		const fondo = this.context.FondosController.getSelected();
-		const gastos = await this.context.EstadisticasController.getGastosPorCategoria(fondo.id, new Date(0), new Date(), 'pesos');
+		const gastos = await this.context.EstadisticasController.getGastosPorCategoria(fondo.id, this._inicio, this._fin, 'pesos', this.context);
+
+		this.setState({
+			data: gastos
+		});
 	}
 
 	getDay() {
 		this.setState({
 			option: 'day'
-			// catInicio: (new Date())
 		});
+
+		this._inicio = new Date();
+		this._fin = new Date();
+
+		this.updateData().then( () => { this.render(); });
 	}
 
 	getWeek() {
 		this.setState({
 			option: 'week'
-			// catInicio: (new Date())
 		});
+
+		this._inicio = new Date();
+		this._inicio.setDate(this._inicio.getDate() - 7);
+		this._fin = new Date();
+
+		this.updateData();
 	}
 
 	getMonth() {
 		this.setState({
 			option: 'month'
-			// catInicio: (new Date())
 		});
+
+		this._inicio = new Date();
+		this._inicio.setMonth(this._inicio.getMonth() - 1);
+		this._fin = new Date();
+		
+		this.updateData();
 	}
 
 	getYear() {
 		this.setState({
 			option: 'year'
-			// catInicio: (new Date())
 		});
+
+		this._inicio = new Date();
+		this._inicio.setFullYear(this._inicio.getFullYear() - 1);
+		this._fin = new Date();
+		
+		this.updateData();
 	}
 
 	getCustom() {
 		this.setState({
 			option: 'custom'
-			// catInicio: (new Date())
 		});
 	}
 
@@ -91,14 +119,14 @@ export default class GastosPorCategoria extends React.Component {
 											top: 20,
 											bottom: 20,
 											data: this.state.data.map(
-												(v) => {
-													return v.cat.name;
+												(g) => {
+													return g.categoria.nombre;
 												}
 											),
 										},
 										color: this.state.data.map(
-											(v) => {
-												return v.cat.color;
+											(g) => {
+												return g.categoria.color;
 											}
 										),
 										series: [{ 
@@ -106,10 +134,10 @@ export default class GastosPorCategoria extends React.Component {
 											type: 'pie',
 											center: ['50%', '50%'],
 											data: this.state.data.map(
-												(v) => {
+												(g) => {
 													return {
-														name: v.cat.name,
-														value: v.value
+														name: g.categoria.nombre,
+														value: g.monto
 													};
 												}
 											)

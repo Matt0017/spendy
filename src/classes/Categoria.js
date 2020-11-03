@@ -8,5 +8,6 @@ export default class Categoria {
 
 		this.color = parameters.color;
 		this.isActive = parameters.isActive;
+		this.ineg = parameters.ineg
 	}
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-import { RadioGroup, RadioButton } from 'react-radio-buttons';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Categoria from '../classes/Categoria';
 
 import '../styles/CargaGastos.css'
 import "react-datepicker/dist/react-datepicker.css";
@@ -71,14 +70,14 @@ export default class CargaGastos extends React.Component {
 		}
 		const fondo = this.context.FondosController.getSelected().id;
 		const moneda = this.context.FondosController.getMoneda();
-		
+
 		//falta agregar el usuario dinamicamente
 		await this.context.TransaccionesController.agregarTransaccion(2,fondo,json.categoria,json.monto,json.notas,moneda)
 	}
 
 	async componentDidMount(){
 		const fondo = this.context.FondosController.getSelected();
-		const categorias = await this.context.CategoriasController.getCategorias(fondo.id)
+		const categorias =  await this.context.CategoriasController.getCategoriasGastos(fondo.id)
 		this.setState({
 			categorias: categorias
 		})

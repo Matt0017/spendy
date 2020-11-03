@@ -7,8 +7,8 @@ export default class CategoriasController {
 		this._categorias = null;
 	}
 
-	async isIngreso(c){
-		return c.transaccion === 'ingreso'
+	isIngreso(c){
+		return (c.ineg === 0)
 	}
 
 	async findCategoria(nombre, idFondo) {
@@ -34,6 +34,7 @@ export default class CategoriasController {
 						icono: c.icono,
 						color: c.color,
 						isActive: true,
+						ineg: c.ineg
 					});
 				}
 			);
@@ -43,15 +44,16 @@ export default class CategoriasController {
 
 	async getCategoriasGastos(idFondo){
 		const categorias = await this.getCategorias(idFondo);
-		categorias.filter( (c) => { return c.isIngreso })
-		return categorias
+		
+		return(categorias.filter( (c) => { return !this.isIngreso(c) }))
 	}
 
 	async getCategoriasIngreso(idFondo){
 		const categorias = await this.getCategorias(idFondo);
-		categorias.filter( (c) => { return c.isIngreso })
-		return categorias
+		return (categorias.filter( (c) => { return this.isIngreso(c)}))
 	}
+
+	
 	
 	// categorias.filter( (c) => { return c.isIngreso }) para ingresos
 	// categorias.filter( (c) => { return !c.isIngreso }) para gastos
