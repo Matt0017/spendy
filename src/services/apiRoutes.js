@@ -101,7 +101,7 @@ export const getCategorias = async (fondo) =>{
 	}
 }
 
-export const getTransacciones = async (fondo,moneda) =>{
+export const getTransacciones = async (fondo, moneda) =>{
 	try {
 		const response = await fetch(url+'getTransaccionesFondo/'+fondo+'/'+moneda);
 		const json = await response.json()
@@ -113,7 +113,7 @@ export const getTransacciones = async (fondo,moneda) =>{
 	}
 }
 
-export const getTransaccionesFiltrado = async (fondo,filtros) =>{
+export const getTransaccionesFiltrado = async (fondo, filtros) =>{
 	const options = {
         method: 'POST',
         headers: {
@@ -137,23 +137,24 @@ export const getTransaccionesFiltrado = async (fondo,filtros) =>{
  * @param {Date} hasta 
  * @param {String} moneda 
  */
-export const getGastosPorCategoria = async (idFondo, desde, hasta, moneda) =>{
+export const getGastosPorCategoria = async (idFondo, desde, hasta, moneda) => {
 	try {
-		const response = await fetch(url+'getTransaccionesFondo/'+idFondo+'/'+moneda,
+		const response = await fetch(url + 'verGastosFondo/',
 		{
-			method: 'GET',
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
 				fondoID: idFondo,
 				inicio: formatDate(desde) + ' 00:00:00',
-				fin: formatDate(hasta) + ' 00:00:00'
+				fin: formatDate(hasta) + ' 23:59:59',
+				moneda: moneda
 			})
 		});
-		const json = await response.json()
+		const json = await response.json();
 
-		return json[0]
+		return json;
 	} 
 	catch (error) {
 		console.error(error)
