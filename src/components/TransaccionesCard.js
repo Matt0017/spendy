@@ -23,6 +23,8 @@ class TransaccionesCard extends React.Component {
 			gastosOpen: false,
 			transacciones: [],
 			ingresosOpen: false,
+			fondo: null,
+			moneda: ''
 		}
 	}
 
@@ -54,7 +56,9 @@ class TransaccionesCard extends React.Component {
 		const filtros = {moneda: this.context.FondosController.getMoneda()}
 		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, filtros, this.context);
 		this.setState({
-			transacciones: transacciones
+			transacciones: transacciones,
+			fondo: fondo,
+			moneda: this.context.FondosController.getMoneda()
 		})
 	}
 	
@@ -89,7 +93,20 @@ class TransaccionesCard extends React.Component {
 					<div className='selector-moneda'>
 						<div className='organizador'>
 							<div className='moneda'>
-								AR$ 
+								{(
+									()=>{
+										const moneda = this.state.moneda
+										if(moneda === 'Pesos'){
+											return('AR$')
+										}
+										else if(moneda === 'Dolar'){
+											return('US$')
+										}
+										else if(moneda === 'Euro'){
+											return('€')
+										}
+									})
+								()}
 							</div>
 							<div className='total-actual'>
 								<span className='full'>24.500</span>

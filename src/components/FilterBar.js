@@ -2,10 +2,8 @@ import React, { Fragment } from 'react';
 import { GlobalContext } from '../controllers/Context';
 
 import { FormControl, InputLabel, Select, TextField } from '@material-ui/core';
-import DatePicker from "react-datepicker";
 
 import '../styles/FilterBar.css'
-import { getTransaccionesFiltrado } from '../services/apiRoutes';
 
 export default class FilterBar extends React.Component {
 	static contextType = GlobalContext;
@@ -23,6 +21,20 @@ export default class FilterBar extends React.Component {
 		} 
 	}
 
+	
+
+	handleChange = async (event) => {
+		const {name, value} = event.target;
+		console.log({[name]: value})
+		//NOSE QUE MIERDA LE PASA QUE NO HACE EL SETSTATE
+        await this.setState({
+			
+            [name]: value,
+		})
+		
+		await this.filtrar()
+	}
+
 	filtrar = () => {
 		console.log(this.state.categoria)
 		let filtros = {
@@ -35,17 +47,6 @@ export default class FilterBar extends React.Component {
 		this.props.filtrarFn(filtros)
 	}
 
-	handleChange = (event) => {
-		const {name, value} = event.target;
-
-		//NOSE QUE MIERDA LE PASA QUE NO HACE EL SETSTATE
-        this.setState({
-            [name]: value,
-		})
-		
-		this.filtrar()
-	}
-
 	async componentDidMount() {
 		const fondo = this.context.FondosController.getSelected();
 		const categorias = await this.context.CategoriasController.getCategorias(fondo.id);
@@ -53,11 +54,6 @@ export default class FilterBar extends React.Component {
 			categorias: categorias,
 		})
 	}
-
-	update() {
-
-	}
-
 	render() {
 		return (
 			<div className='filter-bar fill'>

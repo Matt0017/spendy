@@ -9,10 +9,11 @@ export default class TransaccionesController {
 
 	async getTransacciones(idFondo, filtros, context)
 	{
+		console.log(filtros)
 		if (!this._transacciones || !this._transacciones.length)
 		{
 			const transacciones = await getTransaccionesFiltrado(idFondo, filtros);
-			console.log(transacciones)
+			
 			const categorias = await context.CategoriasController.getCategorias(idFondo);
 			
 			this._transacciones = transacciones.map(
@@ -25,6 +26,7 @@ export default class TransaccionesController {
 					});
 				}
 			);
+			
 		}
 		return this._transacciones;
 	}
