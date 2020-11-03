@@ -18,6 +18,7 @@ class TransaccionesCard extends React.Component {
 
 		this.state = {
 			detailOpen: false,
+			filtersOpen: false,
 			transaccionSeleccionada: null,
 			gastosOpen: false,
 			transacciones: [],
@@ -103,7 +104,21 @@ class TransaccionesCard extends React.Component {
 						<input placeholder='Buscar' className='buscador'/>
 						<FontAwesomeIcon className='buscador-icon' icon='search'/>
 					</div>
-					<div></div>
+					<div className='filtros-organizer'
+						onClick={
+							() => {
+								this.setState({
+									filtersOpen: !this.state.filtersOpen
+								});
+							}
+						}
+					>
+						<div className='filtros'>Filtros</div>
+						<FontAwesomeIcon className='filtros-icon' icon='filter'/>
+					</div>
+					<div className={'filter-bar-container ' + (this.state.filtersOpen ? 'open' : 'closed') }>
+						<FilterBar></FilterBar>
+					</div>
 					<FilterBar filtrarFn={this.filtrar.bind(this)}></FilterBar>
 				</div>
 				<div className='lista-container'>

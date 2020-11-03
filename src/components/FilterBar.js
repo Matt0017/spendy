@@ -118,34 +118,26 @@ export default class FilterBar extends React.Component {
 							}
 					</Select>
 				</FormControl>
-				<div className='fechas'>
-					<div className='title'>Desde</div>
-					<TextField
-						id="date"
-						type="date"
-						name='desde'
-						value={this.state.desde}
-						onChange={this.handleChange}
-						className='date-picker'
-						defaultValue={Date.now}
-						InputLabelProps={{
-							shrink: true,
-						}}
-					/>
-					<div className='title'>Hasta</div>
-					<TextField
-						id="date"
-						type="date"
-						name='hasta'
-						value={this.state.hasta}
-						onChange={this.handleChange}
-						className='date-picker'
-						defaultValue={Date.now}
-						InputLabelProps={{
-							shrink: true,
-						}}
-					/>
-				</div>
+				<TextField
+					id="date"
+					type="date"
+					label='desde'
+					className='date-picker'
+					defaultValue="2020-11-01"
+					InputLabelProps={{
+						shrink: true,
+					}}
+				/>
+				<TextField
+					id="date"
+					type="date"
+					label='hasta'
+					className='date-picker'
+					defaultValue="2020-11-01"
+					InputLabelProps={{
+						shrink: true,
+					}}
+				/>
 			</div>
 		);
 	}
