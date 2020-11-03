@@ -49,6 +49,7 @@ export default class SeleccionarFondo extends React.Component {
 
 	async componentDidMount(){
 		const fondos = await this.context.FondosController.getFondos(2);
+		console.log(fondos)
 		this.setState({
 			fondos: fondos
 		})  

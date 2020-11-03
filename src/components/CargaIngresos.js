@@ -7,13 +7,19 @@ import { GlobalContext } from '../controllers/Context';
 
 export default class CargaIngresos extends React.Component {
 	static contextType = GlobalContext;
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			showNewCategory: false,
-			cat: null,
-			date: new Date(),
-			categorias: []
+			new_icon: '',
+			new_color: '',
+			categorias: [],
+
+			monto: '',
+			categoria: null,
+			fecha: '',
+			notas: ''
+
 		}
 	}
 
@@ -31,29 +37,52 @@ export default class CargaIngresos extends React.Component {
 
 	selectCategory(categoria) {
 		this.setState({
-			cat: categoria
+			categoria: categoria
 		});
+	}
+
+	selectIcon(icon) {
+		this.setState({
+			new_icon: icon
+		});
+	}
+	selectColor(color) {
+		this.setState({
+			new_color: color
+		});
+	}
+
+	handleChange = (event) => {
+        const {name, value} = event.target;
+        this.setState({
+            [name]: value
+        })
+	}
+	
+	async crearTransaccion(){
+		const json = {
+			monto: this.state.monto,
+			categoria: this.state.categoria.id,
+			fecha: this.state.fecha,
+			notas: this.state.notas,
+		}
+		const fondo = this.context.FondosController.getSelected().id;
+		const moneda = this.context.FondosController.getMoneda();
+
+		//falta agregar el usuario dinamicamente
+		await this.context.TransaccionesController.agregarTransaccion(2,fondo,json.categoria,json.monto,json.notas,moneda)
 	}
 
 	async componentDidMount(){
 		const fondo = this.context.FondosController.getSelected();
-		const categorias = await this.context.CategoriasController.getCategorias(fondo.id)
+		const categorias = await this.context.CategoriasController.getCategoriasIngreso(fondo.id)
 		this.setState({
 			categorias: categorias
 		})
-		console.log(this.state.categorias)
 	}
 
 	render() {
-		// const supermercado = new Categoria("Supermercado", "shopping-cart", "#F8C29E");
-		// const mascotas = new Categoria("Mascotas", "paw", "#D6976D");
-		// const otros = new Categoria("Otros", "question", "#B4BCC2");
-		// const sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
-
-		// const categorias = [supermercado, mascotas, otros, sueldo, supermercado, mascotas, otros, sueldo, supermercado ]
-
-
-
+		
 		return (
 			<div className='floating-container carga-ingresos'>
 				<div className='titulo'>
@@ -62,8 +91,16 @@ export default class CargaIngresos extends React.Component {
 				</div>
 				<div className='amount'>
 					<div className='moneda'>{this.props.moneda}</div>
-					<input className='cantidad-input' placeholder='0' type='number' min={0}/>
-					<FontAwesomeIcon className='delete-button' size='2x' icon='backspace'/>
+					<input 
+					className='cantidad-input' 
+					placeholder='0' 
+					type='number' 
+					min={0} 
+					name='monto'
+					value={this.state.monto}
+					onChange={this.handleChange}
+					/>
+					<FontAwesomeIcon className='delete-button' size='2x' icon='backspace' onClick={()=> {this.setState({cantidad: ''})}}/>
 				</div>
 				{
 					(this.state.showNewCategory) ? 
@@ -86,7 +123,7 @@ export default class CargaIngresos extends React.Component {
 												style={{backgroundColor: sel ? 'black' : 'transparent'}}
 												className='icon'>
 													<div style={{ width: '100%', height: '100%', display: 'flex'}}>
-														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={['fas', icon]}/>
+														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={icon}/>
 													</div>
 												</div>
 											)
@@ -129,7 +166,7 @@ export default class CargaIngresos extends React.Component {
 					{
 						this.state.categorias.map(
 							(categoria,index) => {
-								const selected = this.state.cat != null && this.state.cat.nombre === categoria.nombre;
+								const selected = this.state.categoria != null && this.state.categoria.nombre === categoria.nombre;
 								return (
 									<div 
 									key={index}
@@ -161,14 +198,24 @@ export default class CargaIngresos extends React.Component {
 					<DatePicker
 						className='date-picker'
 						selected={this.state.date}
+						name='fecha'
+						value={this.state.fecha}
 						onChange={(date) => {
-							this.setState({ date: date })
+
+							this.setState({ fecha: date.getMonth() + '-' + date.getDate() + '-' + date.getFullYear() })
 						}}/>
 				</div>
 				<div className='description-title'>Notas</div>
-				<textarea className='description' maxLength={140}/>
+				<textarea 
+				className='description' 
+				maxLength={140} 
+				placeholder='Notas...'
+				name='notas'
+				value={this.state.notas}
+				onChange={this.handleChange}
+				/>
 				<div className='buttons'>
-					<button className='button-p confirmar' >Confirmar</button>
+					<button className='button-p confirmar' onClick={() => { this.crearTransaccion(); }}>Confirmar</button>
 					<button className='button-s cancelar' onClick={() => { this.props.closeFunc(); }}>Cancelar</button>
 				</div>
 			</div>

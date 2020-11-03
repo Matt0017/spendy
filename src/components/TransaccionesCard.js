@@ -22,7 +22,6 @@ class TransaccionesCard extends React.Component {
 			gastosOpen: false,
 			transacciones: [],
 			ingresosOpen: false,
-			fondoActual: JSON.parse(sessionStorage.getItem('fondo'))
 		}
 	}
 
@@ -50,8 +49,9 @@ class TransaccionesCard extends React.Component {
 	}
 
 	async componentDidMount(){
-		const fondo = this.context.FondosController.getSelected();
-		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, 'pesos', this.context);
+		const fondo = this.context.FondosController.getSelected()
+		const filtros = {moneda: this.context.FondosController.getMoneda()}
+		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, filtros, this.context);
 		this.setState({
 			transacciones: transacciones
 		})
@@ -66,6 +66,16 @@ class TransaccionesCard extends React.Component {
 		this.setState({
 			ingresosOpen: false
 		});
+	}
+
+	async filtrar(filtros){
+		console.log(filtros)
+		const fondo = this.context.FondosController.getSelected()
+		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, filtros, this.context);
+		this.setState({
+			transacciones: transacciones
+		})
+		console.log(transacciones)
 	}
 
 	render() {
@@ -94,7 +104,7 @@ class TransaccionesCard extends React.Component {
 						<FontAwesomeIcon className='buscador-icon' icon='search'/>
 					</div>
 					<div></div>
-					<FilterBar></FilterBar>
+					<FilterBar filtrarFn={this.filtrar.bind(this)}></FilterBar>
 				</div>
 				<div className='lista-container'>
 					<ul className='lista'>
@@ -132,5 +142,3 @@ class TransaccionesCard extends React.Component {
 
 export default TransaccionesCard;
 
-{/* <div className='gastos' onClick={() => {this.openAgregarGasto();}}></div>
-	<div className='ingresos' onClick={() => {this.openAgregarIngreso();}}></div> */}

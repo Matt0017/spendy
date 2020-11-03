@@ -7,6 +7,10 @@ export default class CategoriasController {
 		this._categorias = null;
 	}
 
+	isIngreso(c){
+		return (c.ineg === 0)
+	}
+
 	async findCategoria(nombre, idFondo) {
 		const C = await this.getCategorias(idFondo);
 		return (C.find(
@@ -30,10 +34,27 @@ export default class CategoriasController {
 						icono: c.icono,
 						color: c.color,
 						isActive: true,
+						ineg: c.ineg
 					});
 				}
 			);
 		}
 		return this._categorias;
 	}
+
+	async getCategoriasGastos(idFondo){
+		const categorias = await this.getCategorias(idFondo);
+		
+		return(categorias.filter( (c) => { return !this.isIngreso(c) }))
+	}
+
+	async getCategoriasIngreso(idFondo){
+		const categorias = await this.getCategorias(idFondo);
+		return (categorias.filter( (c) => { return this.isIngreso(c)}))
+	}
+
+	
+	
+	// categorias.filter( (c) => { return c.isIngreso }) para ingresos
+	// categorias.filter( (c) => { return !c.isIngreso }) para gastos
 }

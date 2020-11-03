@@ -5,28 +5,52 @@ import { FormControl, InputLabel, Select, TextField } from '@material-ui/core';
 import DatePicker from "react-datepicker";
 
 import '../styles/FilterBar.css'
+import { getTransaccionesFiltrado } from '../services/apiRoutes';
 
 export default class FilterBar extends React.Component {
 	static contextType = GlobalContext;
 	
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state =
 		{
 			categorias: null,
 			integrantes: null,
-			categoria: null,
-			integrante: null,
-			desde: new Date(0),
-			hasta: new Date()
+			categoria: '',
+			integrante: '',
+			desde: '',
+			hasta: '',
 		} 
+	}
+
+	filtrar = () => {
+		console.log(this.state.categoria)
+		let filtros = {
+			moneda: this.context.FondosController.getMoneda(),
+			idCategoria: this.state.categoria,
+			idUser: this.state.integrante,
+			fechaInicio: this.state.desde,
+			fechaFin: this.state.hasta
+		}
+		this.props.filtrarFn(filtros)
+	}
+
+	handleChange = (event) => {
+		const {name, value} = event.target;
+
+		//NOSE QUE MIERDA LE PASA QUE NO HACE EL SETSTATE
+        this.setState({
+            [name]: value,
+		})
+		
+		this.filtrar()
 	}
 
 	async componentDidMount() {
 		const fondo = this.context.FondosController.getSelected();
 		const categorias = await this.context.CategoriasController.getCategorias(fondo.id);
 		this.setState({
-			categorias: categorias
+			categorias: categorias,
 		})
 	}
 
@@ -41,8 +65,9 @@ export default class FilterBar extends React.Component {
 					<InputLabel htmlFor="filled-age-native-simple">Categoria</InputLabel>
 					<Select
 						native
+						name='categoria'
 						value={this.state.categoria}
-						onChange={() => { alert("cambiar"); }}
+						onChange={this.handleChange}
 						label="Categoria"
 						inputProps={{
 							name: 'categoria',
@@ -54,8 +79,10 @@ export default class FilterBar extends React.Component {
 								this.state.categorias && this.state.categorias ?
 								this.state.categorias.map(
 									(c) => {
+										
 										return (
-											<option value={c}>{c.nombre}</option>
+											<option value={c.id}>{c.nombre}</option>
+											
 										);
 									}
 								)
@@ -96,19 +123,28 @@ export default class FilterBar extends React.Component {
 					<TextField
 						id="date"
 						type="date"
+						name='desde'
+						value={this.state.desde}
+						onChange={this.handleChange}
 						className='date-picker'
-						defaultValue="2020-11-01"
+						defaultValue={Date.now}
 						InputLabelProps={{
 							shrink: true,
 						}}
 					/>
 					<div className='title'>Hasta</div>
-					<DatePicker
+					<TextField
+						id="date"
+						type="date"
+						name='hasta'
+						value={this.state.hasta}
+						onChange={this.handleChange}
 						className='date-picker'
-						selected={this.state.hasta}
-						onChange={(date) => {
-							this.setState({ hasta: date })
-						}}/>
+						defaultValue={Date.now}
+						InputLabelProps={{
+							shrink: true,
+						}}
+					/>
 				</div>
 			</div>
 		);
