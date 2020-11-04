@@ -8,6 +8,7 @@ import InicioSesion from './pages/InicioSesion';
 import Movimientos from './pages/Movimientos';
 import Estadisticas from './pages/Estadisticas';
 import SeleccionarFondo from './pages/SeleccionarFondo';
+import LimitesYObjetivos from './pages/LimitesYObjetivos';
 
 import prueba from './components/Moneda';
 
@@ -28,6 +29,7 @@ export class App extends React.Component {
 							<Route path='/Movimientos' component={Movimientos} />
 							<Route path='/Estadisticas' component={Estadisticas} />
 							<Route path='/Fondos' component={SeleccionarFondo} />
+							<Route path='/Limites' component={LimitesYObjetivos} />
 							<Route path='/Prueba' component={prueba} />
 						</Switch>
 					</div>

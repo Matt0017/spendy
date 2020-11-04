@@ -1,0 +1,18 @@
+.limites-objetivos {
+	display: flex;
+	flex-direction: row;
+}
+
+@media(max-width: 768px) {
+	.limites-objetivos {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.limites-objetivos .dashboard .spendy-card.trans-card {
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 1;
+}
