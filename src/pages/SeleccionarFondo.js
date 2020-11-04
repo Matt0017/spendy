@@ -7,8 +7,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Popup from 'reactjs-popup';
 
 import logo from '../images/logo.png'
-import {agregarFondoPorCodigo, crearFondo, getFondos} from '../services/apiRoutes'
-import FondoClase from '../classes/Fondo';
+import {agregarFondoPorCodigo, crearFondo} from '../services/apiRoutes'
 import FondoItem from '../components/FondoItem';
 
 import '../styles/Fondo.css'

@@ -7,11 +7,9 @@ import '../styles/Fondo.css'
 export default class FondoItem extends React.Component {
 	static contextType = GlobalContext;
 
-	constructor() {
-		super()
-	}
 
 	async handleClick() {
+		console.log(this.props.fondo)
 		this.context.FondosController.selectFondo(this.props.fondo);
 	}
 

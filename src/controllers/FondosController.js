@@ -23,8 +23,12 @@ export default class FondosController{
 		const json = {
 			id: fondo.id,
 			nombre: fondo.nombre,
-			codigo: fondo.codigo
+			codigo: fondo.codigo,
+			pesos: fondo.pesos,
+			dolares: fondo.dolares,
+			euros: fondo.euros
 		}
+		console.log(json)
 		sessionStorage.setItem('fondo', JSON.stringify(json));
 		this._selected = fondo
 	}
@@ -53,11 +57,14 @@ export default class FondosController{
 					return new Fondo({
 						id: f.idFondo,
 						nombre: f.nombre_fondo,
-						codigo:f.codigo_fondo
+						codigo:f.codigo_fondo,
+						pesos: f.dineroPesos,
+						dolares: f.dineroDolares,
+						euros: f.dineroDolares
 					});
 				}
 			);
-		
+		console.log(this._fondos)
 		return this._fondos;
 	}
 }
