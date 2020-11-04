@@ -97,21 +97,65 @@ class TransaccionesCard extends React.Component {
 									()=>{
 										const moneda = this.state.moneda
 										if(moneda === 'Pesos'){
-											return('AR$')
+											return(
+											<div>
+												AR$
+												<div className='total-actual'>
+													<span className='full'>{Math.trunc(this.state.fondo.pesos)}</span>
+													<span className='cents'><sup>
+														{()=>{
+															const num = this.state.fondo.pesos
+															const pos = num.toString().indexOf(".");
+															const res = String(num).substring((pos+1), num.length);
+															console.log(res)
+															return(res)
+														}
+														}</sup></span>
+												</div>
+											</div>)
 										}
-										else if(moneda === 'Dolar'){
-											return('US$')
+										else if(moneda === 'Dolares'){
+											return(
+												<div>
+													U$S
+													<div className='total-actual'>
+														<span className='full'>{Math.trunc(this.state.fondo.dolares)}</span>
+														<span className='cents'><sup>
+															{()=>{
+																const num = this.state.fondo.dolares
+																const pos = num.toString().indexOf(".");
+																const res = String(num).substring((pos+1), num.length);
+																console.log(res)
+																return(res)
+															}
+															}</sup></span>
+													</div>
+												</div>
+											)
 										}
-										else if(moneda === 'Euro'){
-											return('€')
+										else if(moneda === 'Euros'){
+											return(
+												<div>
+													€
+													<div className='total-actual'>
+														<span className='full'>{Math.trunc(this.state.fondo.euros)}</span>
+														<span className='cents'><sup>
+															{()=>{
+																const num = this.state.fondo.euros
+																const pos = num.toString().indexOf(".");
+																const res = String(num).substring((pos+1), num.length);
+																console.log(res)
+																return(res)
+															}
+															}</sup></span>
+													</div>
+												</div>
+											)
 										}
 									})
 								()}
 							</div>
-							<div className='total-actual'>
-								<span className='full'>24.500</span>
-								<span className='cents'><sup>50</sup></span>
-							</div>
+							
 						</div>
 					</div>
 					
