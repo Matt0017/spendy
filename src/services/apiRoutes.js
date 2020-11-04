@@ -157,7 +157,29 @@ export const getGastosPorCategoria = async (idFondo, desde, hasta, moneda) => {
 		return json;
 	} 
 	catch (error) {
-		console.error(error)
+		console.error(error);
+	}
+}
+
+export const getGastosPorDia = async (idFondo, moneda) => {
+	try {
+		const response = await fetch(url + 'verGastosFondoDias/',
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				fondoID: idFondo,
+				moneda: moneda
+			})
+		});
+		const json = await response.json();
+
+		return json;
+	}
+	catch (error) {
+		console.error(error);
 	}
 }
 

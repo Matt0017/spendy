@@ -132,12 +132,12 @@ export default class GastosPorCategoria extends React.Component {
 										series: [{ 
 											name: 'gastos',
 											type: 'pie',
-											center: ['50%', '50%'],
+											center: ['60%', '50%'],
 											data: this.state.data.map(
 												(g) => {
 													return {
 														name: g.categoria.nombre,
-														value: g.monto
+														value: Math.abs(g.monto)
 													};
 												}
 											)
@@ -155,31 +155,5 @@ export default class GastosPorCategoria extends React.Component {
 				</div>
 			</div>
 		);
-	}
-
-	createData() {
-		const supermercado = new Categoria("Supermercado", "shopping-cart", "#F8C29E");
-		const mascotas = new Categoria("Mascotas", "paw", "#D6976D");
-		const otros = new Categoria("Otros", "question", "#B4BCC2");
-		const sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
-
-		return [
-			{
-				cat: supermercado,
-				value: Math.random()*5000
-			},
-			{
-				cat: mascotas,
-				value: Math.random()*5000
-			},
-			{
-				cat: otros,
-				value: Math.random()*5000
-			},
-			{
-				cat: sueldo,
-				value: Math.random()*5000
-			}
-		]
 	}
 }

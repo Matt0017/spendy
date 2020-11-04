@@ -1,9 +1,23 @@
-import { getGastosPorCategoria } from "../services/apiRoutes";
+import { getGastosPorCategoria, getGastosPorDia } from "../services/apiRoutes";
 
 export default class EstadisticasController {
-	
-	contructor(){
 
+	async getGastosPorDia(idFondo, moneda) {
+		const gastos = await getGastosPorDia(idFondo, moneda);
+		
+		let sum = 0;
+		
+		return gastos.map(
+			(g) => {
+				sum += g.DineroTotal;
+				return (
+					{
+						monto: sum,
+						fecha: new Date(g.fechaOnly)
+					}
+				)
+			}
+		);
 	}
 
 	async getGastosPorCategoria(idFondo, inicio, fin, moneda, context)

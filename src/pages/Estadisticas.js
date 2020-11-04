@@ -10,22 +10,25 @@ import "../styles/Estadisticas.css"
 import "../styles/Dashboard.css"
 
 class Estadisticas extends React.Component {
+	static contextType = GlobalContext;
+
+	constructor() {
+		super();
+		this.state = {
+			historyData: []
+		}
+	}
+
+	async componentDidMount() {
+		const fondo = this.context.FondosController.getSelected();
+		const moneda = this.context.FondosController.getMoneda();
+		const gastosPorDia = await this.context.EstadisticasController.getGastosPorDia(fondo.id, moneda);
+		this.setState({
+			historyData: gastosPorDia
+		})
+	}
 
 	render() {
-		console.log(echarts.helpers);
-
-		let base = +new Date(2014, 9, 3);
-		const oneDay = 24 * 3600 * 1000;
-		let date = [];
-
-		let data = [Math.random() * 50000];
-
-		for (let i = 1; i < 2000; i++) {
-			const now = new Date(base += oneDay);
-			date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
-			data.push(Math.round((Math.random() - 0.5) * 10000 + data[i - 1]));
-		}
-
 		return (
 			<div className='fill estadisticas'>
 				<NavBar></NavBar>
@@ -59,7 +62,11 @@ class Estadisticas extends React.Component {
 								xAxis: {
 									type: 'category',
 									boundaryGap: false,
-									data: date
+									data: this.state.historyData.map(
+										(g) => {
+											return g.fecha.getDate() + '/' + g.fecha.getMonth() + '/' + g.fecha.getFullYear() 
+										}
+									)
 								},
 								yAxis: {
 									type: 'value',
@@ -99,7 +106,7 @@ class Estadisticas extends React.Component {
 													color: 'rgb(50,205,120)'
 												}])
 											},
-											data: data.map((v) => { return (v > 0 ? v : 0) })
+											data: this.state.historyData.map((g) => { return (g.monto > 0 ? g.monto : 0) })
 										},
 										{
 											name: 'Total Neg',
@@ -119,7 +126,7 @@ class Estadisticas extends React.Component {
 													color: 'rgb(220,20,60)'
 												}])
 											},
-											data: data.map((v) => { return (v < 0 ? v : 0) })
+											data: this.state.historyData.map((g) => { return (g.monto < 0 ? g.monto : 0) })
 										}
 									]
 							}}/>
