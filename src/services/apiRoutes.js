@@ -1,4 +1,4 @@
-const url = 'https://semrest.herokuapp.com/'
+const url = 'http://localhost:3500/'
 
 const formatDate = (d) => {
 	let month = '' + (d.getMonth() + 1),

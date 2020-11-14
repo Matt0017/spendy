@@ -36,7 +36,6 @@ export default class TransaccionesController {
 	async filtrar(idFondo, filtros, context){
 		this._transacciones = []
 		const transFiltrado = await this.getTransacciones(idFondo, filtros, context);
-		this._transacciones = []
 		return transFiltrado;
 		
 	}
