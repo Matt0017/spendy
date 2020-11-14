@@ -17,11 +17,14 @@ export default class CargaGastos extends React.Component {
 			new_icon: '',
 			new_color: '',
 			categorias: [],
-
+			iconos: [],
+			colores: [],
+			categoriaCustom: '',
 			monto: '',
 			categoria: null,
 			fecha: '',
 			notas: ''
+
 		}
 	}
 
@@ -60,6 +63,29 @@ export default class CargaGastos extends React.Component {
             [name]: value
         })
 	}
+
+	async crearCatCustom(){
+		const json = {
+			nombre: this.state.categoriaCustom,
+			idfrontCategorias: this.state.new_icon,
+			idColor: this.state.new_color,
+			idFondo: this.context.FondosController.getSelected().id,
+			ineg: 1
+		}
+
+		//falta agregar el usuario dinamicamente
+		const validacion = await this.context.CategoriasController.crearCatCustom(json);
+		if(validacion){
+			const fondo = await this.context.FondosController.getSelected();
+			const categorias = await this.context.CategoriasController.getCategoriasGastos(fondo.id)
+		
+			this.setState({
+				categorias: categorias,
+			})
+			this.closeNewCategory();
+			
+		}
+	}
 	
 	async crearTransaccion(){
 		const json = {
@@ -70,27 +96,24 @@ export default class CargaGastos extends React.Component {
 		}
 		const fondo = this.context.FondosController.getSelected().id;
 		const moneda = this.context.FondosController.getMoneda();
+		const usuario = (await this.context.UsuariosController.getUsuarioLogged()).idUser
 
-		//falta agregar el usuario dinamicamente
-		await this.context.TransaccionesController.agregarTransaccion(2,fondo,json.categoria,json.monto,json.notas,moneda)
+		await this.context.TransaccionesController.agregarTransaccion(usuario,fondo,json.categoria,json.monto,json.notas,moneda)
 	}
 
 	async componentDidMount(){
 		const fondo = this.context.FondosController.getSelected();
 		const categorias =  await this.context.CategoriasController.getCategoriasGastos(fondo.id)
+		const iconos = await this.context.CategoriasController.getIconos()
+		const colores = await this.context.CategoriasController.getColores()
 		this.setState({
-			categorias: categorias
+			categorias: categorias,
+			iconos: iconos,
+			colores: colores
 		})
 	}
 
 	render() {
-		// const supermercado = new Categoria("Supermercado", "shopping-cart", "#F8C29E");
-		// const mascotas = new Categoria("Mascotas", "paw", "#D6976D");
-		// const otros = new Categoria("Otros", "question", "#B4BCC2");
-		// const sueldo = new Categoria("Sueldo", "hand-holding-usd", "#98ECDE");
-
-		// const categorias = [supermercado, mascotas, otros, sueldo, supermercado, mascotas, otros, sueldo, supermercado ]
-
 		return (
 			<div className='carga-gastos floating-container'>
 				<div className='titulo'>
@@ -113,25 +136,26 @@ export default class CargaGastos extends React.Component {
 				{
 					(this.state.showNewCategory) ? 
 					<div className='new-category'>
-						<div><input placeholder='Nombre'></input></div>
-						<div>Seleccione un icono</div>
+						<div><input type='text' placeholder='Nombre' value={this.state.categoriaCustom} name='categoriaCustom' onChange={this.handleChange}></input></div>
+						<div className='seleccion'>Seleccione un icono</div>
 						<div className='icons-list'>
 							<div style={{width: 'max-content'}}>
-								{
-									["plus", "paw"].map(
+								{		
+									this.state.iconos.map(
 										(icon) => {
-											const sel = this.state.new_icon === icon;
+											
+											const sel = this.state.new_icon === icon.idfrontCategorias;
 											return (
 												<div 
 												onClick={
 													() => {
-														this.selectIcon(icon);
+														this.selectIcon(icon.idfrontCategorias);
 													}
 												}
 												style={{backgroundColor: sel ? 'black' : 'transparent'}}
 												className='icon'>
 													<div style={{ width: '100%', height: '100%', display: 'flex'}}>
-														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={icon}/>
+														<FontAwesomeIcon style={{margin: 'auto'}} color={sel ? 'white' : 'black'} icon={icon.icono}/>
 													</div>
 												</div>
 											)
@@ -140,23 +164,23 @@ export default class CargaGastos extends React.Component {
 								}
 							</div>
 						</div>
-						<div>Seleccione un color</div>
+						<div className='seleccion'>Seleccione un color</div>
 						<div className='colors-list'>
 							<div style={{width: 'max-content'}}>
 								{
-									["#e1d390", "#39afb1"].map(
+									this.state.colores.map(
 										(color) => {
-											const sel = this.state.new_color === color;
+											const sel = this.state.new_color === color.idColor;
 											return (
 												<div 
 												onClick={
 													() => {
-														this.selectColor(color);
+														this.selectColor(color.idColor);
 													}
 												}
 												style={{backgroundColor: sel ? color : 'transparent'}}
 												className='color'>
-													<div style={{ width: '100%', height: '100%', backgroundColor: color}}></div>
+													<div style={sel ?  { width: '100%', height: '100%', border: '1px solid '+color.color, borderRadius: '100px'} : { width: '100%', height: '100%', backgroundColor: color.color, borderRadius: '100px'}}></div>
 												</div>
 											)
 										}
@@ -166,7 +190,7 @@ export default class CargaGastos extends React.Component {
 						</div>
 						<div className='button-container'>
 							<button className='button-s atras' onClick={this.closeNewCategory.bind(this)}>Atras</button>
-							<button className='button-p crear'>Crear</button>
+							<button className='button-p crear' onClick={this.crearCatCustom.bind(this)}>Crear</button>
 						</div>
 					</div>
 					:

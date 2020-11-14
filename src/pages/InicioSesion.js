@@ -5,13 +5,16 @@ import '../styles/InicioSesion.css';
 import {Link} from 'react-router-dom'
 
 import {getUsuario} from '../services/apiRoutes'
+import { GlobalContext } from "../controllers/Context";
+import { Alert } from "@material-ui/lab";
 
 export default class InicioSesion extends React.Component{
+    static contextType = GlobalContext;
     constructor(props){
         super(props);
         this.state = {
-            dni: '',
-            contraseña: '',
+            mail: '',
+            password: '',
             alert: false
         }
     }
@@ -25,21 +28,19 @@ export default class InicioSesion extends React.Component{
 
       handleClick = async () => {
         const login = {
-          dni: this.state.dni,
-          contraseña: this.state.contraseña,
+          mail: this.state.mail,
+          password: this.state.password,
         }
-        const response = await getUsuario(login)
+        const validacion = await this.context.UsuariosController.login(login)
         
-        if(response.status === 404){
+        if(validacion){
+            this.props.history.push("/Fondos")
+        }
+        else{
             this.setState({
                 alert: true
             })
-            console.log(this.state.alert)
-        }
-        else if(response.status === 200){
-            const json = await response.json()
-            sessionStorage.setItem('usuario',JSON.stringify(json))
-            this.props.history.push("/")
+            
         }
       }
     render(){
@@ -53,6 +54,17 @@ export default class InicioSesion extends React.Component{
                         <img src={imagen} className="image" alt='imagenInicio'/>
                     </div>
                     <div className="col">
+                        {(() => {
+                            if (this.state.alert){
+                                return (
+                                    <Alert variant="filled" severity="error">
+                                        Los datos no son correctos, por favor volvé a ingresarlos.
+                                    </Alert>
+                                )
+                            }
+                            
+                            return null;
+                        })()}
                         <div className='row'>
                             <div className='col text-center'>
                                 <h1 className='titulo'>INICIO SESION</h1>
@@ -70,7 +82,7 @@ export default class InicioSesion extends React.Component{
                         </div>
                         <div className='row botones'>
                             <div className='col'>
-                            <Link to='/Registro'><button className='button-s'>Registrar</button></Link><Link to='/Fondos'><button className='button-p'>Iniciar Sesion</button></Link>
+                            <Link to='/Registro'><button className='button-s'>Registrar</button></Link><button className='button-p' onClick={this.handleClick.bind(this)}>Iniciar Sesion</button>
                             </div>
                         </div>
                     </div>

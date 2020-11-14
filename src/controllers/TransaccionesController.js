@@ -1,5 +1,5 @@
 import Transaccion from "../classes/Transaccion";
-import { getTransaccionesFiltrado, crearTransaccion } from "../services/apiRoutes";
+import { getTransaccionesFiltrado, crearTransaccion , getTransaccionDetalles, borrarTransaccion} from "../services/apiRoutes";
 
 export default class TransaccionesController {
 	
@@ -36,7 +36,9 @@ export default class TransaccionesController {
 	async filtrar(idFondo, filtros, context){
 		this._transacciones = []
 		const transFiltrado = await this.getTransacciones(idFondo, filtros, context);
-		return transFiltrado
+		this._transacciones = []
+		return transFiltrado;
+		
 	}
 
 
@@ -45,5 +47,16 @@ export default class TransaccionesController {
 			idUser, idFondo, idCategoria, dinero, descripcion, moneda
 		}
 		crearTransaccion(json);
+	}
+
+	async getTransaccionDetalles(id){
+		const response = await getTransaccionDetalles(id);
+		const json = await response.json()
+		return json[0][0]
+	}
+
+	async borrarTransaccion(data){
+		const response = await borrarTransaccion(data);
+		return response.status ===200
 	}
 }

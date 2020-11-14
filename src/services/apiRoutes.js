@@ -57,10 +57,27 @@ export const registrar = async (data) =>{
     }
     try {
         const response = await fetch(url+'crearUsuario/',options);
-        console.log(response)
+        return response
     } 
     catch (error) {
         console.log(error)
+    }
+}
+
+export const login = async (data) =>{
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url+'login',options);
+        return response
+    } 
+    catch (error) {
+        console.error(error)
     }
 }
 
@@ -199,4 +216,95 @@ export const crearTransaccion = async (data) =>{
         console.log(error)
     }
 }
+
+export const sacarUsuarioFondo = async (idFondo, idUser) =>{
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    try {
+        const response = await fetch(url+'sacarUsuarioFondo/'+idUser+'/'+idFondo,options);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const usuariosFondo = async (idFondo) =>{
+    try {
+        const response = await fetch(url+'usuariosFondo/'+idFondo);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const getIconos = async () =>{
+    try {
+        const response = await fetch(url+'getIconos/');
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const getColores = async () =>{
+    try {
+        const response = await fetch(url+'getColores/');
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const crearCatCustom = async (data) =>{
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url+'categorias/',options);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const getTransaccionDetalles = async (id) =>{
+    try {
+        const response = await fetch(url+'getTransaccionDetalles/'+id);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+export const borrarTransaccion = async (data) =>{
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url+'borrarTransaccion/',options);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
 

@@ -1,5 +1,5 @@
 import Fondo from "../classes/Fondo";
-import { getFondos } from "../services/apiRoutes";
+import { getFondos, sacarUsuarioFondo , usuariosFondo} from "../services/apiRoutes";
 
 export default class FondosController{
 	
@@ -60,11 +60,24 @@ export default class FondosController{
 						codigo:f.codigo_fondo,
 						pesos: f.dineroPesos,
 						dolares: f.dineroDolares,
-						euros: f.dineroDolares
+						euros: f.dineroDolares,
+						idUser_create: f.idUser_create
 					});
 				}
 			);
 		console.log(this._fondos)
 		return this._fondos;
+	}
+
+	async salirDelFondo(idFondo,idUser){
+		const response = await sacarUsuarioFondo(idFondo,idUser)
+		return response
+	}
+
+	async usuariosFondo(idFondo){
+		const response = await usuariosFondo(idFondo)
+		const json = await response.json()
+		console.log(json)
+		return json
 	}
 }

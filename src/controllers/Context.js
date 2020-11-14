@@ -3,11 +3,13 @@ import TransaccionesController from './TransaccionesController';
 import CategoriasController from './CategoriasController';
 import FondosController from './FondosController';
 import EstadisticasController from './EstadisticasController';
+import UsuariosController from './UsuariosController';
 
 const globalState = {
 	FondosController: new FondosController(),
 	CategoriasController: new CategoriasController(),
 	TransaccionesController: new TransaccionesController(),
+	UsuariosController: new UsuariosController(),
 	EstadisticasController: new EstadisticasController()
 };
 

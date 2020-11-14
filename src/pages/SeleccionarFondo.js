@@ -1,7 +1,6 @@
 import React from 'react';
 import { GlobalContext } from '../controllers/Context';
 
-import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Popup from 'reactjs-popup';
@@ -9,6 +8,9 @@ import Popup from 'reactjs-popup';
 import logo from '../images/logo.png'
 import {agregarFondoPorCodigo, crearFondo} from '../services/apiRoutes'
 import FondoItem from '../components/FondoItem';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
 import '../styles/Fondo.css'
 import { Alert } from 'react-bootstrap';
@@ -23,7 +25,8 @@ export default class SeleccionarFondo extends React.Component {
 			agregarFondoOpen: false,
 			fondoNuevo: '',
 			codigo: '',
-			alert: false
+            alert: false,
+            usuario: ''
 		}
 	}
 
@@ -48,23 +51,20 @@ export default class SeleccionarFondo extends React.Component {
 
 	async componentDidMount(){
 
-		sessionStorage.clear();
+		
 		this.context.TransaccionesController.eliminarTransacciones();
-		const fondos = await this.context.FondosController.getFondos(2);
+		const usuario = (await this.context.UsuariosController.getUsuarioLogged()).idUser
+		const fondos = await this.context.FondosController.getFondos(usuario);
 		this.setState({
-			fondos: fondos
+            fondos: fondos,
+            usuario: usuario
 		})  
 	}
 
 	agregarFondo(){
-		// const usuario = sessionStorage.getItem('usuario');
-		var json ='2';
-		// if(usuario){
-		// 	json = JSON.parse(usuario)
-		// }
 		if(this.state.codigo){
 			const data ={
-				idUser: json,
+				idUser: this.state.usuario,
 				codigo_fondo: this.state.codigo
 			}
 			agregarFondoPorCodigo(data)
@@ -72,7 +72,7 @@ export default class SeleccionarFondo extends React.Component {
 		}
 		else if(this.state.fondoNuevo){
 			const data ={
-				idUser: json,
+				idUser: this.state.usuario,
 				nombreFondo: this.state.fondoNuevo
 			}
 			crearFondo(data)
@@ -88,19 +88,6 @@ export default class SeleccionarFondo extends React.Component {
 	
 
 	render(){
-		const options={
-			responsive:{
-			0:{
-				items:1
-			},
-			600:{
-				items:2
-			},
-			1000:{
-				items:3
-			}
-			}
-		}
 		return (
 			<div className="container fondos">
 				<div className='row'>
@@ -113,30 +100,28 @@ export default class SeleccionarFondo extends React.Component {
 						<h1>¿A QUE FONDO QUIERES INGRESAR?</h1>
 					</div>
 				</div>
-				<div className="row">
+				
+				<div className='row'>
+					<div className='col d-none d-md-block'>
+						<button className=' agregar button-alt' onClick={this.openAgregarFondo.bind(this)}>Agregar Nuevo Fondo</button>
+					</div>
+					<div className='col d-block d-md-none'>
+						<button className=' mas button-alt' onClick={this.openAgregarFondo.bind(this)}><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></button>
+					</div>
+				</div>
+                <div className="row">
 					<div className="col">
-						{this.state.fondos.length && (
-						<OwlCarousel 
-						className="owl-theme"
-						items= '3'
-						{...options}>
-							{this.state.fondos.map(
-								(index) => {
-									return (
-										<FondoItem fondo={index}></FondoItem>
-									);
-								}
-							)}
-						</OwlCarousel>)}
+                        {this.state.fondos.map(
+                            (index) => {
+                                return (
+                                    <FondoItem fondo={index} user={this.state.usuario}></FondoItem>
+                                );
+                            }
+                        )}
 					</div>
 				</div>
 				<div className='row'>
-					<div className='col text-center'>
-						<button className='button-p' onClick={this.openAgregarFondo.bind(this)}>Agregar Fondo</button>
-					</div>
-				</div>
-				<div className='row'>
-					<div className='col text-center'>
+					<div className='col text-center '>
 						<Popup
 						open={this.state.agregarFondoOpen} 
 						className='transaccion-popup' 

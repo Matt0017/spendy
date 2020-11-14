@@ -25,9 +25,7 @@ export default class FilterBar extends React.Component {
 
 	handleChange = async (event) => {
 		const {name, value} = event.target;
-		console.log({[name]: value})
-        await this.setState({
-			
+       	await this.setState({
             [name]: value,
 		})
 		await this.filtrar()
@@ -47,8 +45,10 @@ export default class FilterBar extends React.Component {
 	async componentDidMount() {
 		const fondo = this.context.FondosController.getSelected();
 		const categorias = await this.context.CategoriasController.getCategorias(fondo.id);
+		const integrantes = await this.context.FondosController.usuariosFondo(fondo.id);
 		this.setState({
 			categorias: categorias,
+			integrantes: integrantes
 		})
 	}
 	render() {
@@ -88,8 +88,9 @@ export default class FilterBar extends React.Component {
 					<InputLabel htmlFor="filled-age-native-simple">Integrantes</InputLabel>
 					<Select
 						native
-						value={this.state.categoria}
-						onChange={() => { alert("cambiar"); }}
+						name='integrante'
+						value={this.state.integrante}
+						onChange={this.handleChange}
 						label="Integrantes"
 						inputProps={{
 							name: 'integrante',
@@ -98,11 +99,11 @@ export default class FilterBar extends React.Component {
 						>
 							<option aria-label="None" value="" />
 							{
-								this.state.categorias && this.state.categorias ?
-								this.state.categorias.map(
+								this.state.integrantes && this.state.integrantes ?
+								this.state.integrantes.map(
 									(c) => {
 										return (
-											<option value={c}>{c.nombre}</option>
+											<option value={c.idUser}>{c.nombre}</option>
 										);
 									}
 								)
@@ -119,7 +120,6 @@ export default class FilterBar extends React.Component {
 					name="desde"
 					value={this.state.desde}
 					onChange={this.handleChange}
-					defaultValue={Date.now}
 					InputLabelProps={{
 						shrink: true,
 					}}
@@ -132,7 +132,6 @@ export default class FilterBar extends React.Component {
 					className='date-picker'
 					value={this.state.hasta}
 					onChange={this.handleChange}
-					defaultValue={Date.now}
 					InputLabelProps={{
 						shrink: true,
 					}}

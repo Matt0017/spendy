@@ -194,9 +194,11 @@ class TransaccionesCard extends React.Component {
 						)}
 					</ul>
 					<Popup open={this.state.detailOpen} className='transaccion-popup' onClose={() => {this.setState({ detailOpen: false })}}>
+						
 						<TransaccionDetalle
 							transaccion={this.state.transaccionSeleccionada}
-							closeFunc={() => {this.closeDetalleTransaccion()}}/>
+							closeFunc={() => {this.closeDetalleTransaccion()}}
+							fondo={this.state.fondo?.id}/>
 					</Popup>
 					<Popup open={this.state.gastosOpen} className='cargar-gastos-popup' onClose={() => {this.setState({ gastosOpen: false })}}>
 						<CargaGastos
