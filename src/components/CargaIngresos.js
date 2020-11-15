@@ -95,7 +95,10 @@ export default class CargaIngresos extends React.Component {
 		const moneda = this.context.FondosController.getMoneda();
 		const usuario = (await this.context.UsuariosController.getUsuarioLogged()).idUser
 
-		await this.context.TransaccionesController.agregarTransaccion(usuario,fondo,json.categoria,json.monto,json.notas,moneda)
+		const validacion = await this.context.TransaccionesController.agregarTransaccion(usuario,fondo,json.categoria,json.monto,json.notas,moneda, json.fecha)
+		if(validacion){
+			window.location.reload()
+		}
 	}
 
 	async componentDidMount(){
@@ -232,7 +235,7 @@ export default class CargaIngresos extends React.Component {
 						value={this.state.fecha}
 						onChange={(date) => {
 
-							this.setState({ fecha: date.getMonth() + '-' + date.getDate() + '-' + date.getFullYear() })
+							this.setState({ fecha: date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()   })
 						}}/>
 				</div>
 				<div className='description-title'>Notas</div>

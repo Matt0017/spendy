@@ -106,6 +106,17 @@ export const getFondos = async (idUsuario) =>{
 	}
 }
 
+export const getFondo = async (idFondo) =>{
+	try {
+        const response = await fetch(url+'getFondo/'+idFondo);
+		const json = await response.json();
+		return json[0];
+	} 
+	catch (error) {
+		console.error(error)
+	}
+}
+
 export const getCategorias = async (fondo) =>{
 	try {
 		const response = await fetch(url+'categorias/'+fondo);
@@ -210,7 +221,7 @@ export const crearTransaccion = async (data) =>{
     }
     try {
         const response = await fetch(url+'crearTransaccion/',options);
-        console.log(response)
+        return response
     } 
     catch (error) {
         console.log(error)
