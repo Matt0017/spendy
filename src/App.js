@@ -2,10 +2,8 @@ import React from 'react';
 import GlobalContextProvider, { GlobalContext } from './controllers/Context';
 import	{BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-
 import Landing from './pages/LandingPage';
 import InicioSesion from './pages/InicioSesion';
-import Registro from './pages/Registro';
 import Movimientos from './pages/Movimientos';
 import Estadisticas from './pages/Estadisticas';
 import SeleccionarFondo from './pages/SeleccionarFondo';
