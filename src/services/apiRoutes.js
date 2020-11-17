@@ -318,13 +318,15 @@ export const borrarTransaccion = async (data) =>{
     }
 }
 
-export const crearCategoria = async (idFondo, categoria, moneda, limite) => {
+export const crearLimite = async (idFondo, categoria, moneda, limite) => {
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+			
+		})
     }
     try {
         const response = await fetch(url + 'limiteCategoria/',options);

@@ -4,6 +4,7 @@ import CategoriasController from './CategoriasController';
 import FondosController from './FondosController';
 import EstadisticasController from './EstadisticasController';
 import UsuariosController from './UsuariosController';
+import LimitesYObjetivosController from './LimitesYObjetivosController';
 
 const globalState = {
 	FondosController: new FondosController(),
