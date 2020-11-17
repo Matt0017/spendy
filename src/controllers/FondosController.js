@@ -1,5 +1,5 @@
 import Fondo from "../classes/Fondo";
-import { getFondos, sacarUsuarioFondo , usuariosFondo} from "../services/apiRoutes";
+import { getFondos, sacarUsuarioFondo , usuariosFondo, getFondo} from "../services/apiRoutes";
 
 export default class FondosController{
 	
@@ -19,6 +19,21 @@ export default class FondosController{
 		return this._selected;
 	}
 
+	async getFondo(idFondo){
+		const f = await getFondo(idFondo);
+		const fondo = new Fondo({
+			id: f.idFondo,
+			nombre: f.nombre_fondo,
+			codigo:f.codigo_fondo,
+			pesos: f.dineroPesos,
+			dolares: f.dineroDolares,
+			euros: f.dineroDolares
+		});
+		this.selectFondo(fondo)
+		return this.getSelected()
+		
+	}
+
 	selectFondo(fondo) {
 		const json = {
 			id: fondo.id,
@@ -28,7 +43,6 @@ export default class FondosController{
 			dolares: fondo.dolares,
 			euros: fondo.euros
 		}
-		console.log(json)
 		sessionStorage.setItem('fondo', JSON.stringify(json));
 		this._selected = fondo
 	}
@@ -77,7 +91,6 @@ export default class FondosController{
 	async usuariosFondo(idFondo){
 		const response = await usuariosFondo(idFondo)
 		const json = await response.json()
-		console.log(json)
 		return json
 	}
 }

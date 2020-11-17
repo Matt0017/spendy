@@ -33,7 +33,6 @@ export default class FilterBar extends React.Component {
 
 	filtrar = () => {
 		let filtros = {
-			moneda: this.context.FondosController.getMoneda(),
 			idCategoria: this.state.categoria,
 			idUser: this.state.integrante,
 			fechaInicio: this.state.desde,

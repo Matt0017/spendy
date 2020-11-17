@@ -36,17 +36,22 @@ export default class TransaccionesController {
 	async filtrar(idFondo, filtros, context){
 		this._transacciones = []
 		const transFiltrado = await this.getTransacciones(idFondo, filtros, context);
-		this._transacciones = []
 		return transFiltrado;
 		
 	}
 
 
-	async agregarTransaccion(idUser, idFondo, idCategoria, dinero, descripcion, moneda){
+	async agregarTransaccion(idUser, idFondo, idCategoria, dinero, descripcion, moneda, fecha){
 		const json = {
-			idUser, idFondo, idCategoria, dinero, descripcion, moneda
+			idUser, idFondo, idCategoria, dinero, descripcion, moneda,fecha,
 		}
-		crearTransaccion(json);
+
+		var validacion = false
+		const response = await crearTransaccion(json);
+		if(response.status===200){
+			validacion =true
+		}
+		return validacion
 	}
 
 	async getTransaccionDetalles(id){

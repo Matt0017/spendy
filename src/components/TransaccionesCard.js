@@ -24,7 +24,12 @@ class TransaccionesCard extends React.Component {
 			transacciones: [],
 			ingresosOpen: false,
 			fondo: null,
-			moneda: ''
+			moneda: '',
+			busqueda: '',
+			idCategoria: '',
+			idUser: '',
+			fechaInicio: '',
+			fechaFin: ''
 		}
 	}
 
@@ -52,12 +57,13 @@ class TransaccionesCard extends React.Component {
 	}
 
 	async componentDidMount(){
-		const fondo = this.context.FondosController.getSelected()
+		const fondoID = (this.context.FondosController.getSelected()).id
+		const fondoActualizado = await this.context.FondosController.getFondo(fondoID)
 		const filtros = {moneda: this.context.FondosController.getMoneda()}
-		const transacciones = await this.context.TransaccionesController.getTransacciones(fondo.id, filtros, this.context);
+		const transacciones = await this.context.TransaccionesController.getTransacciones(fondoID, filtros, this.context);
 		this.setState({
 			transacciones: transacciones,
-			fondo: fondo,
+			fondo: fondoActualizado,
 			moneda: this.context.FondosController.getMoneda()
 		})
 	}
@@ -73,8 +79,33 @@ class TransaccionesCard extends React.Component {
 		});
 	}
 
-	async filtrar(filtros) {
-		console.log(filtros)
+	handleChange = async (event) => {
+		const {name, value} = event.target;
+       	await this.setState({
+            [name]: value,
+		})
+		await this.filtrar()
+	}
+
+	async filtrado(filtros){
+		this.setState({
+			idCategoria: filtros.idCategoria,
+			idUser: filtros.idUser,
+			fechaInicio: filtros.fechaInicio,
+			fechaFin: filtros.fechaFin
+		})
+		this.filtrar()
+	}
+
+	async filtrar() {
+		const filtros = {
+			moneda: this.state.moneda,
+			idCategoria: this.state.idCategoria,
+			idUser: this.state.idUser,
+			fechaInicio: this.state.fechaInicio,
+			fechaFin: this.state.fechaFin,
+			busqueda: this.state.busqueda
+		}
 		const fondo = this.context.FondosController.getSelected()
 		const transacciones = await this.context.TransaccionesController.filtrar(fondo.id, filtros, this.context);
 		this.setState({
@@ -162,7 +193,7 @@ class TransaccionesCard extends React.Component {
 				</div>
 				<div className='buscador-container'>
 					<div className='buscador-organizer'>
-						<input placeholder='Buscar' className='buscador'/>
+						<input placeholder='Buscar' className='buscador' value={this.state.busqueda} name='busqueda' onChange={this.handleChange}/>
 						<FontAwesomeIcon className='buscador-icon' icon='search'/>
 					</div>
 					<div className='filtros-organizer'
@@ -178,7 +209,7 @@ class TransaccionesCard extends React.Component {
 						<FontAwesomeIcon className='filtros-icon' icon='filter'/>
 					</div>
 					<div className={'filter-bar-container ' + (this.state.filtersOpen ? 'open' : 'closed') }>
-						<FilterBar filtrarFn={this.filtrar.bind(this)}></FilterBar>
+						<FilterBar  filtrarFn={this.filtrado.bind(this)}></FilterBar>
 					</div>
 				</div>
 				<div className='lista-container'>

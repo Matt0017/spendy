@@ -9,6 +9,7 @@ import Movimientos from './pages/Movimientos';
 import Estadisticas from './pages/Estadisticas';
 import SeleccionarFondo from './pages/SeleccionarFondo';
 import LimitesYObjetivos from './pages/LimitesYObjetivos';
+import Registro from './pages/Registro';
 
 import prueba from './components/Moneda';
 
@@ -26,6 +27,7 @@ export class App extends React.Component {
 						<Switch>
 							<Route path='/' exact component={Landing} />
 							<Route path='/InicioSesion' component={InicioSesion} />
+							<Route path='/Registro' component={Registro} />
 							<Route path='/Movimientos' component={Movimientos} />
 							<Route path='/Estadisticas' component={Estadisticas} />
 							<Route path='/Fondos' component={SeleccionarFondo} />

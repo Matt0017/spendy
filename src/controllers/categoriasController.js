@@ -24,7 +24,7 @@ export default class CategoriasController {
 	{
 		const categorias = await getCategorias(idFondo);
 		
-		this._categorias = categorias.map(
+		this._categorias = categorias?.map(
 			(c) => {
 				return new Categoria({
 					id: c.idCategoria,
