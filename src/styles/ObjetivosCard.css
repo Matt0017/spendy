@@ -1,0 +1,70 @@
+.objetivos-container {
+	display: flex;
+	flex-direction: column;
+}
+.objetivos-container .title-container {
+	width: 100%;
+	background-color: #6E80B0;
+	padding: 10px;
+}
+.objetivos-container .title-container .title {
+	color: white;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 1.3em;
+	font-weight: 300;
+}
+.objetivos-container .objetivos-list {
+	background-color: #6E80B0;
+	overflow-y: auto;
+}
+.objetivos-container .objetivos-list .loading {
+	display: flex;
+}
+.objetivos-container .objetivos-list .loading .loading-text {
+	margin: auto;
+	color: white;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.objetivos-container .objetivos-list .objetivo-item {
+	width: 100%;
+	padding: 4px 10px 4px 20px;
+}
+.objetivos-container .objetivos-list .objetivo-item .title-bar {
+	display: flex;
+	flex-direction: row;
+	color: white;
+	font-weight: 300;
+	font-size: 1.1em;
+}
+.objetivos-container .objetivos-list .objetivo-item .title-bar .title {
+	width: 100%;
+}
+.objetivos-container .objetivos-list .objetivo-item .title-bar .objetivo { }
+.objetivos-container .objetivos-list .objetivo-item .bar {
+	height: 26px;
+	width: 100%;
+	position: relative;
+	background-color: white;
+}
+.objetivos-container .objetivos-list .objetivo-item .bar-fill {
+	height: 100%;
+	position: absolute;
+	float: left;
+	border: 1px solid;
+}
+.objetivos-container .objetivos-list .objetivo-item .current {
+	height: 100%;
+	position: absolute;
+	float: left;
+	font-weight: 400;
+	line-height: 160%;
+}
+.objetivos-container .objetivos-list .objetivo-item .current.in {
+	left: 10px !important;
+	color: white;
+}
+.objetivos-container .objetivos-list .objetivo-item .current.out {
+	color: #6E80B0;
+}

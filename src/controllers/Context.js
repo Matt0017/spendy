@@ -10,7 +10,8 @@ const globalState = {
 	CategoriasController: new CategoriasController(),
 	TransaccionesController: new TransaccionesController(),
 	UsuariosController: new UsuariosController(),
-	EstadisticasController: new EstadisticasController()
+	EstadisticasController: new EstadisticasController(),
+	LimitesYObjetivosController: new LimitesYObjetivosController()
 };
 
 export const GlobalContext = React.createContext(globalState);

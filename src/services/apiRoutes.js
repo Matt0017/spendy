@@ -275,20 +275,20 @@ export const getColores = async () =>{
 }
 
 export const crearCatCustom = async (data) =>{
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }
-    try {
-        const response = await fetch(url+'categorias/',options);
-        return response
-    } 
-    catch (error) {
-        console.log(error)
-    }
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	}
+	try {
+		const response = await fetch(url+'categorias/',options);
+		return response
+	} 
+	catch (error) {
+		console.log(error)
+	}
 }
 
 export const getTransaccionDetalles = async (id) =>{
@@ -318,4 +318,19 @@ export const borrarTransaccion = async (data) =>{
     }
 }
 
-
+export const crearCategoria = async (idFondo, categoria, moneda, limite) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url + 'limiteCategoria/',options);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}

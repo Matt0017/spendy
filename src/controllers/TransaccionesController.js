@@ -3,11 +3,11 @@ import { getTransaccionesFiltrado, crearTransaccion , getTransaccionDetalles, bo
 
 export default class TransaccionesController {
 	
-	contructor(){
+	contructor() {
 		this._transacciones = [];
 	}
 
-	eliminarTransacciones(){
+	eliminarTransacciones() {
 		this._transacciones = [];
 	}
 
@@ -37,7 +37,6 @@ export default class TransaccionesController {
 		this._transacciones = []
 		const transFiltrado = await this.getTransacciones(idFondo, filtros, context);
 		return transFiltrado;
-		
 	}
 
 
