@@ -1,75 +1,38 @@
 import Categoria from "../classes/Categoria";
-import { getCategorias, getIconos, getColores, crearCatCustom } from "../services/apiRoutes";
+import Limite from "../classes/Limite";
+import { getCategorias, getIconos, getColores, crearCatCustom, crearLimite, getLimites } from "../services/apiRoutes";
 
-export default class CategoriasController {
+export default class LimitesYObjetivosController {
 	
 	contructor(){
-		this._categorias = null;
+		this._limites = null;
 	}
 
-	async findCategoria(nombre, idFondo) {
-		const C = await this.getCategorias(idFondo);
-		return (C.find(
-			(c) => {
-				return c.nombre === nombre;
-			}
-		) || null);
-	}
-
-	async crearLimite(idfondo, moneda)
+	async crearLimite(idFondo, idCategoria, moneda, limite)
 	{
-		
-	}
-
-	async getLimites(idFondo, moneda)
-	{
-		const categorias = await getCategorias(idFondo);
-		
-		this._categorias = categorias.map(
-			(c) => {
-				return new Categoria({
-					id: c.idCategoria,
-					nombre: c.nombre,
-					icono: c.icono,
-					color: c.color,
-					isActive: true,
-					ineg: c.ineg
-				});
-			}
-		);
-		
-		return this._categorias;
-	}
-
-	async getCategoriasGastos(idFondo){
-		const categorias = await this.getCategorias(idFondo);
-		
-		return(categorias.filter( (c) => { return !this.isIngreso(c) }))
-	}
-
-	async getCategoriasIngreso(idFondo){
-		const categorias = await this.getCategorias(idFondo);
-		return (categorias.filter( (c) => { return this.isIngreso(c)}))
-	}
-
-	async getIconos(idFondo){
-		const iconos = await getIconos();
-		return iconos.json()
-	}
-
-	async getColores(idFondo){
-		const colores = await getColores();
-		return colores.json()
-	}
-
-	async crearCatCustom(data){
-		var validacion = false
-		const response = await crearCatCustom(data);
+		var validacion = false;
+		const response = await crearLimite(idFondo, idCategoria, moneda, limite);
 		if(response.status === 200) {
-            validacion = true;
-        }
-        return validacion
+			validacion = true;
+		}
+		return validacion
 	}
 
-	
+	async getLimites(idFondo, moneda, context)
+	{
+		const limites = await getLimites(idFondo, moneda);
+		const categorias = await context.CategoriasController.getCategorias(idFondo);
+		
+		this._limites = limites.map(
+			(l) => {
+				return new Limite({
+					id: idFondo + "_" + moneda + "_" + l.nombreCategoria,
+					limite: l.Limite,
+					monto: l.Gastado,
+					categoria: categorias.find( (c) => { return c.id === l.idCategoria })
+				})
+			}
+		)
+		return this._limites;
+	}
 }

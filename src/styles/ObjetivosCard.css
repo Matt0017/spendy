@@ -1,10 +1,10 @@
 .objetivos-container {
 	display: flex;
 	flex-direction: column;
+	background-color: #6E80B0 !important;
 }
 .objetivos-container .title-container {
 	width: 100%;
-	background-color: #6E80B0;
 	padding: 10px;
 }
 .objetivos-container .title-container .title {
@@ -15,7 +15,6 @@
 	font-weight: 300;
 }
 .objetivos-container .objetivos-list {
-	background-color: #6E80B0;
 	overflow-y: auto;
 }
 .objetivos-container .objetivos-list .loading {

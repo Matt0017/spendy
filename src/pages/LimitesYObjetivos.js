@@ -40,7 +40,7 @@ export default class LimitesYObjetivos extends React.Component {
 					<LimitesCard className='spendy-card limites-card'></LimitesCard>
 					<ObjetivosCard className='spendy-card objetivos-card'></ObjetivosCard>
 				</div>
-				<BotonFlotante openLimiteFn={()=>{this.openLimiteFn()}} openObjetivoFn={()=>{this.openObjetivoFn()}}/>
+				<BotonFlotante className='floating-button' openLimiteFn={()=>{this.openLimiteFn()}} openObjetivoFn={()=>{this.openObjetivoFn()}}/>
 				<Popup open={this.state.crearLimiteOpen} className='crear-limite-popup' onClose={()=>{this.closeLimiteFn()}}>
 					<CrearLimite closeFn={()=>{this.closeLimiteFn()}}/>
 				</Popup>
