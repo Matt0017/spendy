@@ -336,3 +336,33 @@ export const crearLimite = async (idFondo, categoria, moneda, limite) => {
         console.log(error)
     }
 }
+
+export const crearObjetivo = async (json) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+    }
+    try {
+        const response = await fetch(url + 'crearObjetivo/',options);
+        console.log(response)
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getObjetivos = async (idFondo, moneda) =>{
+    try {
+        const response = await fetch(url+'objetivosFondo/'+idFondo+'/'+moneda);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+

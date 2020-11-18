@@ -1,19 +1,10 @@
 import Categoria from "../classes/Categoria";
-import { getCategorias, getIconos, getColores, crearCatCustom } from "../services/apiRoutes";
+import { getCategorias, crearObjetivo, getObjetivos} from "../services/apiRoutes";
 
 export default class CategoriasController {
 	
 	contructor(){
 		this._categorias = null;
-	}
-
-	async findCategoria(nombre, idFondo) {
-		const C = await this.getCategorias(idFondo);
-		return (C.find(
-			(c) => {
-				return c.nombre === nombre;
-			}
-		) || null);
 	}
 
 	async crearLimite(idfondo, moneda)
@@ -41,34 +32,21 @@ export default class CategoriasController {
 		return this._categorias;
 	}
 
-	async getCategoriasGastos(idFondo){
-		const categorias = await this.getCategorias(idFondo);
+	async crearObjetivo(json){
+		console.log(json)
+		const response = await crearObjetivo(json);
 		
-		return(categorias.filter( (c) => { return !this.isIngreso(c) }))
+		var validacion = false;
+		if (response.status === 200){
+			validacion =true
+		}
+		return validacion
 	}
 
-	async getCategoriasIngreso(idFondo){
-		const categorias = await this.getCategorias(idFondo);
-		return (categorias.filter( (c) => { return this.isIngreso(c)}))
-	}
-
-	async getIconos(idFondo){
-		const iconos = await getIconos();
-		return iconos.json()
-	}
-
-	async getColores(idFondo){
-		const colores = await getColores();
-		return colores.json()
-	}
-
-	async crearCatCustom(data){
-		var validacion = false
-		const response = await crearCatCustom(data);
-		if(response.status === 200) {
-            validacion = true;
-        }
-        return validacion
+	async getObjetivos(idFondo, moneda){
+		const response = await getObjetivos(idFondo, moneda)
+		const json = await response.json()
+		return json
 	}
 
 	

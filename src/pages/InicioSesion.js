@@ -4,7 +4,6 @@ import logo from '../images/logo.png';
 import '../styles/InicioSesion.css';
 import {Link} from 'react-router-dom'
 
-import {getUsuario} from '../services/apiRoutes'
 import { GlobalContext } from "../controllers/Context";
 import { Alert } from "@material-ui/lab";
 

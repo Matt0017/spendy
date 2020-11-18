@@ -1,3 +1,5 @@
+
+
 .objetivos-container {
 	display: flex;
 	flex-direction: column;
@@ -67,4 +69,63 @@
 }
 .objetivos-container .objetivos-list .objetivo-item .current.out {
 	color: #6E80B0;
+}
+
+.crear-objetivo{
+	width: 500px;
+	background-color: #f4f4f4;
+	border-radius: 10px;
+	padding: 20px 20px;
+	margin: 0 16px;
+	position: relative;
+}
+
+.crear-objetivo .titulo{
+	width: 100%;
+    padding: 10px;
+    padding-bottom: 5px;
+    text-align: center;
+    color: #6E80B0;
+    font-size: 1.5em;
+}
+
+@media(max-width:565px){
+	.crear-objetivo{
+		width: 350px;
+	}
+}
+
+.crear-objetivo input{
+	border: none;
+	text-decoration: none;
+	border-radius: 25px;
+	width: 100%;
+	padding: 10px;
+	box-shadow: 0 0 5px -3px black;
+}
+
+.crear-objetivo .seleccion{
+	font-size: 15px;
+	color: #6E80B0;
+}
+
+.crear-objetivo .icons-list {
+	overflow-x: auto;
+}
+.crear-objetivo .icons-list .icon {
+	display: inline-block;
+	margin: 2px;
+	width: 25px;
+	height: 25px;
+}
+.crear-objetivo .colors-list {
+	overflow-x: auto;
+}
+.crear-objetivo .colors-list .color {
+	display: inline-block;
+	margin: 2px;
+	border-radius: 100px;
+	padding: 4px;
+	width: 28px;
+	height: 28px;
 }
