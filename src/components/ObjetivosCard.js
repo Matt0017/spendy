@@ -172,6 +172,7 @@ export class CrearObjetivo extends React.Component {
 					/>
 				</div>
 				<div className='m-2 text-right'>
+					<button className='button-s' onClick={() => {this.props.closeFn()}}>Atras</button>
 					<button className='button-alt' onClick={this.CrearObjetivo.bind(this)}>Crear Objetivo</button>
 				</div>
 				
@@ -251,7 +252,7 @@ export default class ObjetivosCard extends React.Component {
 		const categorias = await this.context.CategoriasController.getCategoriasGastos(fondo.id);
 		const moneda = await this.context.FondosController.getMoneda();
 		const objetivos = await this.context.LimitesYObjetivosController.getObjetivos(fondo.id,moneda);
-		console.log(objetivos[0], categorias)
+		console.log(objetivos)
 		this.setState({
 			objetivos: objetivos.map(
 				(o) => {
