@@ -1,6 +1,6 @@
 import Categoria from "../classes/Categoria";
 import Limite from "../classes/Limite";
-import { getCategorias, crearObjetivo, getObjetivos, getCategorias, getIconos, getColores, crearCatCustom, crearLimite, getLimites } from "../services/apiRoutes";
+import { crearObjetivo, getObjetivos, crearLimite, getLimites } from "../services/apiRoutes";
 
 export default class LimitesYObjetivosController {
 	
