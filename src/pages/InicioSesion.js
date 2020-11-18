@@ -4,7 +4,6 @@ import logo from '../images/logo.png';
 import '../styles/InicioSesion.css';
 import {Link} from 'react-router-dom'
 
-import {getUsuario} from '../services/apiRoutes'
 import { GlobalContext } from "../controllers/Context";
 import { Alert } from "@material-ui/lab";
 
@@ -55,13 +54,13 @@ export default class InicioSesion extends React.Component{
                     </div>
                     <div className="col">
                         {(() => {
-                            if (this.state.alert){
-                                return (
-                                    <Alert variant="filled" severity="error">
-                                        Los datos no son correctos, por favor volvé a ingresarlos.
-                                    </Alert>
-                                )
-                            }
+							if (this.state.alert){
+								return (
+									<Alert variant="filled" severity="error">
+										Los datos no son correctos, por favor volvé a ingresarlos.
+									</Alert>
+								)
+							}
                             
                             return null;
                         })()}

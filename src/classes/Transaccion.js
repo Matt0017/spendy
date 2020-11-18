@@ -8,7 +8,7 @@ export default class Transaccion {
 	}
 
 	get_fechaString() { 
-		return this.fecha.getDate() + "/" + this.fecha.getMonth() + "/" + this.fecha.getFullYear();
+		return this.fecha.getDate() + "/" + (((this.fecha.getMonth()+1) < 10 ? "0" : "") + (this.fecha.getMonth()+1)) + "/" + this.fecha.getFullYear();
 	}
 
 	isGasto() {

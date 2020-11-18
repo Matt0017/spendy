@@ -102,9 +102,9 @@ export default class GastosPorCategoria extends React.Component {
 					<div
 						className={'option ' + (this.state.option === 'year' ? 'selected' : '')}
 						onClick={() => { this.getYear(); }}>año</div>
-					<div
+					{/* <div
 						className={'option ' + (this.state.option === 'custom' ? 'selected' : '')}
-						onClick={() => { this.getCustom(); }}>personalizado</div>
+						onClick={() => { this.getCustom(); }}>personalizado</div> */}
 				</div>
 				<div className='body'>
 					{

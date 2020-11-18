@@ -4,13 +4,15 @@ import CategoriasController from './CategoriasController';
 import FondosController from './FondosController';
 import EstadisticasController from './EstadisticasController';
 import UsuariosController from './UsuariosController';
+import LimitesYObjetivosController from './LimitesYObjetivosController';
 
 const globalState = {
 	FondosController: new FondosController(),
 	CategoriasController: new CategoriasController(),
 	TransaccionesController: new TransaccionesController(),
 	UsuariosController: new UsuariosController(),
-	EstadisticasController: new EstadisticasController()
+	EstadisticasController: new EstadisticasController(),
+	LimitesYObjetivosController: new LimitesYObjetivosController()
 };
 
 export const GlobalContext = React.createContext(globalState);

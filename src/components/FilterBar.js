@@ -25,7 +25,7 @@ export default class FilterBar extends React.Component {
 
 	handleChange = async (event) => {
 		const {name, value} = event.target;
-       	await this.setState({
+		await this.setState({
             [name]: value,
 		})
 		await this.filtrar()

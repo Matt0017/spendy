@@ -275,20 +275,20 @@ export const getColores = async () =>{
 }
 
 export const crearCatCustom = async (data) =>{
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }
-    try {
-        const response = await fetch(url+'categorias/',options);
-        return response
-    } 
-    catch (error) {
-        console.log(error)
-    }
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	}
+	try {
+		const response = await fetch(url+'categorias/',options);
+		return response
+	} 
+	catch (error) {
+		console.log(error)
+	}
 }
 
 export const getTransaccionDetalles = async (id) =>{
@@ -318,4 +318,74 @@ export const borrarTransaccion = async (data) =>{
     }
 }
 
+export const crearLimite = async (idFondo, idCategoria, moneda, limite) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+			idFondo: idFondo,
+			moneda: moneda,
+			limiteCategoria: limite
+		})
+    }
+    try {
+		const response = await fetch(url + 'limiteCategoria/' + idCategoria, options);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
 
+export const crearObjetivo = async (json) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+    }
+    try {
+        const response = await fetch(url + 'crearObjetivo/',options);
+        console.log(response)
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getObjetivos = async (idFondo, moneda) =>{
+    try {
+        const response = await fetch(url+'objetivosFondo/'+idFondo+'/'+moneda);
+        return response
+    } 
+    catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const getLimites = async (idFondo, moneda) => {
+	try {
+		const response = await fetch(url + 'getCategoriasLimiteActualTEST/' + idFondo,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				moneda: moneda
+			})
+		});
+		const json = await response.json();
+
+		return json;
+	}
+	catch (error) {
+		console.error(error);
+	}
+}

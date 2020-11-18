@@ -25,7 +25,7 @@ export default class Categorias extends React.Component {
 							<div className='icon-container'>
 								<FontAwesomeIcon color={categoria.name === selName? 'white' : categoria.color} className='icon' icon={categoria.iconName} size='2x'/>
 							</div>
-							<div style={{color: categoria.name === selName? 'white' : categoria.color}} className='texto'><span>{categoria.name}</span></div>
+							<div style={{color: categoria.name === selName? 'white' : categoria.color}} className='texto'><span style={{"white-space": nowrap}}>{categoria.name}</span></div>
 						</div>
 					</div>
 				);
