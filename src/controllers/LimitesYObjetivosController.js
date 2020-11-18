@@ -1,35 +1,39 @@
 import Categoria from "../classes/Categoria";
-import { getCategorias, crearObjetivo, getObjetivos} from "../services/apiRoutes";
+import Limite from "../classes/Limite";
+import { getCategorias, crearObjetivo, getObjetivos, getCategorias, getIconos, getColores, crearCatCustom, crearLimite, getLimites } from "../services/apiRoutes";
 
-export default class CategoriasController {
+export default class LimitesYObjetivosController {
 	
 	contructor(){
-		this._categorias = null;
+		this._limites = null;
 	}
 
-	async crearLimite(idfondo, moneda)
+	async crearLimite(idFondo, idCategoria, moneda, limite)
 	{
-		
+		var validacion = false;
+		const response = await crearLimite(idFondo, idCategoria, moneda, limite);
+		if(response.status === 200) {
+			validacion = true;
+		}
+		return validacion
 	}
 
-	async getLimites(idFondo, moneda)
+	async getLimites(idFondo, moneda, context)
 	{
-		const categorias = await getCategorias(idFondo);
+		const limites = await getLimites(idFondo, moneda);
+		const categorias = await context.CategoriasController.getCategorias(idFondo);
 		
-		this._categorias = categorias.map(
-			(c) => {
-				return new Categoria({
-					id: c.idCategoria,
-					nombre: c.nombre,
-					icono: c.icono,
-					color: c.color,
-					isActive: true,
-					ineg: c.ineg
-				});
+		this._limites = limites.map(
+			(l) => {
+				return new Limite({
+					id: idFondo + "_" + moneda + "_" + l.nombreCategoria,
+					limite: l.Limite,
+					monto: l.Gastado,
+					categoria: categorias.find( (c) => { return c.id === l.idCategoria })
+				})
 			}
-		);
-		
-		return this._categorias;
+		)
+		return this._limites;
 	}
 
 	async crearObjetivo(json){

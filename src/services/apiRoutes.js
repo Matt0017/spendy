@@ -318,18 +318,20 @@ export const borrarTransaccion = async (data) =>{
     }
 }
 
-export const crearLimite = async (idFondo, categoria, moneda, limite) => {
+export const crearLimite = async (idFondo, idCategoria, moneda, limite) => {
     const options = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-			
+			idFondo: idFondo,
+			moneda: moneda,
+			limiteCategoria: limite
 		})
     }
     try {
-        const response = await fetch(url + 'limiteCategoria/',options);
+		const response = await fetch(url + 'limiteCategoria/' + idCategoria, options);
         return response
     } 
     catch (error) {
@@ -366,3 +368,24 @@ export const getObjetivos = async (idFondo, moneda) =>{
     }
 }
 
+
+export const getLimites = async (idFondo, moneda) => {
+	try {
+		const response = await fetch(url + 'getCategoriasLimiteActualTEST/' + idFondo,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				moneda: moneda
+			})
+		});
+		const json = await response.json();
+
+		return json;
+	}
+	catch (error) {
+		console.error(error);
+	}
+}
