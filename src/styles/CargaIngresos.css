@@ -167,6 +167,9 @@
 .carga-ingresos .buttons .confirmar { 
 	width: 130px;
 }
+.carga-ingresos .buttons .confirmar.disabled { 
+	padding-left: 50px;
+}
 .carga-ingresos .buttons .cancelar {
 	width: 130px;
 	margin-right: 20px;
