@@ -19,7 +19,7 @@ export default class UsuariosController {
         return validacion
     }
 
-    async getUsuarioLogged(){
+    getUsuarioLogged(){
         if (!this._usuarioLogged || !this._usuarioLogged.length)
 		{
             this._usuarioLogged = JSON.parse(sessionStorage.getItem('usuario'))

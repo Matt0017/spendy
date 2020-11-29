@@ -92,6 +92,12 @@ export class CrearObjetivo extends React.Component {
 	render() {
 		return(
 			<div className='floating-container crear-objetivo'>
+				<div className='titulo'>
+					<h3>Cargar Objetivo</h3>
+				</div>
+				<div className='descr'>
+					Los objetivos de ahorro te ayudarán a definir un monto que quieres alcanzar y al que podrás cargar dinero para cumplir tu meta.
+				</div>
 				{(() => {
 					if (this.state.alert){
 						return (
@@ -103,9 +109,6 @@ export class CrearObjetivo extends React.Component {
 					
 					return null;
 				})()}
-				<div className='titulo'>
-					<h3>Cargar Objetivo</h3>
-				</div>
 				<div><input type='text' placeholder='Nombre' value={this.state.nombreObjetivo} name='nombreObjetivo' onChange={this.handleChange}></input></div>
 				<div className='seleccion'>Seleccione un icono</div>
 				<div className='icons-list'>
@@ -172,8 +175,8 @@ export class CrearObjetivo extends React.Component {
 					/>
 				</div>
 				<div className='m-2 text-right'>
-					<button className='button-s' onClick={() => {this.props.closeFn()}}>Atras</button>
-					<button className='button-alt' onClick={this.CrearObjetivo.bind(this)}>Crear Objetivo</button>
+					<button className='button-s back' onClick={() => {this.props.closeFn()}}>Atras</button>
+					<button className='button-alt oki' onClick={this.CrearObjetivo.bind(this)}>Crear Objetivo</button>
 				</div>
 				
 			</div>

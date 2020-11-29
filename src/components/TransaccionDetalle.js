@@ -53,7 +53,7 @@ class TransaccionDetalle extends React.Component {
 						<b>Ingresado por:</b> {this.state.integrante}
 					</div>
 					<div>
-						<b>Fecha:</b> {this.state.fecha.getDate() + '/' + this.state.fecha.getMonth() + '/' + this.state.fecha.getFullYear()}
+						<b>Fecha:</b> {this.state.fecha.getDate() + '/' + (this.state.fecha.getMonth()+1) + '/' + this.state.fecha.getFullYear()}
 					</div>
 					<div className='descripcion'>
 						<b>Descripción:</b> <br/>{(this.state.notas) && this.state.notas}

@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import '../styles/TransaccionItem.css'
+import NumberFormat from 'react-number-format';
 
 export default class TransaccionItem extends React.Component {
 
@@ -24,7 +25,7 @@ export default class TransaccionItem extends React.Component {
 					</div>
 				</div>
 				<div className={'monto ' + (trans.isGasto() ? "gasto" : "ingreso")}>
-					{monto}
+					<NumberFormat value={monto} displayType='text' thousandSeparator='.' decimalSeparator=',' decimalScale={2} fixedDecimalScale={true} prefix={this.props.moneda}/>
 				</div>
 			</div>
 		);

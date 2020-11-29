@@ -17,6 +17,10 @@ export default class EstadisticasController {
 					}
 				)
 			}
+		).sort(
+			(a, b) => {
+				return a.fecha.getTime() - b.fecha.getTime();
+			}
 		);
 	}
 

@@ -9,6 +9,7 @@ import CargaIngresos from './CargaIngresos.js';
 import BotonFlotante from './BotonFlotante.js';
 import '../styles/TransaccionesCard.css'
 import FilterBar from './FilterBar.js';
+import NumberFormat from 'react-number-format';
 
 class TransaccionesCard extends React.Component {
 	static contextType = GlobalContext;
@@ -21,7 +22,7 @@ class TransaccionesCard extends React.Component {
 			filtersOpen: false,
 			transaccionSeleccionada: null,
 			gastosOpen: false,
-			transacciones: [],
+			transacciones: null,
 			ingresosOpen: false,
 			fondo: null,
 			moneda: '',
@@ -130,9 +131,9 @@ class TransaccionesCard extends React.Component {
 										if(moneda === 'Pesos'){
 											return(
 											<div>
-												AR$
 												<div className='total-actual'>
-													<span className='full'>{Math.trunc(this.state.fondo.pesos)}</span>
+													<NumberFormat value={this.state.fondo.pesos} className="full" displayType='text' thousandSeparator='.' decimalSeparator=',' decimalScale={2} fixedDecimalScale={true} prefix='ARS $'/>
+													{/* <span className='full'>{Math.trunc(this.state.fondo.pesos)}</span>
 													<span className='cents'><sup>
 														{()=>{
 															const num = this.state.fondo.pesos
@@ -141,16 +142,16 @@ class TransaccionesCard extends React.Component {
 															console.log(res)
 															return(res)
 														}
-														}</sup></span>
+														}</sup></span> */}
 												</div>
 											</div>)
 										}
 										else if(moneda === 'Dolares'){
 											return(
 												<div>
-													U$S
 													<div className='total-actual'>
-														<span className='full'>{Math.trunc(this.state.fondo.dolares)}</span>
+														<NumberFormat value={this.state.fondo.dolares} className="full" displayType='text' thousandSeparator='.' decimalSeparator=',' decimalScale={2} fixedDecimalScale={true} prefix='USD $'/>
+														{/* <span className='full'>{Math.trunc(this.state.fondo.dolares)}</span>
 														<span className='cents'><sup>
 															{()=>{
 																const num = this.state.fondo.dolares
@@ -159,7 +160,7 @@ class TransaccionesCard extends React.Component {
 																console.log(res)
 																return(res)
 															}
-															}</sup></span>
+															}</sup></span> */}
 													</div>
 												</div>
 											)
@@ -167,9 +168,9 @@ class TransaccionesCard extends React.Component {
 										else if(moneda === 'Euros'){
 											return(
 												<div>
-													€
 													<div className='total-actual'>
-														<span className='full'>{Math.trunc(this.state.fondo.euros)}</span>
+														<NumberFormat value={this.state.fondo.euros} className="full" displayType='text' thousandSeparator='.' decimalSeparator=',' decimalScale={2} fixedDecimalScale={true} prefix='EUR €'/>
+														{/* <span className='full'>{Math.trunc(this.state.fondo.euros)}</span>
 														<span className='cents'><sup>
 															{()=>{
 																const num = this.state.fondo.euros
@@ -178,7 +179,7 @@ class TransaccionesCard extends React.Component {
 																console.log(res)
 																return(res)
 															}
-															}</sup></span>
+															}</sup></span> */}
 													</div>
 												</div>
 											)
@@ -212,17 +213,29 @@ class TransaccionesCard extends React.Component {
 						<FilterBar  filtrarFn={this.filtrado.bind(this)}></FilterBar>
 					</div>
 				</div>
-				<div className='lista-container'>
+				<div className='lista-container fill'>
+					<div className='loading-container fill' style={{ display: this.state.transacciones == null? 'flex' : 'none'}}>
+						<div className='loading'>Cargando...</div>
+					</div>
+					<div className='empty-container fill' 
+						style={{ display: this.state.transacciones != null && this.state.transacciones.length == 0? 'flex' : 'none'}}
+					>
+						<div className='empty'>Parece que aún no hay ninguna transacción</div>
+					</div>
 					<ul className='lista'>
-						{this.state.transacciones.map(
-							(value, index) => {
-								return (
-									<li key={index} className='transaccion-li' onClick={() => { this.openDetalleTransaccion(value); }}>
-										<TransaccionItem transaccion={value}/>
-									</li>
-								);
-							}
-						)}
+						{this.state.transacciones != null && this.state.transacciones.length > 0?
+							this.state.transacciones.map(
+								(value, index) => {
+									return (
+										<li key={index} className='transaccion-li' onClick={() => { this.openDetalleTransaccion(value); }}>
+											<TransaccionItem moneda={this.state.moneda === 'Euros' ? '€' : '$'} transaccion={value}/>
+										</li>
+									);
+								}
+							)
+							:
+							<div></div>
+						}
 					</ul>
 					<Popup open={this.state.detailOpen} className='transaccion-popup' onClose={() => {this.setState({ detailOpen: false })}}>
 						
@@ -233,12 +246,12 @@ class TransaccionesCard extends React.Component {
 					</Popup>
 					<Popup open={this.state.gastosOpen} className='cargar-gastos-popup' onClose={() => {this.setState({ gastosOpen: false })}}>
 						<CargaGastos
-							moneda='AR$'
+							moneda='ARS'
 							closeFunc={() => {this.closeAgregarGasto()}}/>
 					</Popup>
 					<Popup open={this.state.ingresosOpen} className='cargar-ingresos-popup' onClose={() => {this.setState({ ingresosOpen: false })}}>
 						<CargaIngresos
-							moneda='AR$'
+							moneda='ARS'
 							closeFunc={() => {this.closeAgregarIngreso()}}/>
 					</Popup>
 				</div>

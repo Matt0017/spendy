@@ -180,7 +180,24 @@
 .transacciones-container .lista-container {
 	overflow-y: auto;
 }
-
+.transacciones-container .lista-container .loading-container {
+	background-color: #f2f2f9;
+	color: #6E80B0;
+}
+.transacciones-container .lista-container .loading-container .loading {
+	font-size: 1.5em;
+	padding-bottom: 20px;
+	margin: auto;
+}
+.transacciones-container .lista-container .empty-container {
+	background-color: #f2f2f9;
+	color: #6E80B0;
+}
+.transacciones-container .lista-container .empty-container .empty {
+	font-size: 1.5em;
+	padding-bottom: 20px;
+	margin: auto;
+}
 .transacciones-container .lista-container .lista {
 	width: 90%;
 	height: auto;
@@ -207,11 +224,4 @@
 }
 .transaccion-popup.open {
 	visibility: visible;
-}
-
-.botonFlotante{
-	color: #FFA513;
-	position: fixed;
-	bottom: 0;
-	right: 0;
 }

@@ -45,7 +45,7 @@ export default class LimitesYObjetivos extends React.Component {
 					<CrearLimite closeFn={()=>{this.closeLimiteFn()}}/>
 				</Popup>
 				<Popup open={this.state.crearObjetivoOpen} className='crear-objetivo-popup' onClose={()=>{this.closeObjetivoFn()}}>
-					<CrearObjetivo/>
+					<CrearObjetivo closeFn={()=>{this.closeObjetivoFn()}}/>
 				</Popup>
 			</div>
 		);

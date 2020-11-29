@@ -37,6 +37,7 @@
 }
 .limites-container .limites-list .loading {
 	background-color: #f2f2f9;
+	color: #6E80B0;
 	display: flex;
 }
 .limites-container .limites-list .loading .loading-text {
@@ -106,6 +107,15 @@
 	text-align: center;
 	color: #6E80B0;
 	font-size: 1.5em;
+}
+.crear-limite .descr {
+	width: 100%;
+	padding: 20px;
+	padding-top: 0px;
+	padding-bottom: 5px;
+	text-align: center;
+	color: #1a2030;
+	font-size: 0.925em;
 }
 .crear-limite .amount-input-container {
 	width: fit-content;

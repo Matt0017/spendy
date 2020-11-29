@@ -52,22 +52,22 @@ export default function ControlledOpenSelect(props) {
     setOpen(true);
   };
 
-  return (
+return (
     <div>
-      <FormControl className={classes.formControl}>
+		<FormControl className={classes.formControl}>
         <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={moneda}
-          onChange={handleChange}
-          className={classes.seleccion}
+			labelId="demo-controlled-open-select-label"
+			id="demo-controlled-open-select"
+			open={open}
+			onClose={handleClose}
+			onOpen={handleOpen}
+			value={moneda}
+			onChange={handleChange}
+			className={classes.seleccion}
         >
-          <MenuItem value={'Pesos'}>Pesos</MenuItem>
-          <MenuItem value={'Dolares'}>Dolar</MenuItem>
-          <MenuItem value={'Euros'}>Euro</MenuItem>
+			<MenuItem value={'Pesos'}>Pesos</MenuItem>
+			<MenuItem value={'Dolares'}>Dolar</MenuItem>
+			<MenuItem value={'Euros'}>Euro</MenuItem>
         </Select>
       </FormControl>
     </div>

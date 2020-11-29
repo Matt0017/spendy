@@ -22,16 +22,14 @@ const useStyles = makeStyles((theme) => ({
     '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
         bottom: theme.spacing(2),
         right: theme.spacing(2),
-        
-        
     },
     '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
-      top: theme.spacing(2),
-      left: theme.spacing(2),
+		top: theme.spacing(2),
+		left: theme.spacing(2),
     },
   },
   botonFlotante: {
-    backgroundColor: orange[400],
+    backgroundColor: "#FFA513",
     color: orange[50],
   }
 
@@ -71,7 +69,12 @@ export default function SpeedDials(props) {
       <div className={classes.exampleWrapper}>
         <SpeedDial
           ariaLabel="SpeedDial example"
-          className={classes.speedDial + ' boton-flotante'}
+		  className={classes.speedDial + ' boton-flotante'}
+		  FabProps={{
+				style: {
+					backgroundColor: "#FFA513"
+				}
+			}}
           icon={<SpeedDialIcon className={classes.botonFlotante}/>}
           onClose={handleClose}
           onOpen={handleOpen}

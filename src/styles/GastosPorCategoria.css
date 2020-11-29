@@ -1,4 +1,5 @@
 .gxc {
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -30,5 +31,14 @@
 }
 
 .gxc .body {
-
+	height: 100%;
+}
+.gxc .body .text-cont {
+	display: flex;
+} 
+.gxc .body .text-in {
+	margin: auto;
+	color: #6E80B0;
+	padding-bottom: 15px;
+	font-size: 1.1em;
 }

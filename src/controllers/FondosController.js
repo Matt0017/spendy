@@ -27,7 +27,7 @@ export default class FondosController{
 			codigo:f.codigo_fondo,
 			pesos: f.dineroPesos,
 			dolares: f.dineroDolares,
-			euros: f.dineroDolares
+			euros: f.dineroEuros
 		});
 		this.selectFondo(fondo)
 		return this.getSelected()
@@ -74,7 +74,7 @@ export default class FondosController{
 						codigo:f.codigo_fondo,
 						pesos: f.dineroPesos,
 						dolares: f.dineroDolares,
-						euros: f.dineroDolares,
+						euros: f.dineroEuros,
 						idUser_create: f.idUser_create
 					});
 				}

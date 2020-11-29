@@ -48,10 +48,3 @@
 	right: 32px;
 	bottom: 31px;
 }
-.limites-objetivos .boton-flotante .MuiFab-primary, .boton-flotante .MuiFab-primary:hover {
-	background-color: white;
-}
-.limites-objetivos span.MuiSpeedDialIcon-root {
-	background-color: white;
-	color: #6E80B0;
-}

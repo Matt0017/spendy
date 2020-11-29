@@ -68,6 +68,9 @@ export class CrearLimite extends React.Component {
 				<div className='title'>
 					Crear Nuevo Limite
 				</div>
+				<div className='descr'>
+					Agregá un límite a alguna categoría para recibir notificaciones cuando te acerques al mismo.
+				</div>
 				{
 					this.state.alert.length > 0 ?
 						<Alert variant="filled" severity="error">
@@ -76,7 +79,6 @@ export class CrearLimite extends React.Component {
 					:
 						null
 				}
-
 				<div className='amount-input-container'>
 					<NumberFormat value={this.state.monto} className='amount-input' onValueChange={ (v) => { this.setState({ monto: (v.floatValue || 0) })}} thousandSeparator='.' decimalSeparator=',' decimalScale={2} fixedDecimalScale={true} prefix='$'/>
 				</div>

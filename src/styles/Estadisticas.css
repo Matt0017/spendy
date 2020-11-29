@@ -18,7 +18,7 @@
 
 .estadisticas .dashboard .spendy-card.category-card {
 	grid-column-start: 1;
-	grid-column-end: 3;
+	grid-column-end: 4;
 	grid-row-start: 1;
 	grid-row-end: 1;
 }

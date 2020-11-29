@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import { orange } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 import '../styles/BotonFlotante.css'
 import { AddAlarm, TrackChanges } from '@material-ui/icons';
 
@@ -30,8 +30,8 @@ speedDial: {
 	},
 },
 botonFlotante: {
-	backgroundColor: orange[400],
-	color: orange[50],
+	color: "#6E80B0",
+	backgroundColor: "white",
 }
 
 }));
@@ -69,6 +69,11 @@ return (
 		<SpeedDial
 		ariaLabel="SpeedDial example"
 		className={classes.speedDial + ' boton-flotante'}
+		FabProps={{
+			style: {
+				backgroundColor: "white"
+			}
+		}}
 		icon={<SpeedDialIcon className={classes.botonFlotante}/>}
 		onClose={handleClose}
 		onOpen={handleOpen}

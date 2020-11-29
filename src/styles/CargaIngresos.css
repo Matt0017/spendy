@@ -139,6 +139,7 @@
 }
 .carga-ingresos .description {
 	height: 100px;
+	padding: 2px 4px;
 	margin: 0 20px;
 }
 .carga-ingresos .gastos-type {

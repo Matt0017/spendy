@@ -64,7 +64,7 @@ class Estadisticas extends React.Component {
 									boundaryGap: false,
 									data: this.state.historyData.map(
 										(g) => {
-											return g.fecha.getDate() + '/' + g.fecha.getMonth() + '/' + g.fecha.getFullYear() 
+											return g.fecha.getDate() + '/' + (g.fecha.getMonth()+1) + '/' + g.fecha.getFullYear() 
 										}
 									)
 								},

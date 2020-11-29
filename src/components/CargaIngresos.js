@@ -1,15 +1,20 @@
 import React from 'react';
-import DatePicker from "react-datepicker";
+import ReactLoading from 'react-loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/CargaIngresos.css'
 import "react-datepicker/dist/react-datepicker.css";
 import { GlobalContext } from '../controllers/Context';
+import NumberFormat from 'react-number-format';
+import { TextField } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 export default class CargaIngresos extends React.Component {
 	static contextType = GlobalContext;
 	constructor(props) {
 		super(props);
 		this.state = {
+			creando: false,
+			alert: '',
 			showNewCategory: false,
 			new_icon: '',
 			new_color: '',
@@ -19,10 +24,14 @@ export default class CargaIngresos extends React.Component {
 			categoriaCustom: '',
 			monto: '',
 			categoria: null,
-			fecha: '',
+			fecha: this.fechaToStringValue(new Date()),
 			notas: ''
-
 		}
+	}
+
+	fechaToStringValue(date)
+	{
+		return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
 	}
 
 	newCategory() {
@@ -85,19 +94,43 @@ export default class CargaIngresos extends React.Component {
 	}
 	
 	async crearTransaccion(){
-		const json = {
-			monto: this.state.monto,
-			categoria: this.state.categoria.id,
-			fecha: this.state.fecha,
-			notas: this.state.notas,
+		if (this.state.creando) return;
+		
+		let alert = '' 
+		if (this.state.monto <= 0) {
+			alert = 'Ingrese un monto valido de gasto.';
+		} else if (this.state.categoria == null) {
+			alert = 'Seleccione la categoría sobre la cual se realizó el gasto.';
 		}
-		const fondo = this.context.FondosController.getSelected().id;
-		const moneda = this.context.FondosController.getMoneda();
-		const usuario = (await this.context.UsuariosController.getUsuarioLogged()).idUser
 
-		const validacion = await this.context.TransaccionesController.agregarTransaccion(usuario,fondo,json.categoria,json.monto,json.notas,moneda, json.fecha)
-		if(validacion){
-			window.location.reload()
+		if (alert) {
+			this.setState({
+				alert: alert
+			})
+		} else {
+			const json = {
+				monto: this.state.monto,
+				categoria: this.state.categoria.id,
+				fecha: this.state.fecha,
+				notas: this.state.notas,
+			}
+
+			this.setState({
+				creando: true
+			});
+
+			const fondo = this.context.FondosController.getSelected().id;
+			const moneda = this.context.FondosController.getMoneda();
+			const usuario = (await this.context.UsuariosController.getUsuarioLogged()).idUser
+
+			const validacion = await this.context.TransaccionesController.agregarTransaccion(usuario,fondo,json.categoria,json.monto,json.notas,moneda, json.fecha)
+			if(validacion){
+				window.location.reload()
+			} else {
+				this.setState({
+					creando: false
+				});
+			}
 		}
 	}
 
@@ -121,17 +154,17 @@ export default class CargaIngresos extends React.Component {
 					<h3>Cargar Ingreso</h3>
 					<span>Ingresa el monto y la categoria de tu ingreso</span>
 				</div>
+				{
+					this.state.alert.length > 0 ?
+						<Alert variant="filled" severity="error">
+							{this.state.alert}
+						</Alert>
+					:
+						null
+				}
 				<div className='amount'>
 					<div className='moneda'>{this.props.moneda}</div>
-					<input 
-					className='cantidad-input' 
-					placeholder='0' 
-					type='number' 
-					min={0} 
-					name='monto'
-					value={this.state.monto}
-					onChange={this.handleChange}
-					/>
+					<NumberFormat value={this.state.monto} className='cantidad-input' onValueChange={ (v) => { this.setState({ monto: (v.floatValue || 0) })}} thousandSeparator='.' decimalSeparator=',' decimalScale={2} fixedDecimalScale={true} prefix='$'/>
 					<FontAwesomeIcon className='delete-button' size='2x' icon='backspace' onClick={()=> {this.setState({cantidad: ''})}}/>
 				</div>
 				{
@@ -226,19 +259,25 @@ export default class CargaIngresos extends React.Component {
 				</div>
 				
 				}
-				<div className='description-title'>Fecha</div>
+				{/* <div className='description-title'>Fecha</div> */}
 				<div className='fecha'>
-					<DatePicker
+					<TextField
+						id="date"
+						type="date"
+						label='fecha'
 						className='date-picker'
-						selected={this.state.date}
-						name='fecha'
+						name="fecha"
 						value={this.state.fecha}
-						onChange={(date) => {
-
-							this.setState({ fecha: date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()   })
-						}}/>
+						onChange={(p) => {
+							const date = p.target.value;
+							this.setState({ fecha: date})
+						}}
+						InputLabelProps={{
+							shrink: true,
+						}}
+					/>
 				</div>
-				<div className='description-title'>Notas</div>
+				<div className='description-title'></div>
 				<textarea 
 				className='description' 
 				maxLength={140} 
@@ -248,7 +287,14 @@ export default class CargaIngresos extends React.Component {
 				onChange={this.handleChange}
 				/>
 				<div className='buttons'>
-					<button className='button-p confirmar' onClick={() => { this.crearTransaccion(); }}>Confirmar</button>
+					<button className={'button-p confirmar ' + (this.state.creando ? 'disabled' : '')} onClick={() => { this.crearTransaccion(); }}>
+						{
+							this.state.creando ?
+								<ReactLoading type='bubbles' height={30} width={30}/>
+							:
+								'Confirmar'
+						}	
+					</button>
 					<button className='button-s cancelar' onClick={() => { this.props.closeFunc(); }}>Cancelar</button>
 				</div>
 			</div>

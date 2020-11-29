@@ -16,7 +16,7 @@ export default class GastosPorCategoria extends React.Component {
 
 		this.state = {
 			option: 'day',
-			data: []
+			data: null
 		}
 	}
 	
@@ -25,8 +25,13 @@ export default class GastosPorCategoria extends React.Component {
 	}
 
 	async updateData() {
+		this.setState({
+			data: null
+		});
+
 		const fondo = this.context.FondosController.getSelected();
-		const gastos = await this.context.EstadisticasController.getGastosPorCategoria(fondo.id, this._inicio, this._fin, 'pesos', this.context);
+		const moneda = this.context.FondosController.getMoneda();
+		const gastos = await this.context.EstadisticasController.getGastosPorCategoria(fondo.id, this._inicio, this._fin, moneda, this.context);
 
 		this.setState({
 			data: gastos
@@ -35,7 +40,7 @@ export default class GastosPorCategoria extends React.Component {
 
 	getDay() {
 		this.setState({
-			option: 'day'
+			option: 'day',
 		});
 
 		this._inicio = new Date();
@@ -109,40 +114,52 @@ export default class GastosPorCategoria extends React.Component {
 				<div className='body'>
 					{
 						this.state.option !== 'custom' ? (
-							<div>
-								<ReactEcharts
-									option={{
-										legend: {
-											type: 'scroll',
-											orient: 'vertical',
-											left: 10,
-											top: 20,
-											bottom: 20,
-											data: this.state.data.map(
-												(g) => {
-													return g.categoria.nombre;
-												}
-											),
-										},
-										color: this.state.data.map(
-											(g) => {
-												return g.categoria.color;
-											}
-										),
-										series: [{ 
-											name: 'gastos',
-											type: 'pie',
-											center: ['60%', '50%'],
-											data: this.state.data.map(
-												(g) => {
-													return {
-														name: g.categoria.nombre,
-														value: Math.abs(g.monto)
-													};
-												}
-											)
-										}]
-									}}/>
+							<div className='fill'>
+								{
+									this.state.data == null ?
+										<div className='text-cont fill'>
+											<div className='text-in'>Cargando...</div>
+										</div>
+									:
+										this.state.data.length == 0 ?
+											<div className='text-cont fill'>
+												<div className='text-in'>No hubieron gastos durante este periodo de tiempo.</div>
+											</div>
+										:
+											<ReactEcharts
+											option={{
+												legend: {
+													type: 'scroll',
+													orient: 'vertical',
+													left: 10,
+													top: 20,
+													bottom: 20,
+													data: this.state.data.map(
+														(g) => {
+															return g.categoria.nombre;
+														}
+													),
+												},
+												color: this.state.data.map(
+													(g) => {
+														return g.categoria.color;
+													}
+												),
+												series: [{ 
+													name: 'gastos',
+													type: 'pie',
+													center: ['60%', '50%'],
+													data: this.state.data.map(
+														(g) => {
+															return {
+																name: g.categoria.nombre,
+																value: Math.abs(g.monto)
+															};
+														}
+													)
+												}]
+											}}/>	
+								}
 							</div>
 						)
 						:
